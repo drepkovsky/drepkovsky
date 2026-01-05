@@ -17,6 +17,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             colors: {
@@ -45,20 +46,20 @@
           margin: 0;
           size: auto;
         }
-        html {
-          background-color: #000000 !important;
+        html, body {
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
         }
-        body {
+        /* Dark mode print styles */
+        html.dark, html.dark body {
           background-color: #000000 !important;
-          -webkit-print-color-adjust: exact !important;
-          print-color-adjust: exact !important;
+          color: #d4d4d4 !important;
         }
-          /* color: #d4d4d4 !important;
-          -webkit-print-color-adjust: exact !important;
-          print-color-adjust: exact !important; */
-        /* } */
+        /* Light mode print styles */
+        html:not(.dark), html:not(.dark) body {
+          background-color: #ffffff !important;
+          color: #1a1a1a !important;
+        }
         .no-print {
           display: none !important;
         }
@@ -73,8 +74,32 @@
       /* Digital Industrial Grid Background */
       .bg-grid-pattern {
         background-size: 24px 24px;
-        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      }
+
+      /* Light mode grid - dark lines */
+      .bg-grid-pattern {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+      }
+
+      /* Dark mode grid - light lines */
+      .dark .bg-grid-pattern {
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      }
+
+      /* Gradient animation */
+      @keyframes gradient-float {
+        0%, 100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          transform: translate(-45%, -55%) scale(1.05);
+        }
+      }
+
+      .animate-gradient-float {
+        animation: gradient-float 15s ease-in-out infinite;
       }
     </style>
   <script type="importmap">
@@ -89,7 +114,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-brand-black text-neutral-300 font-sans antialiased selection:bg-brand-primary/30 selection:text-white">
+  <body class="bg-white dark:bg-brand-black text-neutral-800 dark:text-neutral-300 font-sans antialiased selection:bg-brand-primary/30 selection:text-white">
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

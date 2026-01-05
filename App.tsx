@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
 	MapPinIcon as MapPin,
 	EnvelopeIcon as Mail,
@@ -15,8 +15,8 @@ import {
 	CodeIcon as Code2,
 	PrinterIcon as Printer,
 	PackageIcon as Box,
-	CaretLeftIcon as ChevronLeft,
-	CaretRightIcon as ChevronRight,
+	SunIcon as Sun,
+	MoonIcon as Moon,
 } from "@phosphor-icons/react";
 import { RESUME_DATA } from "./constants";
 import type { ExperienceItem, ProjectItem } from "./types";
@@ -30,10 +30,10 @@ const SectionTitle: React.FC<{
 		{Icon && (
 			<Icon className="w-5 h-5 text-brand-primary print:w-4 print:h-4" />
 		)}
-		<h2 className="text-sm font-mono font-bold tracking-[0.2em] text-neutral-400 uppercase print:text-xs">
+		<h2 className="text-sm font-mono font-bold tracking-[0.2em] text-neutral-500 dark:text-neutral-400 uppercase print:text-xs">
 			{children}
 		</h2>
-		<div className="h-px flex-1 bg-brand-border print:bg-brand-primary/20" />
+		<div className="h-px flex-1 bg-neutral-200 dark:bg-brand-border print:bg-brand-primary/20" />
 	</div>
 );
 
@@ -44,12 +44,12 @@ const Badge: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const ExperienceCard: React.FC<{ item: ExperienceItem }> = ({ item }) => (
-	<div className="relative pl-6 pb-8 last:pb-0 border-l border-brand-border print:border-brand-primary/30 print:pb-6 print-break-avoid">
-		<div className="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-brand-black border border-brand-primary rounded-none print:bg-brand-primary print:border-brand-primary" />
+	<div className="relative pl-6 pb-8 last:pb-0 border-l border-neutral-200 dark:border-brand-border print:border-brand-primary/30 print:pb-6 print-break-avoid">
+		<div className="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-white dark:bg-brand-black border border-brand-primary rounded-none print:bg-brand-primary print:border-brand-primary" />
 
 		<div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 print:mb-1">
 			<div>
-				<h3 className="text-lg font-bold text-white leading-tight print:text-xs">
+				<h3 className="text-lg font-bold text-neutral-900 dark:text-white leading-tight print:text-xs">
 					{item.role}
 				</h3>
 				<div className="text-brand-primary font-mono text-sm mt-1 font-semibold print:text-[11px]">
@@ -57,13 +57,13 @@ const ExperienceCard: React.FC<{ item: ExperienceItem }> = ({ item }) => (
 				</div>
 			</div>
 			<div className="flex flex-col sm:items-end mt-2 sm:mt-0">
-				<span className="text-xs font-mono text-neutral-500 bg-brand-surface border border-brand-border px-2 py-1 print:py-0.5 print:text-[9px]">
+				<span className="text-xs font-mono text-neutral-500 bg-neutral-100 dark:bg-brand-surface border border-neutral-200 dark:border-brand-border px-2 py-1 print:py-0.5 print:text-[9px]">
 					{item.period}
 				</span>
 			</div>
 		</div>
 
-		<p className="text-sm text-neutral-400 mb-3 leading-relaxed print:text-[10px] print:leading-snug print:mb-1">
+		<p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 leading-relaxed print:text-[10px] print:leading-snug print:mb-1">
 			{item.description}
 		</p>
 
@@ -86,7 +86,7 @@ const ExperienceCard: React.FC<{ item: ExperienceItem }> = ({ item }) => (
 				{item.techStack.split(", ").map((tech, i) => (
 					<span
 						key={i}
-						className="text-[10px] font-mono text-neutral-500 border border-brand-border px-1.5 py-0.5 print:text-[9px]"
+						className="text-[10px] font-mono text-neutral-500 border border-neutral-200 dark:border-brand-border px-1.5 py-0.5 print:text-[9px]"
 					>
 						{tech}
 					</span>
@@ -100,9 +100,9 @@ const ProjectCard: React.FC<{
 	project: ProjectItem;
 	type: "client" | "product" | "opensource";
 }> = ({ project }) => (
-	<div className="group h-full border border-brand-border bg-brand-surface/30 backdrop-blur-sm p-4 hover:border-brand-primary/50 transition-colors print:border-brand-primary/30 print:p-3 print-break-avoid flex flex-col">
+	<div className="group h-full border border-neutral-200 dark:border-brand-border bg-neutral-50 dark:bg-brand-surface/30 backdrop-blur-sm p-4 hover:border-brand-primary/50 transition-colors print:border-neutral-300 print:p-3 print-break-avoid flex flex-col">
 		<div className="flex justify-between items-start mb-2 print:mb-1 gap-2">
-			<h4 className="font-bold text-white print:text-xs min-w-0">
+			<h4 className="font-bold text-neutral-900 dark:text-white print:text-xs min-w-0">
 				{project.name}
 			</h4>
 			<div className="flex flex-col items-end gap-1 shrink-0">
@@ -135,7 +135,7 @@ const ProjectCard: React.FC<{
 				</div>
 			</div>
 		</div>
-		<p className="text-xs text-neutral-400 mb-3 print:text-[10px] print:leading-tight print:mb-1.5 flex-1">
+		<p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3 print:text-[10px] print:leading-tight print:mb-1.5 flex-1">
 			{project.description}
 		</p>
 		<ul className="space-y-1">
@@ -181,11 +181,11 @@ const ProjectCarousel: React.FC<{
 			<div className="relative md:hidden print:hidden">
 				{/* Left fade indicator */}
 				{currentIndex > 0 && (
-					<div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-brand-black/60 to-transparent z-10 pointer-events-none" />
+					<div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-brand-black/60 to-transparent z-10 pointer-events-none" />
 				)}
 				{/* Right fade indicator */}
 				{currentIndex < projects.length - 1 && (
-					<div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-brand-black/60 to-transparent z-10 pointer-events-none" />
+					<div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-brand-black/60 to-transparent z-10 pointer-events-none" />
 				)}
 				<div
 					ref={scrollRef}
@@ -223,7 +223,7 @@ const ProjectCarousel: React.FC<{
 							className={`w-2 h-2 transition-all ${
 								index === currentIndex
 									? "bg-brand-primary w-6"
-									: "bg-brand-border hover:bg-brand-primary/50"
+									: "bg-neutral-300 dark:bg-brand-border hover:bg-brand-primary/50"
 							}`}
 							aria-label={`Go to project ${index + 1}`}
 						/>
@@ -262,7 +262,7 @@ const SidebarItem: React.FC<{
 						href={href[i]}
 						target="_blank"
 						rel="noreferrer"
-						className="text-sm text-neutral-300 hover:text-brand-primary transition-colors block font-medium underline-offset-2 print:underline print:decoration-1 print:decoration-neutral-600 print:text-[10px] print:break-all"
+						className="text-sm text-neutral-700 dark:text-neutral-300 hover:text-brand-primary transition-colors block font-medium underline-offset-2 print:underline print:decoration-1 print:decoration-neutral-600 print:text-[10px] print:break-all"
 					>
 						{v}
 					</a>
@@ -272,12 +272,12 @@ const SidebarItem: React.FC<{
 					href={Array.isArray(href) ? href[0] : href}
 					target="_blank"
 					rel="noreferrer"
-					className="text-sm text-neutral-300 hover:text-brand-primary transition-colors block font-medium underline-offset-2 print:underline print:decoration-1 print:decoration-neutral-600 print:text-[10px] print:break-all"
+					className="text-sm text-neutral-700 dark:text-neutral-300 hover:text-brand-primary transition-colors block font-medium underline-offset-2 print:underline print:decoration-1 print:decoration-neutral-600 print:text-[10px] print:break-all"
 				>
 					{Array.isArray(value) ? value.join(", ") : value}
 				</a>
 			) : (
-				<span className="text-sm text-neutral-300 block font-medium print:text-[10px] print:break-all">
+				<span className="text-sm text-neutral-700 dark:text-neutral-300 block font-medium print:text-[10px] print:break-all">
 					{Array.isArray(value)
 						? value.map((v, i) => (
 								<span key={`${label}-${v}-${i}`}>
@@ -289,7 +289,7 @@ const SidebarItem: React.FC<{
 				</span>
 			)
 		) : (
-			<span className="text-sm text-neutral-300 block font-medium print:text-[10px] print:break-all">
+			<span className="text-sm text-neutral-700 dark:text-neutral-300 block font-medium print:text-[10px] print:break-all">
 				{Array.isArray(value)
 					? value.map((v, i) => (
 							<span key={`${label}-${v}-${i}`}>
@@ -317,36 +317,137 @@ export default function App() {
 		achievements,
 	} = RESUME_DATA;
 
+	const [isDark, setIsDark] = useState(() => {
+		const saved = localStorage.getItem("theme");
+		if (saved) {
+			return saved === "dark";
+		}
+		// Použiť systémovú preferenciu ak nie je uložená
+		return window.matchMedia("(prefers-color-scheme: dark)").matches;
+	});
+
+	const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+	const [smoothMousePos, setSmoothMousePos] = useState({ x: 0, y: 0 });
+
+	useEffect(() => {
+		const handleMouseMove = (e: MouseEvent) => {
+			setMousePos({ x: e.clientX, y: e.clientY });
+		};
+
+		window.addEventListener("mousemove", handleMouseMove);
+		return () => window.removeEventListener("mousemove", handleMouseMove);
+	}, []);
+
+	useEffect(() => {
+		// Smooth lerp animation
+		let animationFrameId: number;
+		const lerp = (start: number, end: number, factor: number) => {
+			return start + (end - start) * factor;
+		};
+
+		const animate = () => {
+			setSmoothMousePos((prev) => ({
+				x: lerp(prev.x, mousePos.x, 0.05),
+				y: lerp(prev.y, mousePos.y, 0.05),
+			}));
+			animationFrameId = requestAnimationFrame(animate);
+		};
+
+		animationFrameId = requestAnimationFrame(animate);
+		return () => cancelAnimationFrame(animationFrameId);
+	}, [mousePos]);
+
+	useEffect(() => {
+		// Aplikovať tému
+		if (isDark) {
+			document.documentElement.classList.add("dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+		}
+	}, [isDark]);
+
+	useEffect(() => {
+		// Sledovať zmeny v systémovej téme
+		const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+		const handleChange = (e: MediaQueryListEvent) => {
+			// Len ak používateľ nemá uloženú preferenciu
+			if (!localStorage.getItem("theme")) {
+				setIsDark(e.matches);
+			}
+		};
+
+		mediaQuery.addEventListener("change", handleChange);
+		return () => mediaQuery.removeEventListener("change", handleChange);
+	}, []);
+
+	const toggleTheme = () => {
+		const newTheme = !isDark;
+		setIsDark(newTheme);
+		// Uložiť manuálnu preferenciu
+		localStorage.setItem("theme", newTheme ? "dark" : "light");
+	};
+
 	const handlePrint = () => {
 		window.print();
 	};
 
 	return (
-		<div className="min-h-screen bg-brand-black text-neutral-300 relative selection:bg-brand-primary/30">
+		<div className="min-h-screen bg-white dark:bg-brand-black text-neutral-800 dark:text-neutral-300 relative selection:bg-brand-primary/30">
 			{/* Background Effects (Hidden on Print) */}
-			<div className="fixed inset-0 pointer-events-none z-0">
-				<div className="absolute inset-0 bg-grid-pattern opacity-40"></div>
-				<div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+			<div className="fixed inset-0 pointer-events-none z-0 print:hidden">
+				<div className="absolute inset-0 bg-grid-pattern opacity-20 dark:opacity-40"></div>
+				{/* Main gradient blob */}
+				<div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-primary/15 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 animate-gradient-float"></div>
+				{/* Secondary gradient blob */}
+				<div
+					className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-primary/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 animate-gradient-float"
+					style={{ animationDelay: "-7.5s" }}
+				></div>
+				{/* Mouse tracking gradient blob */}
+				<div
+					className="absolute w-[300px] h-[300px] bg-brand-primary/5 dark:bg-brand-primary/10 rounded-full blur-[80px]"
+					style={{
+						left: `${smoothMousePos.x}px`,
+						top: `${smoothMousePos.y}px`,
+						transform: "translate(-50%, -50%)",
+					}}
+				></div>
 			</div>
 
-			{/* Floating Print Button */}
-			<button
-				onClick={handlePrint}
-				className="fixed bottom-8 right-8 z-50 bg-brand-primary text-white p-3 shadow-[0_0_20px_rgba(183,0,255,0.4)] hover:bg-brand-primary/90 transition-all duration-300 print:hidden group"
-				title="Print CV"
-			>
-				<Printer className="w-6 h-6" />
-				<span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-brand-surface border border-brand-border px-2 py-1 text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
-					Print / Save PDF
-				</span>
-			</button>
+			{/* Floating Action Buttons */}
+			<div className="fixed bottom-8 right-8 z-50 flex flex-col gap-3 print:hidden">
+				{/* Theme Toggle Button */}
+				<button
+					type="button"
+					onClick={toggleTheme}
+					className="bg-brand-primary text-white p-3 shadow-[0_0_20px_rgba(183,0,255,0.4)] hover:bg-brand-primary/90 transition-all duration-300 group"
+					title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+				>
+					{isDark ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+					<span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white dark:bg-brand-surface border border-neutral-300 dark:border-brand-border px-2 py-1 text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity text-neutral-800 dark:text-neutral-300">
+						{isDark ? "Light Mode" : "Dark Mode"}
+					</span>
+				</button>
+				{/* Print Button */}
+				<button
+					type="button"
+					onClick={handlePrint}
+					className="bg-brand-primary text-white p-3 shadow-[0_0_20px_rgba(183,0,255,0.4)] hover:bg-brand-primary/90 transition-all duration-300 group"
+					title="Print CV"
+				>
+					<Printer className="w-6 h-6" />
+					<span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white dark:bg-brand-surface border border-neutral-300 dark:border-brand-border px-2 py-1 text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity text-neutral-800 dark:text-neutral-300">
+						Print / Save PDF
+					</span>
+				</button>
+			</div>
 
 			{/* Main Container */}
 			<main className="relative z-10 max-w-[1000px] mx-auto p-6 sm:p-8 md:p-12 print:p-[15mm] print:box-decoration-clone print:max-w-none">
 				{/* Header Section */}
-				<header className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-12 border-b border-brand-border pb-12 print:border-brand-primary/30 print:mb-6 print:pb-6 print:gap-5">
+				<header className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-12 border-b border-neutral-200 dark:border-brand-border pb-12 print:border-brand-primary/30 print:mb-6 print:pb-6 print:gap-5">
 					<div className="relative w-32 h-32 md:w-40 md:h-40 shrink-0 print:w-28 print:h-28">
-						<div className="absolute inset-0 border border-brand-border bg-brand-surface print:border-brand-primary">
+						<div className="absolute inset-0 border border-neutral-200 dark:border-brand-border bg-neutral-100 dark:bg-brand-surface print:border-brand-primary">
 							<img
 								src="https://media.licdn.com/dms/image/v2/D4E03AQEy8cgFT3PqgA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1722969486324?e=1769040000&v=beta&t=E0pi9IG1JFbU-w_YYG9sP2H7ZmFprzzz5nhaao9r9Ws"
 								alt={name}
@@ -360,14 +461,14 @@ export default function App() {
 
 					<div className="flex-1 flex flex-col justify-center text-center md:text-left">
 						<div className="mb-4 print:mb-2">
-							<h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-2 leading-none print:text-3xl">
+							<h1 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white tracking-tight mb-2 leading-none print:text-3xl">
 								{name}
 							</h1>
 							<p className="text-lg md:text-xl text-brand-primary font-mono print:text-sm print:font-bold">
 								{title}
 							</p>
 						</div>
-						<p className="text-sm text-neutral-400 max-w-2xl leading-relaxed text-justify print:text-[11px] print:leading-snug">
+						<p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed text-justify print:text-[11px] print:leading-snug">
 							{about}
 						</p>
 					</div>
@@ -411,13 +512,13 @@ export default function App() {
 								{education.map((edu, index) => (
 									<div
 										key={index}
-										className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline border-b border-brand-border/50 pb-2 last:border-0 print:border-brand-primary/20 print:pb-1"
+										className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline border-b border-neutral-200 dark:border-brand-border/50 pb-2 last:border-0 print:border-neutral-300 print:pb-1"
 									>
 										<div>
-											<h4 className="font-bold text-white print:text-xs">
+											<h4 className="font-bold text-neutral-900 dark:text-white print:text-xs">
 												{edu.degree}
 											</h4>
-											<div className="text-sm text-neutral-400 print:text-[10px]">
+											<div className="text-sm text-neutral-600 dark:text-neutral-400 print:text-[10px]">
 												{edu.institution}
 											</div>
 											<div className="text-xs text-neutral-500 italic mt-0.5 print:text-[9px]">
@@ -437,8 +538,8 @@ export default function App() {
 					<aside className="space-y-10 print:space-y-4 lg:sticky lg:top-8 lg:self-start">
 						{/* Contact */}
 						<section className="print-break-avoid">
-							<div className="bg-brand-offBlack/30 backdrop-blur-sm border border-brand-border p-6 print:!p-3 print:bg-brand-offBlack/60">
-								<h3 className="font-mono text-xs uppercase tracking-widest text-white mb-6 border-b border-brand-border pb-2 print:mb-2 print:pb-1 print:text-[10px]">
+							<div className="bg-neutral-50 dark:bg-brand-offBlack/30 backdrop-blur-sm border border-neutral-200 dark:border-brand-border p-6 print:!p-3 print:bg-transparent print:border-brand-primary/30">
+								<h3 className="font-mono text-xs uppercase tracking-widest text-neutral-900 dark:text-white mb-6 border-b border-neutral-200 dark:border-brand-border pb-2 print:mb-2 print:pb-1 print:text-[10px] print:border-brand-primary/30">
 									Get in touch
 								</h3>
 								<SidebarItem
@@ -514,7 +615,9 @@ export default function App() {
 										key={i}
 										className="flex justify-between items-center text-sm print:text-xs"
 									>
-										<span className="text-white">{lang.language}</span>
+										<span className="text-neutral-900 dark:text-white">
+											{lang.language}
+										</span>
 										<span className="font-mono text-neutral-500 text-xs print:text-[10px]">
 											{lang.level}
 										</span>
@@ -530,7 +633,7 @@ export default function App() {
 								{achievements.map((item, i) => (
 									<li
 										key={i}
-										className="text-xs text-neutral-400 border-l-2 border-brand-primary pl-3 py-0.5 print:text-[10px] print:leading-tight"
+										className="text-xs text-neutral-600 dark:text-neutral-400 border-l-2 border-brand-primary pl-3 py-0.5 print:text-[10px] print:leading-tight"
 									>
 										{item}
 									</li>
@@ -541,7 +644,7 @@ export default function App() {
 				</div>
 
 				{/* Footer */}
-				<footer className="mt-16 pt-8 border-t border-brand-border text-center text-neutral-600 text-xs font-mono print:hidden">
+				<footer className="mt-16 pt-8 border-t border-neutral-200 dark:border-brand-border text-center text-neutral-500 dark:text-neutral-600 text-xs font-mono print:hidden">
 					<p>
 						Designed with QUESTPIE Design System • Built with React & Tailwind
 					</p>
