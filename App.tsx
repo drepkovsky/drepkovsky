@@ -397,10 +397,10 @@ export default function App() {
 			<div className="fixed inset-0 pointer-events-none z-0 print:hidden">
 				<div className="absolute inset-0 bg-grid-pattern opacity-20 dark:opacity-40"></div>
 				{/* Main gradient blob */}
-				<div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-primary/15 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 animate-gradient-float"></div>
+				<div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-primary/10 dark:bg-brand-primary/15 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 animate-gradient-float"></div>
 				{/* Secondary gradient blob */}
 				<div
-					className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-primary/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 animate-gradient-float"
+					className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-primary/5 dark:bg-brand-primary/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 animate-gradient-float"
 					style={{ animationDelay: "-7.5s" }}
 				></div>
 				{/* Mouse tracking gradient blob */}
