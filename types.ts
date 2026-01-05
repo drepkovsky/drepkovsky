@@ -54,7 +54,7 @@ export interface ResumeData {
 		openSource: ProjectItem[];
 	};
 	education: EducationItem[];
-	skills: SkillCategory[];
+	skills: string[];
 	languages: { language: string; level: string }[];
 	achievements: string[];
 	interests: string[];

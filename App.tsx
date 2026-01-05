@@ -97,7 +97,7 @@ const ProjectCard: React.FC<{
 	project: ProjectItem;
 	type: "client" | "product" | "opensource";
 }> = ({ project }) => (
-	<div className="group h-full border border-brand-border bg-brand-surface/50 p-4 hover:border-brand-primary/50 transition-colors print:border-brand-primary/30 print:p-3 print-break-avoid flex flex-col">
+	<div className="group h-full border border-brand-border bg-brand-surface/30 backdrop-blur-sm p-4 hover:border-brand-primary/50 transition-colors print:border-brand-primary/30 print:p-3 print-break-avoid flex flex-col">
 		<div className="flex justify-between items-start mb-2 print:mb-1 gap-2">
 			<h4 className="font-bold text-white print:text-xs min-w-0">
 				{project.name}
@@ -287,9 +287,7 @@ export default function App() {
 					<div className="space-y-12 print:space-y-6">
 						{/* Experience Section */}
 						<section>
-							<SectionTitle icon={Terminal}>
-								Professional Experience
-							</SectionTitle>
+							<SectionTitle icon={Terminal}>Where I've worked</SectionTitle>
 							<div className="space-y-0">
 								{experience.map((job, index) => (
 									<ExperienceCard key={index} item={job} />
@@ -299,7 +297,7 @@ export default function App() {
 
 						{/* Projects Section - Client */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Cpu}>Key Client Projects</SectionTitle>
+							<SectionTitle icon={Cpu}>Client work</SectionTitle>
 							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 print:gap-3 [&>*:nth-child(odd):last-child]:sm:col-span-2">
 								{projects.client.map((project, index) => (
 									<ProjectCard key={index} project={project} type="client" />
@@ -309,7 +307,9 @@ export default function App() {
 
 						{/* Projects Section - Products & OSS */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Box}>Products & Open Source</SectionTitle>
+							<SectionTitle icon={Box}>
+								Side projects & open source
+							</SectionTitle>
 							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 print:gap-3 [&>*:nth-child(odd):last-child]:sm:col-span-2">
 								{projects.product
 									.concat(projects.openSource)
@@ -325,7 +325,7 @@ export default function App() {
 
 						{/* Education Section */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Calendar}>Education</SectionTitle>
+							<SectionTitle icon={Calendar}>What I studied</SectionTitle>
 							<div className="space-y-4 print:space-y-2">
 								{education.map((edu, index) => (
 									<div
@@ -356,9 +356,9 @@ export default function App() {
 					<aside className="space-y-10 print:space-y-4">
 						{/* Contact */}
 						<section className="print-break-avoid">
-							<div className="bg-brand-offBlack border border-brand-border p-6 print:!p-3">
+							<div className="bg-brand-offBlack/30 backdrop-blur-sm border border-brand-border p-6 print:!p-3 print:bg-brand-offBlack/60">
 								<h3 className="font-mono text-xs uppercase tracking-widest text-white mb-6 border-b border-brand-border pb-2 print:mb-2 print:pb-1 print:text-[10px]">
-									Contact
+									Get in touch
 								</h3>
 								<SidebarItem
 									icon={Mail}
@@ -406,26 +406,27 @@ export default function App() {
 
 						{/* Skills */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Code2}>Technical Skills</SectionTitle>
-							<div className="space-y-6 print:space-y-3">
-								{skills.map((cat, i) => (
-									<div key={i}>
-										<h4 className="text-xs font-mono text-neutral-500 mb-2 uppercase print:text-[9px] print:mb-1">
-											{cat.category}
-										</h4>
-										<div className="flex flex-wrap gap-1.5 print:gap-1">
-											{cat.items.map((skill, j) => (
-												<Badge key={j}>{skill}</Badge>
-											))}
-										</div>
-									</div>
+							<SectionTitle icon={Code2}>My skills</SectionTitle>
+							<div className="flex flex-wrap gap-1.5 print:gap-1">
+								{skills.map((skill, i) => (
+									<Badge key={i}>{skill}</Badge>
+								))}
+							</div>
+						</section>
+
+						{/* Interests */}
+						<section className="print-break-avoid">
+							<SectionTitle icon={Code2}>My interests</SectionTitle>
+							<div className="flex flex-wrap gap-1.5 print:gap-1">
+								{RESUME_DATA.interests.map((interest, i) => (
+									<Badge key={i}>{interest}</Badge>
 								))}
 							</div>
 						</section>
 
 						{/* Languages */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Globe}>Languages</SectionTitle>
+							<SectionTitle icon={Globe}>Languages I Speak</SectionTitle>
 							<div className="space-y-2 print:space-y-1">
 								{languages.map((lang, i) => (
 									<div
@@ -443,7 +444,7 @@ export default function App() {
 
 						{/* Achievements */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Server}>Notable</SectionTitle>
+							<SectionTitle icon={Server}>Some notable things</SectionTitle>
 							<ul className="space-y-2 print:space-y-1">
 								{achievements.map((item, i) => (
 									<li

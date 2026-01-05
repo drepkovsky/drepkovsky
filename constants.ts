@@ -13,7 +13,7 @@ export const RESUME_DATA: ResumeData = {
 		linkedin: "linkedin.com/in/drepkovsky",
 	},
 	about:
-		"Full-stack TypeScript developer and Master of Science in Intelligent Software Systems specializing in modern web ecosystems. With 6+ years of experience (since 2020) across enterprise platforms and startups, I founded QUESTPIE s.r.o. to deliver production-ready solutions for international clients while building open-source developer tools. Creator of QUESTPIE CMS - a batteries-included, type-safe headless CMS. Expert in DevOps practices, multi-tenant architecture, and leveraging AI tools to maximize code quality and development velocity.",
+		"Full-stack TypeScript developer with Master's degree in Intelligent Software Systems. I've been coding professionally for 6+ years, working on everything from enterprise platforms to startups. Founded QUESTPIE s.r.o. where I build web applications for clients and work on open-source projects. Recently created QUESTPIE CMS - a type-safe headless CMS built on Drizzle ORM and Hono. I enjoy working with modern TypeScript tools, PostgreSQL optimization, and multi-tenant architectures.",
 	experience: [
 		{
 			role: "Founder & Lead Developer",
@@ -21,13 +21,12 @@ export const RESUME_DATA: ResumeData = {
 			location: "Bratislava, Slovak Republic",
 			period: "September 2021 - Present",
 			description:
-				"Full-stack development, DevOps infrastructure management, and product development for international clients while building open-source tools and SaaS platforms.",
+				"Building web applications and SaaS products for clients while working on open-source projects.",
 			achievements: [
-				"Scaled operations from small local projects to delivering complex solutions for international clients.",
-				"Implemented real-time systems using Soketi (Pusher protocol) + Redis Pub/Sub.",
-				"Designed and implemented custom control plane for multi-tenant deployment automation.",
-				"Built Docker + Kubernetes infrastructure serving production applications.",
-				"PostgreSQL performance tuning: complex queries with CTEs, window functions, proper indexing.",
+				"Working on diverse projects - from small local businesses to international clients.",
+				"Set up multi-tenant infrastructure using Docker and Kubernetes on Hetzner Cloud.",
+				"Spent a lot of time optimizing PostgreSQL queries and database schema design.",
+				"Built real-time features using Redis Pub/Sub and WebSocket connections.",
 			],
 		},
 		{
@@ -36,11 +35,11 @@ export const RESUME_DATA: ResumeData = {
 			location: "Bratislava, Slovak Republic",
 			period: "December 2024 - May 2025",
 			description:
-				"Developed enterprise modules for Modulario - a no-code/low-code platform enabling rapid creation of tailor-made business systems.",
+				"Working on Modulario - a no-code/low-code platform for building business systems.",
 			achievements: [
-				"Developed Schenker module and third-party system integrations.",
-				"Architected core logic for multi-tenant system module involving complex entity diffing and synchronization.",
-				"Refactored legacy codebases to modern TypeScript standards.",
+				"Built 3rd integrations with shipping companies",
+				"Worked on multi-tenant module distribution system with versioning and synchronization logic.",
+				"Team oriented, git-based workflow with code reviews and CI/CD pipelines.",
 			],
 			techStack: "TypeScript, React, FeatherJS, PostgreSQL, Redis",
 			link: "modulario.com",
@@ -51,11 +50,11 @@ export const RESUME_DATA: ResumeData = {
 			location: "Bratislava, Slovak Republic",
 			period: "September 2021 - September 2023",
 			description:
-				"I was developing an usability testing platform in team of 5-9 other developers. I was participating in building these features.",
+				"Working on usability testing platform in a team of 5-9 developers.",
 			achievements: [
-				"User Panel - Purchase respondents for your studies directly through the platform with a Cint Supplier API",
-				"Own Database - A CRM-like feature that allows users to import and manage their own respondents",
-				"Moderated Testing - Enable users to find respondents and schedule and host moderated testing sessions directly through the platform. - I was responsible for creating and developing a custom NestJS backend service that provides video meeting capabilities via the Zoom.us API",
+				"Built respondent purchasing feature integrated with Cint Supplier API.",
+				"Created CRM-like system for managing and importing respondents.",
+				"Implemented video meeting service using NestJS and Zoom.us API.",
 			],
 			techStack: "TypeScript, React, NestJS, PostgreSQL, Redis, Docker",
 		},
@@ -64,53 +63,50 @@ export const RESUME_DATA: ResumeData = {
 		client: [
 			{
 				name: "Venue Finder",
-				description:
-					"Advanced venue management system for Prague Convention Bureau.",
+				description: "Venue management system for Prague Convention Bureau.",
 				details: [
-					"PostgreSQL query optimization for data filtering and aggregations.",
-					"Custom admin dashboard with complex external source data syncing.",
+					"Optimized PostgreSQL queries for filtering and aggregations.",
+					"Admin dashboard with data syncing from external sources.",
 				],
 				period: "December 2025",
 			},
 			{
 				name: "Nutrimeals",
 				description:
-					"Technical partner for EIT Food Member startup. Mobile platform for smart refrigerator management.",
+					"Mobile app for smart refrigerator management (EIT Food Member startup).",
 				details: [
-					"Integration for refrigerator discovery and mapping with real-time availability.",
-					"React Native + Expo app with offline support and push notifications.",
+					"React Native + Expo app for iOS, Android and Web.",
+					"Refrigerator discovery, real-time availability, offline mode, push notifications.",
 				],
 				period: "2025 - Present",
 			},
 			{
 				name: "eliadmin.sk",
-				description:
-					"A reusable template for e-commerce platforms, developed for a Slovak client.",
+				description: "E-commerce platform nextjs template for Slovak client.",
 				details: [
-					"Frontend development and mobile applications.",
-					"Payment gateway integrations and order management.",
-					"Ongoing maintenance and feature development.",
+					"Web frontend and mobile apps.",
+					"Payment gateways, order management, ongoing maintenance.",
+					"Implemented modules like blog, FAQ, reviews, and more.",
 				],
 				period: "2023 - Present",
 			},
 			{
 				name: "Pomoc Motoristom",
-				description:
-					"Complete platform rework with custom content management workflows.",
+				description: "Platform rework with custom CMS and content workflows.",
 				details: [
-					"Full CMS implementation with editorial approval process.",
-					"Multi-language support (i18n) and SEO optimization.",
-					"Currently deployed on testing domain for client review.",
+					"CMS with editorial approval process.",
+					"Multi-language support and SEO.",
+					"Currently in testing phase.",
 				],
 				period: "2025 (Testing)",
 			},
 			{
 				name: "Rosmami",
 				description:
-					"An AI-powered pantry management and meal plan builder designed to reduce food waste in households, under development for an Italian client.",
+					"Pantry management and meal planning app for Italian client.",
 				details: [
-					"React Native Expo Universal App (Web, iOS, Android).",
-					"Food waste reduction algorithms with smart ingredient suggestions.",
+					"React Native Expo app (Web, iOS, Android).",
+					"Smart ingredient suggestions to reduce food waste.",
 				],
 				period: "2024 - 2025",
 			},
@@ -121,7 +117,7 @@ export const RESUME_DATA: ResumeData = {
 				description: "Modular Website Builder SaaS.",
 				details: [
 					"Custom multi-tenant deployment system on Hetzner Cloud using Docker + Kubernetes.",
-					"Development of advanced AI agents for automated content management and copy generation.",
+					"Automated content management and generation features.",
 				],
 				period: "2025 - Present",
 			},
@@ -129,43 +125,40 @@ export const RESUME_DATA: ResumeData = {
 		openSource: [
 			{
 				name: "QUESTPIE CMS",
-				description: "Type-Safe Headless CMS built on Drizzle ORM + Hono.",
+				description: "Type-safe headless CMS built on Drizzle ORM and Hono.",
 				details: [
-					"Batteries-included: Auth, Storage, Queues, and type-safe API generation.",
-					"Born from the need for a better DX than PayloadCMS.",
+					"Includes auth, storage, queues, and type-safe API generation out of the box.",
+					"Started it because I wanted better DX than what PayloadCMS offers.",
 				],
 				link: "github.com/questpie/questpie-cms",
 				period: "Dec 2025 - Present",
 			},
 			{
 				name: "drizzle-migrations",
-				description:
-					"Original fork that provided the Drizzle community with a proof-of-concept for up/down migrations.",
+				description: "Proof-of-concept for up/down migrations in Drizzle ORM.",
 				details: [
-					"Pioneered the implementation of reversible migrations before official support.",
-					"Adapted complex migration generation logic from PayloadCMS for standalone use.",
+					"Made this before Drizzle had official support for reversible migrations.",
+					"Adapted migration logic from PayloadCMS to work standalone.",
 				],
 				link: "npmjs.com/package/@drepkovsky/drizzle-migrations",
 				period: "2024",
 			},
 			{
 				name: "tinydi",
-				description:
-					"Advanced type-safe dependency injection container architected to solve complex sync/async resolution challenges.",
+				description: "Type-safe dependency injection container.",
 				details: [
-					"Implemented advanced TypeScript inference for circular dependencies and lazy evaluation.",
-					"Achieved zero-dependency architecture without decorators using pure functional patterns.",
+					"Handles sync/async resolution, circular dependencies, and lazy evaluation.",
+					"No decorators, zero dependencies, just TypeScript types and functions.",
 				],
 				link: "npmjs.com/package/@drepkovsky/tinydi",
 				period: "2025",
 			},
 			{
 				name: "bulkit.dev",
-				description:
-					"Social Media Scheduler. An open-source, self-hosted post scheduling platform aimed at providing a seamless social media management experience for indie hackers and individual content creators, currently under development.",
+				description: "Open-source social media scheduler you can self-host.",
 				details: [
-					"Built with modern TypeScript stack focusing on privacy and data ownership.",
-					"Creation of advanced AI agents for content management and automated post generation.",
+					"Built with TypeScript, focused on privacy and owning your data.",
+					"Schedule posts, manage content across multiple platforms.",
 				],
 				link: "bulkit.dev",
 				github: "github.com/questpie/bulkit.dev",
@@ -194,51 +187,17 @@ export const RESUME_DATA: ResumeData = {
 		},
 	],
 	skills: [
-		{
-			category: "Core",
-			items: [
-				"TypeScript",
-				"Node.js",
-				"React",
-				"Next.js 15",
-				"Vue.js",
-				"Hono",
-				"NestJS",
-				"Bun",
-			],
-		},
-		{
-			category: "Data",
-			items: [
-				"PostgreSQL",
-				"Drizzle ORM",
-				"PostGIS",
-				"Redis",
-				"pgvector",
-				"Soketi (Pusher)",
-			],
-		},
-		{
-			category: "DevOps",
-			items: [
-				"Docker",
-				"Kubernetes",
-				"CI/CD",
-				"Hetzner Cloud",
-				"Multi-tenant Arch",
-				"Zero-downtime",
-			],
-		},
-		{
-			category: "AI & Tools",
-			items: [
-				"Claude Code",
-				"Google AI Studio",
-				"AI Agent Dev",
-				"GitHub Copilot",
-				"LLM Integration",
-			],
-		},
+		"TypeScript",
+		"React",
+		"Next.js",
+		"React Native",
+		"Hono",
+		"NestJS",
+		"PostgreSQL",
+		"Drizzle ORM",
+		"Redis",
+		"Docker",
+		"Kubernetes",
 	],
 	languages: [
 		{ language: "English", level: "Upper Intermediate (B2)" },
@@ -246,16 +205,14 @@ export const RESUME_DATA: ResumeData = {
 		{ language: "Slovak", level: "Native (C2)" },
 	],
 	achievements: [
-		"Scaled QUESTPIE s.r.o. from toy to serving international clients.",
-		"Built production-grade multi-tenant SaaS infrastructure.",
-		"Created open-source alternative to Payload CMS.",
-		// "Optimized PostgreSQL queries for significant performance gains.",
+		"Running QUESTPIE s.r.o. for 3+ years with multiple client projects.",
+		"Built and deployed multi-tenant SaaS infrastructure on Kubernetes.",
+		"Created QUESTPIE CMS - an open-source type-safe headless CMS.",
 	],
 	interests: [
-		"Type-safe development",
-		"DX optimization",
-		"Open-source",
-		"AI-assisted workflows",
-		"Mobile-first architecture",
+		"Improving developer experience",
+		"Building quality products",
+		"Type-safe code",
+		"Open-source work",
 	],
 };
