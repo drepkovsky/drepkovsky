@@ -177,23 +177,33 @@ const ProjectCarousel: React.FC<{
 
 	return (
 		<div className="relative">
-			{/* Carousel container - mobile only, hidden on print */}
-			<div
-				ref={scrollRef}
-				className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 md:hidden print:hidden"
-				onScroll={(e) => {
-					const container = e.currentTarget;
-					const newIndex = Math.round(
-						container.scrollLeft / container.offsetWidth,
-					);
-					setCurrentIndex(newIndex);
-				}}
-			>
-				{projects.map((project, index) => (
-					<div key={index} className="flex-none w-full snap-center">
-						<ProjectCard project={project} type={type} />
-					</div>
-				))}
+			{/* Carousel container wrapper with fade indicators - mobile only, hidden on print */}
+			<div className="relative md:hidden print:hidden">
+				{/* Left fade indicator */}
+				{currentIndex > 0 && (
+					<div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-brand-black/60 to-transparent z-10 pointer-events-none" />
+				)}
+				{/* Right fade indicator */}
+				{currentIndex < projects.length - 1 && (
+					<div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-brand-black/60 to-transparent z-10 pointer-events-none" />
+				)}
+				<div
+					ref={scrollRef}
+					className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4"
+					onScroll={(e) => {
+						const container = e.currentTarget;
+						const newIndex = Math.round(
+							container.scrollLeft / container.offsetWidth,
+						);
+						setCurrentIndex(newIndex);
+					}}
+				>
+					{projects.map((project, index) => (
+						<div key={index} className="flex-none w-full snap-center">
+							<ProjectCard project={project} type={type} />
+						</div>
+					))}
+				</div>
 			</div>
 
 			{/* Dots indicator - mobile only, hidden on print */}
@@ -424,7 +434,7 @@ export default function App() {
 					</div>
 
 					{/* Right Column (Sidebar) */}
-					<aside className="space-y-10 print:space-y-4">
+					<aside className="space-y-10 print:space-y-4 lg:sticky lg:top-8 lg:self-start">
 						{/* Contact */}
 						<section className="print-break-avoid">
 							<div className="bg-brand-offBlack/30 backdrop-blur-sm border border-brand-border p-6 print:!p-3 print:bg-brand-offBlack/60">
