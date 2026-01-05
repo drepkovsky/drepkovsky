@@ -1,4 +1,5 @@
 import type React from "react";
+import { useState, useRef } from "react";
 import {
 	MapPinIcon as MapPin,
 	EnvelopeIcon as Mail,
@@ -14,6 +15,8 @@ import {
 	CodeIcon as Code2,
 	PrinterIcon as Printer,
 	PackageIcon as Box,
+	CaretLeftIcon as ChevronLeft,
+	CaretRightIcon as ChevronRight,
 } from "@phosphor-icons/react";
 import { RESUME_DATA } from "./constants";
 import type { ExperienceItem, ProjectItem } from "./types";
@@ -148,6 +151,85 @@ const ProjectCard: React.FC<{
 		</ul>
 	</div>
 );
+
+const ProjectCarousel: React.FC<{
+	projects: ProjectItem[];
+	type: "client" | "product" | "opensource";
+}> = ({ projects, type }) => {
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const [currentIndex, setCurrentIndex] = useState(0);
+
+	const scroll = (direction: "left" | "right") => {
+		if (!scrollRef.current) return;
+		const container = scrollRef.current;
+		const cardWidth = container.offsetWidth;
+		const newIndex =
+			direction === "left"
+				? Math.max(0, currentIndex - 1)
+				: Math.min(projects.length - 1, currentIndex + 1);
+
+		container.scrollTo({
+			left: cardWidth * newIndex,
+			behavior: "smooth",
+		});
+		setCurrentIndex(newIndex);
+	};
+
+	return (
+		<div className="relative">
+			{/* Carousel container - mobile only, hidden on print */}
+			<div
+				ref={scrollRef}
+				className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 md:hidden print:hidden"
+				onScroll={(e) => {
+					const container = e.currentTarget;
+					const newIndex = Math.round(
+						container.scrollLeft / container.offsetWidth,
+					);
+					setCurrentIndex(newIndex);
+				}}
+			>
+				{projects.map((project, index) => (
+					<div key={index} className="flex-none w-full snap-center">
+						<ProjectCard project={project} type={type} />
+					</div>
+				))}
+			</div>
+
+			{/* Dots indicator - mobile only, hidden on print */}
+			{projects.length > 1 && (
+				<div className="flex justify-center gap-2 mt-4 md:hidden print:hidden">
+					{projects.map((_, index) => (
+						<button
+							key={index}
+							onClick={() => {
+								if (!scrollRef.current) return;
+								scrollRef.current.scrollTo({
+									left: scrollRef.current.offsetWidth * index,
+									behavior: "smooth",
+								});
+								setCurrentIndex(index);
+							}}
+							className={`w-2 h-2 transition-all ${
+								index === currentIndex
+									? "bg-brand-primary w-6"
+									: "bg-brand-border hover:bg-brand-primary/50"
+							}`}
+							aria-label={`Go to project ${index + 1}`}
+						/>
+					))}
+				</div>
+			)}
+
+			{/* Regular grid for desktop and print */}
+			<div className="hidden md:grid print:grid grid-cols-1 sm:grid-cols-2 gap-4 print:gap-3 [&>*:nth-child(odd):last-child]:sm:col-span-2">
+				{projects.map((project, index) => (
+					<ProjectCard key={index} project={project} type={type} />
+				))}
+			</div>
+		</div>
+	);
+};
 
 const SidebarItem: React.FC<{
 	label: string;
@@ -298,11 +380,7 @@ export default function App() {
 						{/* Projects Section - Client */}
 						<section className="print-break-avoid">
 							<SectionTitle icon={Cpu}>Client work</SectionTitle>
-							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 print:gap-3 [&>*:nth-child(odd):last-child]:sm:col-span-2">
-								{projects.client.map((project, index) => (
-									<ProjectCard key={index} project={project} type="client" />
-								))}
-							</div>
+							<ProjectCarousel projects={projects.client} type="client" />
 						</section>
 
 						{/* Projects Section - Products & OSS */}
@@ -310,17 +388,10 @@ export default function App() {
 							<SectionTitle icon={Box}>
 								Side projects & open source
 							</SectionTitle>
-							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 print:gap-3 [&>*:nth-child(odd):last-child]:sm:col-span-2">
-								{projects.product
-									.concat(projects.openSource)
-									.map((project, index) => (
-										<ProjectCard
-											key={index}
-											project={project}
-											type="opensource"
-										/>
-									))}
-							</div>
+							<ProjectCarousel
+								projects={projects.product.concat(projects.openSource)}
+								type="opensource"
+							/>
 						</section>
 
 						{/* Education Section */}
