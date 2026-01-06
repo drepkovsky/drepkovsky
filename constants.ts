@@ -130,7 +130,7 @@ export const RESUME_DATA: ResumeData = {
 					"Includes auth, storage, queues, and type-safe API generation out of the box.",
 					"Started it because I wanted better DX than what PayloadCMS offers.",
 				],
-				link: "github.com/questpie/questpie-cms",
+				link: "https://questpie.com/",
 				period: "Dec 2025 - Present",
 			},
 			{
@@ -161,7 +161,7 @@ export const RESUME_DATA: ResumeData = {
 					"Schedule posts, manage content across multiple platforms.",
 				],
 				link: "bulkit.dev",
-				github: "github.com/questpie/bulkit.dev",
+				github: "bulkit.dev",
 				period: "Under Development",
 			},
 		],
