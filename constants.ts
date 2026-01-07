@@ -114,12 +114,14 @@ export const RESUME_DATA: ResumeData = {
 		product: [
 			{
 				name: "QUESTPIE Studio",
-				description: "Modular Website Builder SaaS.",
+				description:
+					"Multi-tenant SaaS platform for managing QUESTPIE CMS deployments.",
 				details: [
 					"Custom multi-tenant deployment system on Hetzner Cloud using Docker + Kubernetes.",
-					"Automated content management and generation features.",
+					"AI builder for flexible site and project refinements, based upon QUESTPIE CMS.",
+					"User management, billing, automated backups and monitoring.",
 				],
-				period: "2025 - Present",
+				period: "Under Development",
 			},
 			{
 				name: "Byvak.com",
@@ -132,6 +134,7 @@ export const RESUME_DATA: ResumeData = {
 					// "In production for 4+ years, serving clients like chatacerenka.sk.",
 				],
 				period: "2020 - Present",
+				link: "byvak.com",
 			},
 		],
 		openSource: [
