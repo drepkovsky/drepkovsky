@@ -110,18 +110,6 @@ export const RESUME_DATA: ResumeData = {
 				],
 				period: "2024 - 2025",
 			},
-			{
-				name: "Byvak.com",
-				description:
-					"Reservation platform for vacation rentals and accommodations.",
-				details: [
-					"Built with React (Vite) and NestJS backend.",
-					"Handles reservations, payments, room management, and discount systems.",
-					"Cancellation fee management and automated booking workflows.",
-					"In production for 4+ years, serving clients like chatacerenka.sk.",
-				],
-				period: "2020 - Present",
-			},
 		],
 		product: [
 			{
@@ -132,6 +120,18 @@ export const RESUME_DATA: ResumeData = {
 					"Automated content management and generation features.",
 				],
 				period: "2025 - Present",
+			},
+			{
+				name: "Byvak.com",
+				description:
+					"Reservation platform for vacation rentals and accommodations.",
+				details: [
+					"Built with React (Vite) and NestJS backend.",
+					"Handles reservations, payments, room management, and discount systems.",
+					"Cancellation fee management and automated booking workflows.",
+					// "In production for 4+ years, serving clients like chatacerenka.sk.",
+				],
+				period: "2020 - Present",
 			},
 		],
 		openSource: [
