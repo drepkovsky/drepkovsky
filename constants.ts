@@ -4,7 +4,7 @@ export type Language = 'sk' | 'cz' | 'en';
 
 export const RESUME_DATA_SK: ResumeData = {
 	name: "Ing. Dominik Repkovský",
-	title: "Full-Stack TypeScript Developer & Framework Creator",
+	title: "Full-Stack TypeScript Developer & Tvorca Frameworkov",
 	contact: {
 		email: "dominik.repkovsky@questpie.com",
 		phone: "+421 917 204 633",
@@ -235,7 +235,7 @@ export const RESUME_DATA_SK: ResumeData = {
 
 export const RESUME_DATA_CZ: ResumeData = {
 	name: "Ing. Dominik Repkovský",
-	title: "Full-Stack TypeScript Developer & Framework Creator",
+	title: "Full-Stack TypeScript Developer & Tvůrce Frameworků",
 	contact: {
 		email: "dominik.repkovsky@questpie.com",
 		phone: "+421 917 204 633",
