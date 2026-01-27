@@ -19,7 +19,7 @@ export const RESUME_DATA: ResumeData = {
 			role: "Founder & Lead Developer",
 			company: "QUESTPIE s.r.o.",
 			location: "Bratislava, Slovak Republic",
-			period: "January 2021 - Present",
+			period: "November 2020 - Present",
 			description:
 				"Building web applications and SaaS products for clients while working on open-source projects.",
 			achievements: [
