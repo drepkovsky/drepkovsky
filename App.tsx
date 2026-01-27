@@ -449,7 +449,7 @@ export default function App() {
 					<div className="relative w-32 h-32 md:w-40 md:h-40 shrink-0 print:w-28 print:h-28">
 						<div className="absolute inset-0 border border-neutral-200 dark:border-brand-border bg-neutral-100 dark:bg-brand-surface print:border-brand-primary">
 							<img
-								src="/portrait.jpg"
+								src="/profile.jpg"
 								alt={name}
 								className="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500 print:grayscale-0"
 							/>
