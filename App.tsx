@@ -620,25 +620,25 @@ export default function App() {
 								</h3>
 								<SidebarItem
 									icon={Mail}
-									label="Email"
+									label={t.email}
 									value={contact.email}
 									href={`mailto:${contact.email}`}
 								/>
 								<SidebarItem
 									icon={Phone}
-									label="Phone"
+									label={t.phone}
 									value={contact.phone}
 									href={`tel:${contact.phone}`}
 								/>
 								<SidebarItem
 									icon={MapPin}
-									label="Location"
+									label={t.location}
 									value={contact.location}
 								/>
 								{contact.website?.length > 0 && (
 									<SidebarItem
 										icon={Globe}
-										label="Website"
+										label={t.website}
 										value={contact.website}
 										href={contact.website.map((site) => `https://${site}`)}
 									/>
@@ -648,14 +648,14 @@ export default function App() {
 								{contact.github?.length > 0 && (
 									<SidebarItem
 										icon={Github}
-										label="GitHub"
+										label={t.github}
 										value={contact.github}
 										href={contact.github.map((handle) => `https://${handle}`)}
 									/>
 								)}
 								<SidebarItem
 									icon={Linkedin}
-									label="LinkedIn"
+									label={t.linkedin}
 									value={contact.linkedin}
 									href={contact.linkedin}
 								/>
