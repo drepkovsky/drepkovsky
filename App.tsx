@@ -449,7 +449,7 @@ export default function App() {
 					<div className="relative w-32 h-32 md:w-40 md:h-40 shrink-0 print:w-28 print:h-28">
 						<div className="absolute inset-0 border border-neutral-200 dark:border-brand-border bg-neutral-100 dark:bg-brand-surface print:border-brand-primary">
 							<img
-								src="https://media.licdn.com/dms/image/v2/D4E03AQEy8cgFT3PqgA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1722969486324?e=1769040000&v=beta&t=E0pi9IG1JFbU-w_YYG9sP2H7ZmFprzzz5nhaao9r9Ws"
+								src="/profile.jpg"
 								alt={name}
 								className="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500 print:grayscale-0"
 							/>
