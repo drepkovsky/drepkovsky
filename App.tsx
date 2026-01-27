@@ -17,8 +17,9 @@ import {
 	PackageIcon as Box,
 	SunIcon as Sun,
 	MoonIcon as Moon,
+	TranslateIcon as Translate,
 } from "@phosphor-icons/react";
-import { RESUME_DATA } from "./constants";
+import { getResumeData, UI_TRANSLATIONS, type Language } from "./constants";
 import type { ExperienceItem, ProjectItem } from "./types";
 
 // UI Components
@@ -304,6 +305,25 @@ const SidebarItem: React.FC<{
 );
 
 export default function App() {
+	const [language, setLanguage] = useState<Language>(() => {
+		const saved = localStorage.getItem("language");
+		return (saved as Language) || 'sk';
+	});
+
+	const [isDark, setIsDark] = useState(() => {
+		const saved = localStorage.getItem("theme");
+		if (saved) {
+			return saved === "dark";
+		}
+		// Použiť systémovú preferenciu ak nie je uložená
+		return window.matchMedia("(prefers-color-scheme: dark)").matches;
+	});
+
+	const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+
+	const resumeData = getResumeData(language);
+	const t = UI_TRANSLATIONS[language];
+
 	const {
 		name,
 		title,
@@ -315,16 +335,7 @@ export default function App() {
 		skills,
 		languages,
 		achievements,
-	} = RESUME_DATA;
-
-	const [isDark, setIsDark] = useState(() => {
-		const saved = localStorage.getItem("theme");
-		if (saved) {
-			return saved === "dark";
-		}
-		// Použiť systémovú preferenciu ak nie je uložená
-		return window.matchMedia("(prefers-color-scheme: dark)").matches;
-	});
+	} = resumeData;
 
 	const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 	const [smoothMousePos, setSmoothMousePos] = useState({ x: 0, y: 0 });
@@ -387,9 +398,26 @@ export default function App() {
 		localStorage.setItem("theme", newTheme ? "dark" : "light");
 	};
 
+	const changeLanguage = (lang: Language) => {
+		setLanguage(lang);
+		localStorage.setItem("language", lang);
+		setShowLanguageDropdown(false);
+	};
+
 	const handlePrint = () => {
 		window.print();
 	};
+
+	useEffect(() => {
+		const handleClickOutside = () => {
+			if (showLanguageDropdown) {
+				setShowLanguageDropdown(false);
+			}
+		};
+
+		document.addEventListener('click', handleClickOutside);
+		return () => document.removeEventListener('click', handleClickOutside);
+	}, [showLanguageDropdown]);
 
 	return (
 		<div className="min-h-screen bg-white dark:bg-brand-black text-neutral-800 dark:text-neutral-300 relative selection:bg-brand-primary/30">
@@ -416,16 +444,64 @@ export default function App() {
 
 			{/* Floating Action Buttons */}
 			<div className="fixed bottom-8 right-8 z-50 flex flex-col gap-3 print:hidden">
+				{/* Language Dropdown Button */}
+				<div className="relative">
+					<button
+						type="button"
+						onClick={(e) => {
+							e.stopPropagation();
+							setShowLanguageDropdown(!showLanguageDropdown);
+						}}
+						className="bg-brand-primary text-white p-3 shadow-[0_0_20px_rgba(183,0,255,0.4)] hover:bg-brand-primary/90 transition-all duration-300 group"
+						title="Change Language"
+					>
+						<Translate className="w-6 h-6" />
+						<span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white dark:bg-brand-surface border border-neutral-300 dark:border-brand-border px-2 py-1 text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity text-neutral-800 dark:text-neutral-300">
+							{language.toUpperCase()}
+						</span>
+					</button>
+					{showLanguageDropdown && (
+						<div className="absolute bottom-full mb-2 right-0 bg-white dark:bg-brand-surface border border-neutral-300 dark:border-brand-border shadow-lg min-w-[100px]">
+							<button
+								type="button"
+								onClick={() => changeLanguage('sk')}
+								className={`w-full px-4 py-2 text-left text-sm font-mono hover:bg-brand-primary/10 transition-colors ${
+									language === 'sk' ? 'bg-brand-primary/20 text-brand-primary font-bold' : 'text-neutral-800 dark:text-neutral-300'
+								}`}
+							>
+								SK
+							</button>
+							<button
+								type="button"
+								onClick={() => changeLanguage('cz')}
+								className={`w-full px-4 py-2 text-left text-sm font-mono hover:bg-brand-primary/10 transition-colors ${
+									language === 'cz' ? 'bg-brand-primary/20 text-brand-primary font-bold' : 'text-neutral-800 dark:text-neutral-300'
+								}`}
+							>
+								CZ
+							</button>
+							<button
+								type="button"
+								onClick={() => changeLanguage('en')}
+								className={`w-full px-4 py-2 text-left text-sm font-mono hover:bg-brand-primary/10 transition-colors ${
+									language === 'en' ? 'bg-brand-primary/20 text-brand-primary font-bold' : 'text-neutral-800 dark:text-neutral-300'
+								}`}
+							>
+								EN
+							</button>
+						</div>
+					)}
+				</div>
 				{/* Theme Toggle Button */}
 				<button
 					type="button"
 					onClick={toggleTheme}
 					className="bg-brand-primary text-white p-3 shadow-[0_0_20px_rgba(183,0,255,0.4)] hover:bg-brand-primary/90 transition-all duration-300 group"
-					title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+					title={isDark ? t.switchToLight : t.switchToDark}
 				>
 					{isDark ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
 					<span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white dark:bg-brand-surface border border-neutral-300 dark:border-brand-border px-2 py-1 text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity text-neutral-800 dark:text-neutral-300">
-						{isDark ? "Light Mode" : "Dark Mode"}
+						{isDark ? t.switchToLight : t.switchToDark}
 					</span>
 				</button>
 				{/* Print Button */}
@@ -433,11 +509,11 @@ export default function App() {
 					type="button"
 					onClick={handlePrint}
 					className="bg-brand-primary text-white p-3 shadow-[0_0_20px_rgba(183,0,255,0.4)] hover:bg-brand-primary/90 transition-all duration-300 group"
-					title="Print CV"
+					title={t.printCV}
 				>
 					<Printer className="w-6 h-6" />
 					<span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-white dark:bg-brand-surface border border-neutral-300 dark:border-brand-border px-2 py-1 text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity text-neutral-800 dark:text-neutral-300">
-						Print / Save PDF
+						{t.printSavePDF}
 					</span>
 				</button>
 			</div>
@@ -480,7 +556,7 @@ export default function App() {
 					<div className="space-y-12 print:space-y-6">
 						{/* Experience Section */}
 						<section>
-							<SectionTitle icon={Terminal}>Where I've worked</SectionTitle>
+							<SectionTitle icon={Terminal}>{t.whereWorked}</SectionTitle>
 							<div className="space-y-0">
 								{experience.map((job, index) => (
 									<ExperienceCard key={index} item={job} />
@@ -490,14 +566,14 @@ export default function App() {
 
 						{/* Projects Section - Client */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Cpu}>Client work</SectionTitle>
+							<SectionTitle icon={Cpu}>{t.clientWork}</SectionTitle>
 							<ProjectCarousel projects={projects.client} type="client" />
 						</section>
 
 						{/* Projects Section - Products & OSS */}
 						<section className="print-break-avoid">
 							<SectionTitle icon={Box}>
-								Side projects & open source
+								{t.sideProjects}
 							</SectionTitle>
 							<ProjectCarousel
 								projects={projects.product.concat(projects.openSource)}
@@ -507,7 +583,7 @@ export default function App() {
 
 						{/* Education Section */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Calendar}>What I studied</SectionTitle>
+							<SectionTitle icon={Calendar}>{t.whatStudied}</SectionTitle>
 							<div className="space-y-4 print:space-y-2">
 								{education.map((edu, index) => (
 									<div
@@ -540,7 +616,7 @@ export default function App() {
 						<section className="print-break-avoid">
 							<div className="bg-neutral-50 dark:bg-brand-offBlack/30 backdrop-blur-sm border border-neutral-200 dark:border-brand-border p-6 print:!p-3 print:bg-transparent print:border-brand-primary/30">
 								<h3 className="font-mono text-xs uppercase tracking-widest text-neutral-900 dark:text-white mb-6 border-b border-neutral-200 dark:border-brand-border pb-2 print:mb-2 print:pb-1 print:text-[10px] print:border-brand-primary/30">
-									Get in touch
+									{t.getInTouch}
 								</h3>
 								<SidebarItem
 									icon={Mail}
@@ -588,7 +664,7 @@ export default function App() {
 
 						{/* Skills */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Code2}>My skills</SectionTitle>
+							<SectionTitle icon={Code2}>{t.mySkills}</SectionTitle>
 							<div className="flex flex-wrap gap-1.5 print:gap-1">
 								{skills.map((skill, i) => (
 									<Badge key={i}>{skill}</Badge>
@@ -598,9 +674,9 @@ export default function App() {
 
 						{/* Interests */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Code2}>My interests</SectionTitle>
+							<SectionTitle icon={Code2}>{t.myInterests}</SectionTitle>
 							<div className="flex flex-wrap gap-1.5 print:gap-1">
-								{RESUME_DATA.interests.map((interest, i) => (
+								{resumeData.interests.map((interest, i) => (
 									<Badge key={i}>{interest}</Badge>
 								))}
 							</div>
@@ -608,7 +684,7 @@ export default function App() {
 
 						{/* Languages */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Globe}>Languages I Speak</SectionTitle>
+							<SectionTitle icon={Globe}>{t.languagesSpeak}</SectionTitle>
 							<div className="space-y-2 print:space-y-1">
 								{languages.map((lang, i) => (
 									<div
@@ -628,7 +704,7 @@ export default function App() {
 
 						{/* Achievements */}
 						<section className="print-break-avoid">
-							<SectionTitle icon={Server}>Some notable things</SectionTitle>
+							<SectionTitle icon={Server}>{t.notableThings}</SectionTitle>
 							<ul className="space-y-2 print:space-y-1">
 								{achievements.map((item, i) => (
 									<li
@@ -646,9 +722,9 @@ export default function App() {
 				{/* Footer */}
 				<footer className="mt-16 pt-8 border-t border-neutral-200 dark:border-brand-border text-center text-neutral-500 dark:text-neutral-600 text-xs font-mono print:hidden">
 					<p>
-						Designed with QUESTPIE Design System • Built with React & Tailwind
+						{t.footerDesign}
 					</p>
-					<p className="mt-2">Last Updated: January 2026</p>
+					<p className="mt-2">{t.lastUpdated}</p>
 				</footer>
 			</main>
 		</div>
