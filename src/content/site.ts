@@ -108,10 +108,26 @@ export const services = [
 
 export const selectedWork = [
   {
-    slug: "nutrimeals",
+    slug: "questpie",
     index: "01",
     period: "2024 — now",
-    org: "QUESTPIE s.r.o.",
+    org: "Open source · MIT",
+    title: "QUESTPIE",
+    summary:
+      "The ecosystem I build everything else on: a framework that turns one schema declaration into a backend, and Autopilot, which runs the company around it. QUESTPIE runs on QUESTPIE.",
+    bullets: [
+      "Postgres columns, REST API, typed client and admin, all generated from one collection",
+      "Built on Drizzle, Zod and Better Auth rather than its own runtime",
+      "Self-hosted by design — no key, no account, no hosted tier to get locked into",
+    ],
+    stack: ["TypeScript", "Drizzle", "Zod", "Better Auth"],
+    image: "/work/questpie.jpg",
+  },
+  {
+    slug: "nutrimeals",
+    index: "02",
+    period: "2024 — now",
+    org: "Technical partner",
     title: "Nutrimeals",
     summary:
       "A Slovak food-tech startup had smart fridges in offices and no app to find them. I came in as technical partner and built the mobile side and the backend it talks to.",
@@ -124,31 +140,19 @@ export const selectedWork = [
     image: "/work/nutrimeals.jpg",
   },
   {
-    slug: "prague-convention-bureau",
-    index: "02",
-    period: "2025 — 2026",
-    org: "QUESTPIE s.r.o.",
-    title: "Prague Convention Bureau",
-    summary:
-      "The planning module for the bureau's venue platform, built and delivered as part of the wider product.",
-    bullets: [],
-    stack: ["PayloadCMS", "Next.js", "Postgres"],
-    image: "/work/pcb.jpg",
-  },
-  {
-    slug: "jinejsvet",
+    slug: "jubli",
     index: "03",
-    period: "2026",
-    org: "Klára pomáhá z.s.",
-    title: "jinejsvet.cz",
+    period: "2026 — now",
+    org: "Own product · pilot",
+    title: "Jubli",
     summary:
-      "A portal for children and young people who have lost someone. The hard part was not the CMS — it was building something with counselling, a candle you can light and a timeline of grief, and getting the tone right.",
+      "Every event gets a social space guests join by scanning a QR code. An event is a tree of spaces that changes as it moves from pre-event to live to the recap, so a wedding and a weekly pub quiz run on one engine with different presets.",
     bullets: [
-      "Editorial workflow the counsellors run themselves, in two languages",
-      "WCAG 2.1 AA throughout, because the readers are children in a bad week",
+      "Web, mobile and API in one monorepo, all of it on QUESTPIE",
+      "Space presets instead of code branches, so a new event format is configuration",
     ],
-    stack: ["Next.js", "PayloadCMS", "Postgres"],
-    image: "/work/jinejsvet.jpg",
+    stack: ["QUESTPIE", "Bun", "React Native", "Postgres"],
+    image: "/work/jubli.jpg",
   },
 ] as const;
 
@@ -161,11 +165,22 @@ export const workFooter = {
 
 export const questpie = {
   title: "QUESTPIE",
-  body: "QUESTPIE is the framework I build client backends with. You declare a collection once, and it generates the Postgres columns, the REST API, the typed client and the admin screens from that one declaration. It hosts nothing and asks for no key. It runs on your machine, and the code is yours.",
+  body: "QUESTPIE is my company and the ecosystem it builds: a framework for the people building a product, and Autopilot for the people running the company around it. The framework is the half your project touches — declare a collection once and it generates the Postgres columns, the REST API, the typed client and the admin screens. It hosts nothing and asks for no key. It runs on your machine, and the code is yours.",
   stats: [
     { value: "MIT", label: "Open source" },
     { value: "2024", label: "Since" },
     { value: "Self-host", label: "No key, no account" },
+  ],
+  /** The two halves, in the ecosystem's own words. */
+  products: [
+    {
+      name: "Framework",
+      line: "For the people building it. Schema in, backend out.",
+    },
+    {
+      name: "Autopilot",
+      line: "For the people running the company. Software you can staff.",
+    },
   ],
   built: [
     { name: "chatacerenka.eu", status: "Live on QUESTPIE" },

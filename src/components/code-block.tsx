@@ -108,7 +108,7 @@ export function CodeBlock({
 
   return (
     <pre
-      className={`overflow-x-auto rounded-surface border border-line bg-bg p-5 font-mono text-xs leading-[1.85] ${className}`}
+      className={`overflow-x-auto surface rounded-surface border border-line bg-[color-mix(in_oklab,var(--color-bg)_78%,transparent)] p-5 backdrop-blur-[6px] font-mono text-xs leading-[1.85] ${className}`}
     >
       <code>
         {lines.map((line, i) => (

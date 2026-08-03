@@ -63,7 +63,12 @@ export function WorkList() {
                   {item.kind}
                 </span>
                 <h2 className="text-[clamp(20px,2.2vw,26px)] font-semibold leading-tight tracking-[-0.025em]">
-                  {item.title}
+                  <Link
+                    href={`/work/${item.slug}`}
+                    className="transition-colors hover:text-accent"
+                  >
+                    {item.title}
+                  </Link>
                 </h2>
                 <span className="font-mono text-[11px] leading-none tracking-[0.1em] text-muted uppercase">
                   {item.period}
@@ -86,14 +91,12 @@ export function WorkList() {
                 {item.stack.map((tech) => (
                   <Tag key={tech}>{tech}</Tag>
                 ))}
-                {item.writeup && (
-                  <Link
-                    href={item.writeup}
-                    className="ml-2 font-mono text-[10px] leading-none tracking-[0.1em] text-muted uppercase transition-colors hover:text-accent"
-                  >
-                    Write-up →
-                  </Link>
-                )}
+                <Link
+                  href={`/work/${item.slug}`}
+                  className="ml-2 font-mono text-[10px] leading-none tracking-[0.1em] text-muted uppercase transition-colors hover:text-accent"
+                >
+                  Details →
+                </Link>
               </div>
             </div>
           </li>

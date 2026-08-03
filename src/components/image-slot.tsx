@@ -24,7 +24,7 @@ export function ImageSlot({
     return (
       <div
         style={{ aspectRatio: ratio }}
-        className={`flex w-full items-center justify-center rounded-surface border border-dashed border-line bg-soft p-4 text-center font-mono text-[11px] leading-relaxed tracking-[0.1em] text-muted uppercase ${className}`}
+        className={`flex w-full items-center justify-center surface rounded-surface border border-dashed border-line bg-soft p-4 text-center font-mono text-[11px] leading-relaxed tracking-[0.1em] text-muted uppercase ${className}`}
       >
         {label}
       </div>
@@ -34,7 +34,7 @@ export function ImageSlot({
   return (
     <div
       style={{ aspectRatio: ratio }}
-      className={`relative w-full overflow-hidden rounded-surface border border-line bg-soft ${className}`}
+      className={`relative w-full overflow-hidden surface rounded-surface border border-line bg-soft ${className}`}
     >
       <Image
         src={src}

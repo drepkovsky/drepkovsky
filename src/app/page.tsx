@@ -25,6 +25,7 @@ import { Reveal } from "@/components/reveal";
 export default function HomePage() {
   return (
     <main id="top" className="relative z-10 mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-12">
+      <StructuredData />
       <Hero />
       <StackBand />
       <Principles />
@@ -35,6 +36,61 @@ export default function HomePage() {
       <NowAndAbout />
       <Contact />
     </main>
+  );
+}
+
+/** Person + Organization, so a search for the name can return a rich result. */
+function StructuredData() {
+  const data = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://drepkovsky.com/#person",
+        name: site.name,
+        jobTitle: "Backend & TypeScript developer",
+        url: "https://drepkovsky.com",
+        email: `mailto:${site.email}`,
+        image: "https://drepkovsky.com/portrait.jpg",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Bratislava",
+          addressCountry: "SK",
+        },
+        alumniOf: {
+          "@type": "CollegeOrUniversity",
+          name: "Slovak University of Technology in Bratislava, FIIT",
+        },
+        knowsAbout: [...stack],
+        sameAs: [site.links.github, site.links.linkedin, site.links.questpie],
+        worksFor: { "@id": "https://drepkovsky.com/#org" },
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://drepkovsky.com/#org",
+        name: site.company,
+        url: "https://drepkovsky.com",
+        founder: { "@id": "https://drepkovsky.com/#person" },
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Bratislava",
+          addressCountry: "SK",
+        },
+      },
+      {
+        "@type": "WebSite",
+        url: "https://drepkovsky.com",
+        name: site.name,
+        publisher: { "@id": "https://drepkovsky.com/#person" },
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
   );
 }
 
@@ -73,9 +129,8 @@ function Hero() {
           ratio="4/5"
           priority
         />
-        <div className="flex justify-between gap-3 font-mono text-[11px] leading-relaxed tracking-[0.08em] text-muted uppercase">
-          <span>{site.location}</span>
-          <span>Est. {site.established}</span>
+        <div className="font-mono text-[11px] leading-relaxed tracking-[0.08em] text-muted uppercase">
+          {site.location}
         </div>
       </div>
     </section>
@@ -138,7 +193,7 @@ function Services() {
         {services.map((service, i) => (
           <div
             key={service.title}
-            className="flex flex-col gap-3 rounded-surface border border-line bg-bg p-6 transition-colors duration-250 hover:border-muted hover:bg-soft"
+            className="flex flex-col gap-3 surface rounded-surface border border-line bg-bg p-6 transition-colors duration-250 hover:border-muted hover:bg-soft"
           >
             <div className="font-mono text-[11px] leading-none text-accent">
               {String(i + 1).padStart(2, "0")}
@@ -234,7 +289,7 @@ function Questpie() {
     <Reveal
       as="section"
       id="questpie"
-      className="mt-16 scroll-mt-20 rounded-surface border border-line bg-soft p-8 sm:mt-24 sm:p-10 lg:mt-28 lg:p-15"
+      className="mt-16 scroll-mt-20 surface rounded-surface border border-line bg-[color-mix(in_oklab,var(--color-soft)_70%,transparent)] p-8 backdrop-blur-[10px] sm:mt-24 sm:p-10 lg:mt-28 lg:p-15"
     >
       <SectionHeader label="The framework" number="04" className="pb-7" />
       <div className="grid items-start gap-7 md:grid-cols-2 lg:gap-14">
@@ -276,11 +331,11 @@ function Questpie() {
         <div className="flex flex-col gap-3.5">
           <CodeBlock code={questpieCode} />
 
-          <div className="flex flex-col gap-px overflow-hidden rounded-surface border border-line bg-line">
+          <div className="flex flex-col gap-px overflow-hidden surface rounded-surface border border-line bg-line">
             {questpie.built.map((item) => (
               <div
                 key={item.name}
-                className="flex items-baseline justify-between gap-3.5 bg-bg px-4.5 py-3.5 text-[13px]"
+                className="flex items-baseline justify-between gap-3.5 bg-[color-mix(in_oklab,var(--color-bg)_80%,transparent)] px-4.5 py-3.5 text-[13px] backdrop-blur-[6px]"
               >
                 <span className="font-semibold">{item.name}</span>
                 <span className="font-mono text-[10px] leading-snug tracking-[0.05em] text-accent uppercase">
@@ -304,7 +359,7 @@ function Writing() {
       </p>
 
       {writing.items.length === 0 ? (
-        <div className="rounded-surface border border-dashed border-line p-8 text-center font-mono text-xs leading-relaxed text-muted">
+        <div className="surface rounded-surface border border-dashed border-line p-8 text-center font-mono text-xs leading-relaxed text-muted">
           {writing.empty}
         </div>
       ) : (
@@ -313,7 +368,7 @@ function Writing() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex flex-col gap-3 rounded-surface border border-line p-5 transition-all duration-250 hover:-translate-y-0.5 hover:border-muted hover:bg-soft"
+              className="flex flex-col gap-3 surface rounded-surface border border-line p-5 transition-all duration-250 hover:-translate-y-0.5 hover:border-muted hover:bg-soft"
             >
               <div className="flex items-center justify-between gap-3 font-mono text-[10px] leading-none tracking-[0.12em]">
                 <span
@@ -360,7 +415,7 @@ function NowAndAbout() {
           </p>
         </Reveal>
 
-        <Reveal className="flex flex-col gap-4 rounded-surface border border-line bg-soft p-6">
+        <Reveal className="flex flex-col gap-4 surface rounded-surface border border-line bg-soft p-6">
           <div className="flex items-baseline justify-between font-mono text-[10px] leading-none tracking-[0.16em] uppercase">
             <span className="text-accent">About</span>
             <span className="text-muted">Since {site.established}</span>

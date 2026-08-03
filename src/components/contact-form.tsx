@@ -50,7 +50,7 @@ export function ContactForm({ email }: { email: string }) {
     return (
       <div
         role="status"
-        className="flex flex-col gap-2.5 rounded-surface border border-[color-mix(in_oklab,var(--color-accent)_45%,transparent)] bg-soft p-6"
+        className="flex flex-col gap-2.5 surface rounded-surface border border-[color-mix(in_oklab,var(--color-accent)_45%,transparent)] bg-soft p-6"
       >
         <div className="font-mono text-[10px] tracking-[0.16em] text-accent uppercase">
           Sent

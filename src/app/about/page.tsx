@@ -88,7 +88,7 @@ export default function AboutPage() {
           {howIWork.map((card) => (
             <div
               key={card.label}
-              className="flex flex-col gap-2.5 rounded-surface border border-line p-5"
+              className="flex flex-col gap-2.5 surface rounded-surface border border-line p-5"
             >
               <div className="font-mono text-[10px] leading-none tracking-[0.14em] text-accent uppercase">
                 {card.label}

@@ -1,15 +1,29 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-/** The `dr.` mark. Only the period carries the accent — that is the whole logo. */
+/**
+ * The mark: just the period, sitting where it sat in `dr.`.
+ *
+ * The letters are gone on purpose. `dr.` reads as the English abbreviation for
+ * Doctor, which is a title Dominik does not hold — and the bare dot survives
+ * 16px far better than three glyphs do.
+ */
 export function Logo({ size = 26 }: { size?: number }) {
   return (
     <span
       aria-hidden
-      className="inline-flex items-center justify-center rounded-[6px] border border-line bg-soft font-sans font-bold tracking-[-0.05em] text-fg"
-      style={{ width: size, height: size, fontSize: size * 0.46 }}
+      className="inline-flex shrink-0 items-end justify-start border border-line bg-soft"
+      style={{
+        width: size,
+        height: size,
+        borderRadius: size * 0.2,
+        padding: size * 0.25,
+      }}
     >
-      dr<span className="text-accent">.</span>
+      <span
+        className="block rounded-full bg-accent"
+        style={{ width: size * 0.2, height: size * 0.2 }}
+      />
     </span>
   );
 }

@@ -28,10 +28,14 @@
 
 :root {
   color-scheme: dark;
+  /* Light catches the top edge in the dark theme; in light it reads as a
+     faint shadow instead, since a white highlight is invisible on white. */
+  --surface-edge: color-mix(in oklab, white 8%, transparent);
 }
 
 [data-theme="light"] {
   color-scheme: light;
+  --surface-edge: color-mix(in oklab, black 5%, transparent);
   --color-bg: oklch(0.978 0 0);
   --color-fg: oklch(0.17 0 0);
   --color-muted: oklch(0.46 0 0);
@@ -88,6 +92,16 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-muted);
+  }
+
+  /**
+   * Surfaces catch a hairline of light along their top edge, the way a real
+   * panel would. Deliberately not frosted glass: a blur-and-translucency pass
+   * would fight the sharp 2px radii and hairline borders this design is built
+   * on. One inset line reads as depth and stays out of the way.
+   */
+  .surface {
+    box-shadow: inset 0 1px 0 var(--surface-edge);
   }
 
   .label-mono {
@@ -148,8 +162,73 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Print. /cv has to come out as a document someone can hand across a desk,
+   so the screen chrome goes and everything reverts to black on white.
+--------------------------------------------------------------------------- */
 @media print {
-  .no-print {
+  @page {
+    margin: 14mm 14mm 12mm;
+  }
+
+  .no-print,
+  header,
+  footer {
     display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Every design role is re-pointed at ink, so components print correctly
+     without any of them needing a print-specific class. */
+  :root {
+    --color-bg: #fff;
+    --color-fg: #000;
+    --color-muted: #333;
+    --color-line: #bbb;
+    --color-accent: #000;
+    --color-soft: #fff;
+    --color-ink: #000;
+    --surface-edge: transparent;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+    font-size: 10.5pt;
+  }
+
+  h1 {
+    font-size: 20pt !important;
+  }
+
+  h2 {
+    font-size: 10pt !important;
+  }
+
+  h3 {
+    font-size: 11pt !important;
+  }
+
+  section,
+  li,
+  dl {
+    break-inside: avoid;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+
+  /* Backdrop filters and shadows cost ink and render unpredictably. */
+  * {
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 }
