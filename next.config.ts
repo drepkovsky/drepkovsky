@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
   // builder's memory and get SIGKILLed. CI builds natively and skips it.
   experimental: process.env.NEXT_LIMIT_WORKERS ? { cpus: 1 } : {},
   typescript: { ignoreBuildErrors: true },
-  eslint: { ignoreDuringBuilds: true },
   images: {
     formats: ["image/avif", "image/webp"],
   },
