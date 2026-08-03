@@ -32,3 +32,5 @@ next-env.d.ts
 *.njsproj
 *.sln
 *.sw?
+
+# Fonts for the OG image are committed on purpose — see src/assets
