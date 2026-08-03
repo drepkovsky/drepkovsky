@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { CapWidget } from "@/components/cap-widget";
+import { useState } from "react";
+import { CapMount, useCapWidget } from "@/components/cap-widget";
 
 type State = "idle" | "sending" | "sent" | "error";
 
@@ -11,23 +11,22 @@ const field =
 export function ContactForm({ email }: { email: string }) {
   const [state, setState] = useState<State>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [capToken, setCapToken] = useState("");
-
-  // Stable identity: CapWidget re-subscribes its listeners when this changes.
-  const onToken = useCallback((token: string) => setCapToken(token), []);
+  const cap = useCapWidget();
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (state === "sending") return;
 
-    const data = {
-      ...Object.fromEntries(new FormData(event.currentTarget)),
-      capToken,
-    };
+    const fields = Object.fromEntries(new FormData(event.currentTarget));
     setState("sending");
     setError(null);
 
     try {
+      // Solved here rather than on mount: the visitor never waits on it, and
+      // a token cannot go stale sitting in state while the form is filled in.
+      const capToken = await cap.solve();
+      const data = { ...fields, capToken: capToken ?? "" };
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -128,7 +127,7 @@ export function ContactForm({ email }: { email: string }) {
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
 
-      <CapWidget onToken={onToken} />
+      <CapMount elementRef={cap.ref} />
 
       <div className="flex flex-wrap items-center gap-4 pt-1">
         <button

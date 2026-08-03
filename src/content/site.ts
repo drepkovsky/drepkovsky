@@ -213,21 +213,6 @@ export const rooms = collection("rooms")
 // generated: columns · REST · typed client · admin
 `;
 
-export const writing = {
-  intro:
-    "Notes on the parts of a backend that are hard to get right, and the framework I wrote after hitting them enough times.",
-  /** Empty on purpose. The feed ships when three real items exist. */
-  items: [] as {
-    type: "ESSAY" | "VIDEO" | "SERIES" | "NOTE";
-    category: string;
-    title: string;
-    meta: string;
-    href: string;
-  }[],
-  empty:
-    "Nothing published yet. The first series covers building a backend with QUESTPIE end to end.",
-} as const;
-
 export const now = {
   updated: "2026-08",
   primary:
@@ -247,10 +232,3 @@ export const contact = {
   body: "Send the idea, not a spec. A paragraph about what you want to exist is enough to tell whether I am the right person, and you get an answer within two working days.",
   email: site.email,
 } as const;
-
-export const nav = [
-  { label: "Work", href: "/work" },
-  { label: "Writing", href: "/writing" },
-  { label: "QUESTPIE", href: "/#questpie" },
-  { label: "About", href: "/about" },
-] as const;

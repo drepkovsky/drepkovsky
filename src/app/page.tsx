@@ -13,7 +13,6 @@ import {
   site,
   stack,
   workFooter,
-  writing,
 } from "@/content/site";
 import { work } from "@/content/work";
 import { Button, SectionHeader, Tag } from "@/components/ui";
@@ -32,7 +31,8 @@ export default function HomePage() {
       <Services />
       <SelectedWork />
       <Questpie />
-      <Writing />
+      {/* <Writing /> — hidden until three real posts exist. See IA: ship the
+          feed with content, not an empty shell. */}
       <NowAndAbout />
       <Contact />
     </main>
@@ -372,57 +372,11 @@ function Questpie() {
   );
 }
 
-function Writing() {
-  return (
-    <Reveal as="section" id="writing" className="scroll-mt-20 pt-16 sm:pt-24 lg:pt-28">
-      <SectionHeader label="Writing & video" number="05" className="pb-2.5" />
-      <p className="mb-6 max-w-[56ch] text-[15px] leading-[1.62] text-muted text-pretty">
-        {writing.intro}
-      </p>
-
-      {writing.items.length === 0 ? (
-        <div className="surface rounded-surface border border-dashed border-line p-8 text-center font-mono text-xs leading-relaxed text-muted">
-          {writing.empty}
-        </div>
-      ) : (
-        <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
-          {writing.items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex flex-col gap-3 surface rounded-surface border border-line p-5 transition-all duration-250 hover:-translate-y-0.5 hover:border-muted hover:bg-soft"
-            >
-              <div className="flex items-center justify-between gap-3 font-mono text-[10px] leading-none tracking-[0.12em]">
-                <span
-                  className={`rounded-ctl border px-2 py-1.5 ${
-                    item.type === "VIDEO"
-                      ? "border-[color-mix(in_oklab,var(--color-accent)_45%,transparent)] text-accent"
-                      : "border-line text-muted"
-                  }`}
-                >
-                  {item.type}
-                </span>
-                <span className="text-muted">{item.category}</span>
-              </div>
-              <h3 className="text-[18px] font-semibold leading-[1.25] tracking-[-0.025em] text-pretty">
-                {item.title}
-              </h3>
-              <div className="mt-auto font-mono text-[10px] leading-snug tracking-[0.1em] text-muted uppercase">
-                {item.meta}
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
-    </Reveal>
-  );
-}
-
 function NowAndAbout() {
   return (
     <section id="about" className="scroll-mt-20 pt-16 sm:pt-24 lg:pt-28">
       <Reveal>
-        <SectionHeader label="Now & who I am" number="06" className="pb-7" />
+        <SectionHeader label="Now & who I am" number="05" className="pb-7" />
       </Reveal>
 
       <div className="grid items-start gap-7 md:grid-cols-2 lg:gap-14">
@@ -477,7 +431,7 @@ function Contact() {
       id="contact"
       className="mt-16 flex scroll-mt-20 flex-col gap-6 border-t border-line py-10 sm:mt-24 sm:py-14 lg:mt-28 lg:py-18"
     >
-      <SectionHeader label="Contact" number="07" />
+      <SectionHeader label="Contact" number="06" />
       <h2 className="max-w-[22ch] text-[clamp(30px,4.4vw,56px)] font-semibold leading-[1.05] tracking-[-0.035em]">
         {contact.headline}
       </h2>
