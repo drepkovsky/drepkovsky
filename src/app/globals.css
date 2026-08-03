@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — lifted verbatim from the design mockup (Identity.dc.html +
+   drepkovsky.com.dc.html). Dark is the default; light is the same six roles
+   re-valued, so every component only ever reads the role, never a raw colour.
+--------------------------------------------------------------------------- */
+
+@theme {
+  --color-bg: oklch(0.155 0 0);
+  --color-fg: oklch(0.965 0 0);
+  --color-muted: oklch(0.62 0 0);
+  --color-line: oklch(0.28 0 0);
+  --color-accent: oklch(0.86 0.19 100);
+  --color-soft: oklch(0.19 0 0);
+  --color-ink: oklch(0.16 0 0);
+
+  --font-sans: var(--font-schibsted), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* The mockup uses two radii and nothing else: 2px on controls, 3px on
+     surfaces. Keeping only these two stops the drift back to rounded-xl. */
+  --radius-ctl: 2px;
+  --radius-surface: 3px;
+
+  --ease-out: cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: oklch(0.978 0 0);
+  --color-fg: oklch(0.17 0 0);
+  --color-muted: oklch(0.46 0 0);
+  --color-line: oklch(0.885 0 0);
+  --color-accent: oklch(0.5 0.12 98);
+  --color-soft: oklch(0.945 0 0);
+  --color-ink: oklch(0.99 0 0);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    transition:
+      background 0.45s ease,
+      color 0.45s ease;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: oklch(0.16 0 0);
+  }
+
+  /* Headings in this design are always tight and optically negative-tracked.
+     Setting it here means no page has to remember. */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.035em;
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  /* The eyebrow: 11px mono, wide tracking, uppercase. Used ~30 times across
+     the site, so it earns a utility rather than five classes each time. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+  }
+}
+
+/* Scroll reveal. Elements start hidden only once JS confirms it can drive
+   them, so a failed hydration leaves the page readable instead of blank. */
+[data-reveal] {
+  opacity: 1;
+}
+
+[data-reveal][data-reveal-armed="true"] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+
+[data-reveal][data-reveal-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal][data-reveal-armed="true"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
