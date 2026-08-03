@@ -25,6 +25,8 @@ export type WorkItem = {
    * order and the year view is the toggle.
    */
   weight: number;
+  /** One line: what a client can conclude from this project. */
+  proves: string;
   context: string;
   summary: string;
   stack: string[];
@@ -35,6 +37,8 @@ export type WorkItem = {
 export const work: WorkItem[] = [
   {
     slug: "jubli",
+    proves:
+      "That I can take a product from an empty repo to a running pilot on my own.",
     weight: 9,
     kind: "OWN",
     title: "Jubli",
@@ -48,6 +52,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "autopilot",
+    proves:
+      "That I can build long-running distributed systems, not only request and response.",
     weight: 8,
     kind: "OWN",
     title: "QUESTPIE Autopilot",
@@ -61,6 +67,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "jinejsvet",
+    proves:
+      "That I build for readers who are not developers, to a stated accessibility standard.",
     weight: 8,
     kind: "CLIENT",
     title: "jinejsvet.cz",
@@ -74,6 +82,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "chata-cerenka",
+    proves:
+      "That clients stay: four years, then a rewrite rather than a replacement.",
     weight: 6,
     kind: "CLIENT",
     title: "chatacerenka.eu",
@@ -87,9 +97,11 @@ export const work: WorkItem[] = [
   },
   {
     slug: "byvak",
+    proves:
+      "That I notice a wrong architecture and change course instead of defending it.",
     weight: 6,
     kind: "OWN",
-    title: "býVAK",
+    title: "byvak",
     period: "2020 — 2026",
     sortYear: 2025.7,
     context: "Own product · retired",
@@ -100,6 +112,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "nutrimeals",
+    proves:
+      "That I can own a mobile product and the multi-tenant backend under it, for years rather than a sprint.",
     weight: 9,
     kind: "CLIENT",
     title: "Nutrimeals",
@@ -113,6 +127,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "prague-convention-bureau",
+    proves:
+      "That I deliver a module into someone else's larger product without owning the whole thing.",
     weight: 7,
     kind: "CLIENT",
     title: "Prague Convention Bureau",
@@ -126,6 +142,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "questpie",
+    proves:
+      "That I can design and maintain a framework other people build on.",
     weight: 10,
     kind: "OSS",
     title: "QUESTPIE",
@@ -139,6 +157,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "pomocmotoristom",
+    proves:
+      "That I finish and hand over even when the launch is not mine to call.",
     weight: 4,
     kind: "CLIENT",
     title: "pomocmotoristom.sk",
@@ -152,6 +172,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "housedsl",
+    proves:
+      "That I can design a small language and write the parser for it.",
     weight: 4,
     kind: "OWN",
     title: "housedsl",
@@ -165,6 +187,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "drizzle-migrations",
+    proves:
+      "That other developers depend on code I wrote.",
     weight: 7,
     kind: "OSS",
     title: "drizzle-migrations",
@@ -178,6 +202,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "codeupp",
+    proves:
+      "That I can join a codebase someone else wrote and ship from inside it.",
     weight: 5,
     kind: "CLIENT",
     title: "CODEUPP",
@@ -191,6 +217,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "bulkit",
+    proves:
+      "That I build the self-hosted alternative when I do not want the dependency.",
     weight: 4,
     kind: "OWN",
     title: "bulkit.dev",
@@ -204,6 +232,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "amcef",
+    proves:
+      "That I can work inside an enterprise low-code platform and its data layer.",
     weight: 7,
     kind: "CLIENT",
     title: "AMCEF",
@@ -217,6 +247,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "tinydi",
+    proves:
+      "That I can keep an abstraction small enough to read in one sitting.",
     weight: 3,
     kind: "OSS",
     title: "tinydi",
@@ -230,6 +262,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "rosmami",
+    proves:
+      "That I build offline-first, and put an LLM only where it earns its place.",
     weight: 5,
     kind: "CLIENT",
     title: "Rosmami",
@@ -243,6 +277,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "elias-it",
+    proves:
+      "That what I hand over outlives me: 200+ clients still run on that template.",
     weight: 8,
     kind: "CLIENT",
     title: "Eliaš IT Solutions",
@@ -256,6 +292,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "asista",
+    proves:
+      "That I ship to both app stores and keep a release train running afterwards.",
     weight: 6,
     kind: "CLIENT",
     title: "ASISTA",
@@ -269,6 +307,8 @@ export const work: WorkItem[] = [
   },
   {
     slug: "uxtweak",
+    proves:
+      "That I work inside a team of nine on an enterprise product.",
     weight: 7,
     kind: "CLIENT",
     title: "UXtweak",

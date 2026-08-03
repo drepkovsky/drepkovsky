@@ -106,6 +106,12 @@ export function WorkList() {
                 {item.context}
               </div>
 
+              {/* The reason this sits where it sits in the default order. */}
+              <p className="grid max-w-[68ch] grid-cols-[16px_1fr] gap-2.5 text-[14px] leading-[1.5] text-fg">
+                <span className="text-accent">↳</span>
+                <span className="text-pretty">{item.proves}</span>
+              </p>
+
               <p
                 className={`max-w-[68ch] text-[15px] leading-[1.65] text-pretty ${
                   item.needsFact ? "text-accent" : "text-muted"

@@ -36,14 +36,15 @@ export const navigation: NavItem[] = [
     children: [
       {
         label: "Framework",
-        href: site.links.questpieDocs,
+        href: `${site.links.questpie}/framework`,
         note: "Schema in, backend out",
         external: true,
       },
       {
         label: "Autopilot",
-        href: "/work/autopilot",
+        href: `${site.links.questpie}/autopilot`,
         note: "Software you can staff",
+        external: true,
       },
       { label: "GitHub", href: site.links.githubOrg, external: true },
     ],
@@ -73,9 +74,16 @@ export const footerColumns = [
   {
     title: "QUESTPIE",
     links: [
-      { label: "Framework", href: site.links.questpieDocs, external: true },
-      { label: "Autopilot", href: "/work/autopilot", external: false },
-      { label: "questpie.com", href: site.links.questpie, external: true },
+      {
+        label: "Framework",
+        href: `${site.links.questpie}/framework`,
+        external: true,
+      },
+      {
+        label: "Autopilot",
+        href: `${site.links.questpie}/autopilot`,
+        external: true,
+      },
     ],
   },
   {

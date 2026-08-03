@@ -176,10 +176,12 @@ export const questpie = {
     {
       name: "Framework",
       line: "For the people building it. Schema in, backend out.",
+      href: `${site.links.questpie}/framework`,
     },
     {
       name: "Autopilot",
       line: "For the people running the company. Software you can staff.",
+      href: `${site.links.questpie}/autopilot`,
     },
   ],
   built: [
@@ -188,7 +190,7 @@ export const questpie = {
     { name: "Jubli", status: "Built on QUESTPIE" },
   ],
   ctas: [
-    { label: "Read the docs", href: site.links.questpieDocs, external: true },
+    { label: "questpie.com", href: site.links.questpie, external: true },
     { label: "GitHub", href: site.links.githubOrg, external: true },
   ],
 } as const;

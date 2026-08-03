@@ -301,6 +301,28 @@ function Questpie() {
             {questpie.body}
           </p>
 
+          <div className="flex flex-col gap-px overflow-hidden rounded-surface border border-line bg-line">
+            {questpie.products.map((product) => (
+              <a
+                key={product.name}
+                href={product.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group flex flex-col gap-1 bg-[color-mix(in_oklab,var(--color-bg)_80%,transparent)] px-4.5 py-3.5 backdrop-blur-[6px] transition-colors hover:bg-bg"
+              >
+                <span className="flex items-center gap-2 text-[13px] font-semibold">
+                  {product.name}
+                  <span className="text-[10px] text-muted transition-transform group-hover:translate-x-0.5">
+                    ↗
+                  </span>
+                </span>
+                <span className="text-[12px] leading-snug text-muted">
+                  {product.line}
+                </span>
+              </a>
+            ))}
+          </div>
+
           <div className="grid grid-cols-3 gap-4 border-y border-line py-5">
             {questpie.stats.map((stat) => (
               <div key={stat.label} className="flex flex-col gap-1.5">

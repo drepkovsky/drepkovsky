@@ -2,31 +2,33 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 /**
- * The mark: just the period, sitting where it sat in `dr.`.
+ * The mark: a single `d` with the accent on its period.
  *
- * The letters are gone on purpose. `dr.` reads as the English abbreviation for
- * Doctor, which is a title Dominik does not hold — and the bare dot survives
- * 16px far better than three glyphs do.
+ * It was `dr.` and that read as the English abbreviation for Doctor — a title
+ * Dominik does not hold. One letter reads as an initial instead, and survives
+ * 16px better than three glyphs. The name is spelled out beside it anyway.
  */
 export function Logo({ size = 26 }: { size?: number }) {
   return (
     <span
       aria-hidden
-      className="inline-flex shrink-0 items-end justify-start border border-line bg-soft"
+      className="inline-flex shrink-0 items-center justify-center border border-line bg-soft font-sans font-bold tracking-[-0.05em] text-fg"
       style={{
         width: size,
         height: size,
         borderRadius: size * 0.2,
-        padding: size * 0.25,
+        fontSize: size * 0.5,
+        // The glyph pair sits optically low in its em box; nudging it up
+        // centres the ink rather than the box.
+        lineHeight: 1,
+        paddingBottom: size * 0.04,
       }}
     >
-      <span
-        className="block rounded-full bg-accent"
-        style={{ width: size * 0.2, height: size * 0.2 }}
-      />
+      d<span className="text-accent">.</span>
     </span>
   );
 }
+
 
 /** Section header: uppercase mono label on the left, running number on the right. */
 export function SectionHeader({

@@ -4,6 +4,7 @@ import { meta, site } from "@/content/site";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { Spotlight } from "@/components/spotlight";
+import { Analytics } from "@/components/analytics";
 import "./globals.css";
 
 const schibsted = Schibsted_Grotesk({
@@ -61,6 +62,7 @@ export default function RootLayout({
         <SiteNav />
         {children}
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
