@@ -70,7 +70,13 @@ export function ContactForm({ email }: { email: string }) {
           <span className="font-mono text-[10px] tracking-[0.14em] text-muted uppercase">
             Name
           </span>
-          <input name="name" required maxLength={120} className={field} />
+          <input
+            name="name"
+            required
+            maxLength={120}
+            placeholder="Jana Nováková"
+            className={field}
+          />
         </label>
         <label className="flex flex-col gap-1.5">
           <span className="font-mono text-[10px] tracking-[0.14em] text-muted uppercase">
@@ -81,6 +87,7 @@ export function ContactForm({ email }: { email: string }) {
             type="email"
             required
             maxLength={200}
+            placeholder="jana@firma.sk"
             className={field}
           />
         </label>
@@ -96,7 +103,7 @@ export function ContactForm({ email }: { email: string }) {
           minLength={10}
           maxLength={5000}
           rows={5}
-          placeholder="A paragraph is enough."
+          placeholder="We have a React Native app and nothing behind it. Launch is planned for March and we have no backend developer."
           className={`${field} resize-y`}
         />
       </label>

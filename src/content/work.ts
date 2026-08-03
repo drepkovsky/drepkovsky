@@ -117,11 +117,11 @@ export const work: WorkItem[] = [
   {
     slug: "chata-cerenka",
     proves:
-      "That clients stay: four years, then a rewrite rather than a replacement.",
+      "That clients stay: six years, then a rewrite rather than a replacement.",
     weight: 6,
     kind: "CLIENT",
     title: "chatacerenka.eu",
-    period: "2022 — now",
+    period: "2020 — now",
     sortYear: 2026.3,
     context: "First client · rewritten 2026",
     summary:
