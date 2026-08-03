@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+dist
+legacy
+.git
+.github
+.claude
+*.log
+.env*.local
+.DS_Store
+README.md
+cv-dominik-repkovsky.md
+QUESTPIE-DESIGN-SYSTEM.md
