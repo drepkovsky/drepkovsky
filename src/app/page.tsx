@@ -7,6 +7,7 @@ import {
   principles,
   principlesIntro,
   questpie,
+  questpieCode,
   selectedWork,
   services,
   site,
@@ -272,18 +273,13 @@ function Questpie() {
 
         <div className="flex flex-col gap-3.5">
           <div className="overflow-x-auto rounded-surface border border-line bg-bg p-5 font-mono text-xs leading-[1.85]">
-            {questpie.code.map((line, i) => (
+            {questpieCode.map((line, i) => (
               <div
                 key={i}
-                className={`whitespace-nowrap ${
-                  line.kind === "comment"
-                    ? "text-muted"
-                    : line.kind === "indent"
-                      ? "pl-4.5"
-                      : ""
-                }`}
+                style={{ paddingLeft: line.indent * 18 }}
+                className={`whitespace-nowrap ${line.comment ? "text-muted" : ""}`}
               >
-                {line.text}
+                {line.text || " "}
               </div>
             ))}
           </div>

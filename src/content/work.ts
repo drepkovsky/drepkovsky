@@ -67,13 +67,27 @@ export const work: WorkItem[] = [
     slug: "chata-cerenka",
     kind: "CLIENT",
     title: "chatacerenka.eu",
-    period: "2026",
+    period: "2022 — now",
     sortYear: 2026.3,
-    context: "QUESTPIE s.r.o.",
-    summary: "NEEDS-FACT — what did this one need, and what did you build?",
-    stack: ["QUESTPIE", "TanStack Start"],
+    context: "First client · rewritten 2026",
+    summary:
+      "Our first client, and the one we have kept the longest. It ran for years on the booking platform we had built around it, and in 2026 we threw that away and rebuilt the site on QUESTPIE as its own thing. A cabin that takes bookings does not need someone else's idea of what a booking is.",
+    stack: ["QUESTPIE", "TanStack Start", "Postgres"],
     writeup: null,
-    needsFact: true,
+  },
+  {
+    slug: "byvak",
+    kind: "OWN",
+    // NEEDS-FACT: the repo only goes back to 2026; the platform itself
+    // started with the first client. Confirm the years.
+    title: "býVAK",
+    period: "2022 — 2026",
+    sortYear: 2025.7,
+    context: "Own product · retired",
+    summary:
+      "A booking platform for accommodation, and the first big thing we built. It taught us the lesson the studio now runs on: one boxed platform for every client means every client gets a compromise. We stopped selling it and went back to building each product on its own.",
+    stack: ["TypeScript", "Next.js", "Postgres"],
+    writeup: null,
   },
   {
     slug: "nutrimeals",
@@ -179,8 +193,8 @@ export const work: WorkItem[] = [
     sortYear: 2024.5,
     context: "Employed · senior full-stack",
     summary:
-      "Modulario is a low-code platform for building business systems. I built the Schenker logistics module and the integrations around it, and designed the Postgres schemas the enterprise data sat in.",
-    stack: ["TypeScript", "React", "FeatherJS", "Postgres", "BullMQ", "Redis"],
+      "Modulario is a low-code platform for building business systems. I built the Schenker logistics module and the integrations around it, and designed the MongoDB schemas the enterprise data sat in.",
+    stack: ["TypeScript", "React", "FeatherJS", "MongoDB", "BullMQ", "Redis"],
     writeup: null,
   },
   {

@@ -28,7 +28,7 @@ const employment = [
     period: "2024 — 2025",
     points: [
       "Built the Schenker logistics module and third-party integrations for Modulario, a low-code platform.",
-      "Designed Postgres schemas and tuned queries for enterprise-scale data.",
+      "Designed MongoDB schemas and tuned queries for enterprise-scale data.",
       "Background processing with BullMQ and Redis.",
     ],
   },

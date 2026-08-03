@@ -160,31 +160,46 @@ export const workFooter = {
 
 export const questpie = {
   title: "QUESTPIE",
-  body: "QUESTPIE is the framework I build client backends with. You declare a schema, and it generates the database columns, the REST API, the typed client and an admin panel from that one declaration. It does not host anything and it does not ask for a key — you run it on your own machine.",
+  body: "QUESTPIE is the framework I build client backends with. You declare a collection once, and it generates the Postgres columns, the REST API, the typed client and the admin screens from that one declaration. It hosts nothing and asks for no key. It runs on your machine, and the code is yours.",
   stats: [
-    { value: "v4", label: "In production" },
     { value: "MIT", label: "Open source" },
     { value: "2024", label: "Since" },
-  ],
-  code: [
-    { kind: "comment", text: "// schema.ts" },
-    { kind: "line", text: "export const meal = entity('meal', {" },
-    { kind: "indent", text: "name: text().required()," },
-    { kind: "indent", text: "portions: int().min(1)," },
-    { kind: "indent", text: "kitchen: relation('kitchen')," },
-    { kind: "line", text: "});" },
-    { kind: "comment", text: "// generated: server · REST · client · admin" },
+    { value: "Self-host", label: "No key, no account" },
   ],
   built: [
-    { name: "Jubli", status: "Built on QUESTPIE" },
     { name: "chatacerenka.eu", status: "Live on QUESTPIE" },
-    { name: "petguide", status: "Deploying" },
+    { name: "jinejsvet.cz", status: "Live on QUESTPIE" },
+    { name: "Jubli", status: "Built on QUESTPIE" },
   ],
   ctas: [
     { label: "Read the docs", href: site.links.questpieDocs, external: true },
     { label: "GitHub", href: site.links.githubOrg, external: true },
   ],
 } as const;
+
+/** Real framework API, taken from questpie-cms's own README. */
+export const questpieCode: {
+  indent: number;
+  text: string;
+  comment?: boolean;
+}[] = [
+  { indent: 0, text: "// collections/rooms.ts", comment: true },
+  { indent: 0, text: 'import { collection } from "#questpie/factories";' },
+  { indent: 0, text: "" },
+  { indent: 0, text: 'export const rooms = collection("rooms")' },
+  { indent: 1, text: ".fields(({ f }) => ({" },
+  { indent: 2, text: 'name: f.text(255).required().label("Name"),' },
+  { indent: 2, text: 'beds: f.number().required().label("Beds"),' },
+  { indent: 2, text: 'cabin: f.relation("cabins").required(),' },
+  { indent: 1, text: "}))" },
+  { indent: 1, text: ".title(({ f }) => f.name);" },
+  { indent: 0, text: "" },
+  {
+    indent: 0,
+    text: "// generated: columns · REST · typed client · admin",
+    comment: true,
+  },
+];
 
 export const writing = {
   intro:
