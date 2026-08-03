@@ -121,7 +121,7 @@ export const selectedWork = [
     bullets: [
       "Postgres columns, REST API, typed client and admin, all generated from one collection",
       "Built on Drizzle, Zod and Better Auth rather than its own runtime",
-      "Self-hosted by design — no key, no account, no hosted tier to get locked into",
+      "You run it yourself. There is no key to ask for and no account to make",
     ],
     stack: ["TypeScript", "Drizzle", "Zod", "Better Auth"],
     image: "/work/questpie.jpg",
@@ -170,7 +170,7 @@ export const workFooter = {
 
 export const questpie = {
   title: "QUESTPIE",
-  body: "QUESTPIE is my company and the ecosystem it builds: a framework for the people building a product, and Autopilot for the people running the company around it. The framework is the half your project touches — declare a collection once and it generates the Postgres columns, the REST API, the typed client and the admin screens. It hosts nothing and asks for no key. It runs on your machine, and the code is yours.",
+  body: "QUESTPIE is my company and the ecosystem it builds: a framework for the people building a product, and Autopilot for the people running the company around it. The framework is the half your project touches. Declare a collection once and it generates the Postgres columns, the REST API, the typed client and the admin screens.",
   stats: [
     { value: "MIT", label: "Open source" },
     { value: "2024", label: "Since" },

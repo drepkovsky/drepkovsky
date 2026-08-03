@@ -16,8 +16,8 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="max-w-[34ch] text-sm leading-[1.6] text-muted text-pretty">
-              Contract backends in TypeScript, from Bratislava. Currently taking
-              one new project at a time.
+              Contract backends in TypeScript, from Bratislava. Taking one new
+              project at a time.
             </p>
             <Link
               href="/#contact"

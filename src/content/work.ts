@@ -80,7 +80,7 @@ export const work: WorkItem[] = [
     sortYear: 2026.45,
     context: "Open source · MIT · no longer developed",
     summary:
-      "A coding agent could write a change but not see whether it worked. Probe closed that: it started the dev servers, collected the logs in one place, drove a browser, and recorded flows so they could be replayed as regression checks. We built it before the coding harnesses shipped evaluators of their own. Once they did, the gap it filled closed, so it is no longer actively developed — the ecosystem solved the problem and that is a fine outcome.",
+      "A coding agent could write a change but not see whether it worked. Probe closed that: it started the dev servers, collected the logs in one place, drove a browser, and recorded flows so they could be replayed as regression checks. We built it before the coding harnesses shipped evaluators of their own. Once they did, the gap it filled closed, so it is no longer developed. The ecosystem solved the problem, which is a fine outcome.",
     stack: ["TypeScript", "Bun", "CLI"],
     writeup: null,
   },
@@ -215,7 +215,7 @@ export const work: WorkItem[] = [
     sortYear: 2025.6,
     context: "Own project · language spec",
     summary:
-      "Terraform for houses. You describe a residential floor plan in a small declarative language and get a model out — 14 room types, 32 materials, a PEG parser and a VS Code extension.",
+      "Terraform for houses. You describe a residential floor plan in a small declarative language and get a model out: 14 room types, 32 materials, a PEG parser and a VS Code extension.",
     stack: ["Bun", "TypeScript", "Peggy", "React Three Fiber"],
     writeup: null,
   },
@@ -245,7 +245,7 @@ export const work: WorkItem[] = [
     sortYear: 2024.8,
     context: "Agency engagement · client under NDA",
     summary:
-      "CODEUPP brought QUESTPIE in as extra capacity on a build they could not staff. We started with a full audit of the codebase, then worked through it in stages — fixing the developer experience as we went, and shipping features on top of it rather than after it.",
+      "CODEUPP brought QUESTPIE in as extra capacity on a build they could not staff. We started with a full audit of the codebase, then worked through it in stages, fixing the developer experience as we went and shipping features on top of it rather than after it.",
     stack: ["Next.js", "Strapi", "TypeScript"],
     writeup: null,
   },
@@ -320,7 +320,7 @@ export const work: WorkItem[] = [
     sortYear: 2023.5,
     context: "Freelance · eliadmin.sk",
     summary:
-      "A reusable e-commerce template the agency could resell, rather than one shop. I built the template, the frontend and mobile side, and the payment and order flows. Over 200 of their clients run on it, and the team kept building on it long after I left — which is the only handover test that counts.",
+      "A reusable e-commerce template the agency could resell, rather than one shop. I built the template, the frontend and mobile side, and the payment and order flows. Over 200 of their clients run on it, and the team kept building on it long after I left. That is the only handover test that counts.",
     stack: ["Next.js", "TypeScript"],
     writeup: null,
   },
@@ -360,7 +360,7 @@ export const workPage = {
   title: "The full record",
   claim: "Everything I have shipped.",
   intro:
-    "Ordered by what each one proves rather than by date; switch to the timeline if you want the chronology. Client work and employment sit in the same list because they were the same kind of work. Education is not here — that belongs in the bio.",
+    "Ordered by what each one proves, not by date. Switch to the timeline for chronology. Client work and employment sit in one list because they were the same kind of work. Education belongs in the bio.",
 } as const;
 
 export const workFilters: { key: "ALL" | WorkKind; label: string }[] = [

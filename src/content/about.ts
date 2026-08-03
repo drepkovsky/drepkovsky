@@ -11,12 +11,12 @@ export const aboutPage = {
   headline:
     "I run a small software studio in Bratislava, and I write the tools it runs on.",
   intro:
-    "We are three at QUESTPIE. I take contract work on backends and mobile apps for companies in Slovakia, Czechia and Italy, and I am the one on your backend — but the bus factor is not one.",
+    "We are three at QUESTPIE. I take contract work on backends and mobile apps for companies in Slovakia, Czechia and Italy, and I am the one on your backend, but the bus factor is not one.",
 } as const;
 
 export const longVersion = [
-  "I started at FIIT STU in Bratislava in 2020 and took paid work the same year. By the second year of the bachelor's I was on a team of nine at UXtweak building a usability testing platform, which is where I learned that the hard part is never the feature — it is the twenty things that break around it. I finished the Ing. in 2025 while running the company.",
-  "Across nineteen projects the same eighty percent kept coming back: auth, uploads, roles, admin screens, the job queue, the deploy. Every client paid for it again, and every time I rebuilt it slightly differently, so every codebase then aged differently too. QUESTPIE started as the answer to that — declare the schema, generate the rest — and it now sits under most of what I ship.",
+  "I started at FIIT STU in Bratislava in 2020 and took paid work the same year. By the second year of the bachelor's I was on a team of nine at UXtweak building a usability testing platform, which is where I learned that the hard part is never the feature: it is the twenty things that break around it. I finished the Ing. in 2025 while running the company.",
+  "Across every one of those projects the same eighty percent kept coming back: auth, uploads, roles, admin screens, the job queue, the deploy. Every client paid for it again, and every time I rebuilt it slightly differently, so every codebase then aged differently too. QUESTPIE started as the answer: declare the schema, generate the rest. It now sits under most of what I ship.",
   "QUESTPIE runs client products in production today, which is the only test that matters for a framework. The next two years go to Autopilot and Cloud: the layer that operates a company and the place it runs. The contract work is not a bridge to that. It is what keeps the framework honest.",
 ] as const;
 
