@@ -245,7 +245,7 @@ export const work: WorkItem[] = [
     sortYear: 2024.8,
     context: "Agency engagement · client under NDA",
     summary:
-      "CODEUPP brought QUESTPIE in as extra capacity on a build they could not staff. We started with a full audit of the codebase, then worked through it in stages — fixing the developer experience as we went, and shipping features on top of it rather than after it. The end client is under NDA, so that is as specific as this gets.",
+      "CODEUPP brought QUESTPIE in as extra capacity on a build they could not staff. We started with a full audit of the codebase, then worked through it in stages — fixing the developer experience as we went, and shipping features on top of it rather than after it.",
     stack: ["Next.js", "Strapi", "TypeScript"],
     writeup: null,
   },
@@ -258,9 +258,9 @@ export const work: WorkItem[] = [
     title: "bulkit.dev",
     period: "2024 — 2025",
     sortYear: 2024.9,
-    context: "Own product",
+    context: "Own product · superseded by Autopilot",
     summary:
-      "Social scheduling you host yourself, for people who would rather not hand their posting queue and their audience to someone else's SaaS.",
+      "Social scheduling you host yourself, for people who would rather not hand their posting queue and their audience to someone else's SaaS. Superseded by Autopilot, which does the scheduling as one of the things an agent can be told to do rather than as a product of its own.",
     stack: ["Bun", "React", "Tailwind", "LangChain"],
     writeup: null,
   },

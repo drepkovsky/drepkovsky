@@ -220,15 +220,41 @@
     break-inside: avoid;
   }
 
+  /* Screen spacing puts the CV a few lines onto a second sheet. These claw
+     back roughly 90px so it lands on one page, which is the whole point of
+     having a print view at all. */
+  main section {
+    padding-top: 14px !important;
+  }
+
+  main section > div,
+  main header {
+    padding-bottom: 0 !important;
+  }
+
+  main section h2 {
+    margin-bottom: 8px !important;
+    padding-bottom: 4px !important;
+  }
+
+  main ul,
+  main dl {
+    gap: 4px !important;
+  }
+
   a {
     color: #000 !important;
     text-decoration: none;
   }
 
-  /* Backdrop filters and shadows cost ink and render unpredictably. */
+  /* Backdrop filters and shadows cost ink and render unpredictably, and the
+     theme transition would otherwise still be mid-fade when the page is
+     rasterised. */
   * {
     backdrop-filter: none !important;
     box-shadow: none !important;
     text-shadow: none !important;
+    transition: none !important;
+    animation: none !important;
   }
 }
