@@ -59,11 +59,12 @@ export const facts = [
     value: "**FIIT STU Bratislava** — Bc., Computer Science.",
   },
   {
+    // No CEFR level for English on purpose: the reader is already reading a
+    // page of it, so a self-assessed grade can only argue with the evidence.
+    // Framed by what work can happen in each instead.
     key: "Languages",
-    // NEEDS-FACT: CV says English B2. On an English-language site aimed at
-    // international clients that reads low — confirm what to publish.
     value:
-      "Slovak — native · Czech — C1 · English — B2 · German, Spanish — basic",
+      "**Slovak and Czech** natively. **English** for everything else. Every client outside Slovakia works with me in it.",
   },
   {
     key: "Company",
