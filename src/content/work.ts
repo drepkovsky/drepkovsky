@@ -58,7 +58,7 @@ export const work: WorkItem[] = [
     slug: "autopilot",
     proves:
       "That I can build long-running distributed systems, not only request and response.",
-    weight: 8,
+    weight: 9,
     kind: "OWN",
     title: "QUESTPIE Autopilot",
     period: "2025 — now",
@@ -71,7 +71,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "questpie-probe",
-    weight: 6,
+    weight: 7,
     proves:
       "That I see a gap early, and stop building once something else fills it.",
     kind: "OSS",
@@ -86,7 +86,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "agent-board",
-    weight: 7,
+    weight: 8,
     proves:
       "That I build the tooling my own work runs on, and ship it for other people to use.",
     kind: "OSS",
@@ -103,7 +103,7 @@ export const work: WorkItem[] = [
     slug: "jinejsvet",
     proves:
       "That I build for readers who are not developers, to a stated accessibility standard.",
-    weight: 5,
+    weight: 3,
     kind: "CLIENT",
     title: "jinejsvet.cz",
     period: "2026",
@@ -118,7 +118,7 @@ export const work: WorkItem[] = [
     slug: "chata-cerenka",
     proves:
       "That clients stay: six years, then a rewrite rather than a replacement.",
-    weight: 6,
+    weight: 5,
     kind: "CLIENT",
     title: "chatacerenka.eu",
     period: "2020 — now",
@@ -148,7 +148,7 @@ export const work: WorkItem[] = [
     slug: "nutrimeals",
     proves:
       "That I can own a mobile product and the multi-tenant backend under it, for years rather than a sprint.",
-    weight: 9,
+    weight: 7,
     kind: "CLIENT",
     title: "Nutrimeals",
     period: "2024 — now",
@@ -163,7 +163,7 @@ export const work: WorkItem[] = [
     slug: "prague-convention-bureau",
     proves:
       "That I deliver a module into someone else's larger product without owning the whole thing.",
-    weight: 7,
+    weight: 5,
     kind: "CLIENT",
     title: "Prague Convention Bureau",
     period: "2025 — 2026",
@@ -193,7 +193,7 @@ export const work: WorkItem[] = [
     slug: "pomocmotoristom",
     proves:
       "That I finish and hand over even when the launch is not mine to call.",
-    weight: 4,
+    weight: 3,
     kind: "CLIENT",
     title: "pomocmotoristom.sk",
     period: "2025 — 2026",
@@ -208,7 +208,7 @@ export const work: WorkItem[] = [
     slug: "housedsl",
     proves:
       "That I can design a small language and write the parser for it.",
-    weight: 4,
+    weight: 6,
     kind: "OWN",
     title: "housedsl",
     period: "2025",
@@ -223,7 +223,7 @@ export const work: WorkItem[] = [
     slug: "drizzle-migrations",
     proves:
       "That other developers depend on code I wrote.",
-    weight: 7,
+    weight: 8,
     kind: "OSS",
     title: "drizzle-migrations",
     period: "2024 — now",
@@ -238,7 +238,7 @@ export const work: WorkItem[] = [
     slug: "codeupp",
     proves:
       "That I can join a codebase someone else wrote and ship from inside it.",
-    weight: 5,
+    weight: 4,
     kind: "CLIENT",
     title: "CODEUPP",
     period: "2024 — 2025",
@@ -253,7 +253,7 @@ export const work: WorkItem[] = [
     slug: "bulkit",
     proves:
       "That I build the self-hosted alternative when I do not want the dependency.",
-    weight: 4,
+    weight: 6,
     kind: "OWN",
     title: "bulkit.dev",
     period: "2024 — 2025",
@@ -268,7 +268,7 @@ export const work: WorkItem[] = [
     slug: "amcef",
     proves:
       "That I can work inside an enterprise low-code platform and its data layer.",
-    weight: 7,
+    weight: 5,
     kind: "CLIENT",
     title: "AMCEF",
     period: "2024 — 2025",
@@ -283,7 +283,7 @@ export const work: WorkItem[] = [
     slug: "tinydi",
     proves:
       "That I can keep an abstraction small enough to read in one sitting.",
-    weight: 3,
+    weight: 6,
     kind: "OSS",
     title: "tinydi",
     period: "2024",
@@ -298,7 +298,7 @@ export const work: WorkItem[] = [
     slug: "rosmami",
     proves:
       "That I build offline-first, and put an LLM only where it earns its place.",
-    weight: 5,
+    weight: 4,
     kind: "CLIENT",
     title: "Rosmami",
     period: "2023 — 2024",
@@ -313,7 +313,7 @@ export const work: WorkItem[] = [
     slug: "elias-it",
     proves:
       "That what I hand over outlives me: 200+ clients still run on that template.",
-    weight: 8,
+    weight: 6,
     kind: "CLIENT",
     title: "Eliaš IT Solutions",
     period: "2023 — 2024",
@@ -328,7 +328,7 @@ export const work: WorkItem[] = [
     slug: "asista",
     proves:
       "That I ship to both app stores and keep a release train running afterwards.",
-    weight: 6,
+    weight: 5,
     kind: "CLIENT",
     title: "ASISTA",
     period: "2025 — now",
@@ -343,7 +343,7 @@ export const work: WorkItem[] = [
     slug: "uxtweak",
     proves:
       "That I work inside a team of nine on an enterprise product.",
-    weight: 7,
+    weight: 5,
     kind: "CLIENT",
     title: "UXtweak",
     period: "2021 — 2023",

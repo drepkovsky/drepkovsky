@@ -1,0 +1,79 @@
+# drepkovsky.com CI — build an immutable image on push to `main`, then bump
+# GitOps. Flux rolls the cluster from git; nothing is ever built locally.
+
+when:
+  event: [push, manual]
+  branch: main
+
+steps:
+  # Fails before anything reaches the registry, so a broken build never
+  # produces a tag the cluster could be pointed at.
+  typecheck:
+    image: oven/bun:1.3-alpine
+    commands:
+      - bun install --frozen-lockfile
+      - bun run typecheck
+
+  build:
+    image: woodpeckerci/plugin-docker-buildx:6
+    depends_on: [typecheck]
+    settings:
+      daemon_off: true
+      dockerfile: Dockerfile
+      context: .
+      platforms: linux/amd64
+      repo: questpie/drepkovsky
+      # NEXT_PUBLIC_* is inlined by Next at build time, so it belongs here and
+      # not in the deployment env. All four are public by design — they ship
+      # in the HTML of every page.
+      build_args:
+        NEXT_PUBLIC_CAP_SITE_KEY: "1f19b4ea49"
+        NEXT_PUBLIC_CAP_BASE_URL: "https://cap.eu-infra.questpie.com"
+        NEXT_PUBLIC_UMAMI_SRC: "https://umami.eu-infra.questpie.com/script.js"
+        NEXT_PUBLIC_UMAMI_ID: "e6f5bd74-5208-4fdf-b3d6-a809718dc454"
+      tags:
+        - latest
+        - ${CI_COMMIT_SHA}
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+
+  deploy_gitops:
+    image: alpine:3.22
+    depends_on: [build]
+    environment:
+      GITOPS_USERNAME:
+        from_secret: gitops_username
+      GITOPS_TOKEN:
+        from_secret: gitops_token
+    commands:
+      - |
+        set -eu
+        apk add --no-cache git
+        git config --global user.name "Woodpecker CI"
+        git config --global user.email "ci@questpie.com"
+        git config --global credential.helper store
+        printf 'https://%s:%s@github.com\n' "$GITOPS_USERNAME" "$GITOPS_TOKEN" > ~/.git-credentials
+
+        sha="$(git rev-parse HEAD)"
+        if [ -z "$sha" ]; then
+          echo "Missing commit SHA from git checkout."
+          exit 1
+        fi
+
+        git clone --branch main --single-branch https://github.com/questpie/questpie-gitops.git gitops
+        cd gitops
+
+        # Matches any tag, not just a 40-hex one, so the very first run can
+        # replace the seeded `latest` as well as every SHA after it.
+        sed -i -E "s#questpie/drepkovsky:[A-Za-z0-9._-]+#questpie/drepkovsky:$sha#g" apps/base/drepkovsky/deployment.yaml
+
+        if git diff --quiet -- apps/base/drepkovsky; then
+          echo "GitOps already points at $sha."
+          exit 0
+        fi
+
+        git add apps/base/drepkovsky/deployment.yaml
+        git commit -m "Deploy drepkovsky.com $sha"
+        git push origin main
