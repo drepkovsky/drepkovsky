@@ -90,11 +90,6 @@ export default async function ProjectPage({ params }: Params) {
           {project.summary}
         </p>
 
-        <p className="grid max-w-[62ch] grid-cols-[20px_1fr] gap-3 text-[16px] leading-[1.6] text-fg">
-          <span className="text-accent">↳</span>
-          <span className="text-pretty">{project.proves}</span>
-        </p>
-
         <div className="flex flex-wrap gap-1.5 pt-1">
           {project.stack.map((tech) => (
             <Tag key={tech}>{tech}</Tag>

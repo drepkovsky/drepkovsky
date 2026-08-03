@@ -25,7 +25,11 @@ export type WorkItem = {
    * order and the year view is the toggle.
    */
   weight: number;
-  /** One line: what a client can conclude from this project. */
+  /**
+   * What a client can conclude from this project. Not rendered right now —
+   * read as self-congratulation nineteen times over — but it is what the
+   * relevance weight is reasoning about, so it stays as the note behind it.
+   */
   proves: string;
   context: string;
   summary: string;

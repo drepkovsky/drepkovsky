@@ -26,7 +26,7 @@ export function WorkList() {
         <span className="eyebrow mr-2">Order</span>
         {(
           [
-            ["relevance", "What it proves"],
+            ["relevance", "Most relevant"],
             ["year", "By year"],
           ] as const
         ).map(([key, label]) => (
@@ -105,12 +105,6 @@ export function WorkList() {
               <div className="font-mono text-[11px] leading-none tracking-[0.08em] text-muted">
                 {item.context}
               </div>
-
-              {/* The reason this sits where it sits in the default order. */}
-              <p className="grid max-w-[68ch] grid-cols-[16px_1fr] gap-2.5 text-[14px] leading-[1.5] text-fg">
-                <span className="text-accent">↳</span>
-                <span className="text-pretty">{item.proves}</span>
-              </p>
 
               <p
                 className={`max-w-[68ch] text-[15px] leading-[1.65] text-pretty ${
