@@ -14,6 +14,7 @@ import {
   workFooter,
   writing,
 } from "@/content/site";
+import { work } from "@/content/work";
 import { Button, SectionHeader, Tag } from "@/components/ui";
 import { ImageSlot } from "@/components/image-slot";
 import { Reveal } from "@/components/reveal";
@@ -215,7 +216,7 @@ function SelectedWork() {
 
       <Reveal className="flex flex-wrap items-center justify-between gap-5 border-t border-line pt-6">
         <p className="max-w-[46ch] text-sm leading-[1.6] text-muted text-pretty">
-          {workFooter.note}
+          {workFooter.note(work.length)}
         </p>
         <Button href={workFooter.cta.href} variant="outline">
           {workFooter.cta.label}

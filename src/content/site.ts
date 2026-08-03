@@ -9,7 +9,7 @@
 export const site = {
   name: "Dominik Repkovský",
   role: "Backend & TypeScript",
-  email: "dominik.repkovsky@questpie.com",
+  email: "dominik@questpie.com",
   location: "Bratislava, Slovakia",
   established: "2021",
   company: "QUESTPIE s.r.o.",
@@ -50,7 +50,7 @@ export const stack = [
   "React Native",
   "Postgres",
   "Drizzle",
-  "Docker",
+  "Docker · Kubernetes",
   "CI/CD",
   "Linux · VPS",
 ] as const;
@@ -78,7 +78,7 @@ export const principles: { text: string; essay: string | null }[] = [
     essay: null,
   },
   {
-    text: "If the job needs five people, I say so instead of pretending.",
+    text: "If the job needs a bigger team than mine, I say so instead of pretending.",
     essay: null,
   },
 ];
@@ -125,36 +125,37 @@ export const selectedWork = [
   {
     slug: "prague-convention-bureau",
     index: "02",
-    period: "2025",
+    period: "2025 — 2026",
     org: "QUESTPIE s.r.o.",
     title: "Prague Convention Bureau",
     summary:
-      "Event planners needed to find a venue in Prague by capacity, layout and date, across a catalogue too large to filter in the browser. I owned the search and the admin behind it.",
-    bullets: [
-      "Capacity search that answers across the full catalogue without a full scan",
-      "Admin dashboard with live availability and booking management",
-    ],
+      "The planning module for the bureau's venue platform, built and delivered as part of the wider product.",
+    bullets: [],
     stack: ["PayloadCMS", "Next.js", "Postgres"],
     image: "/work/pcb.jpg",
   },
   {
-    // NEEDS-FACT: the design names CODEUPP but no CV entry, repo or public
-    // page describes it. Everything below is a placeholder shape, not a claim.
-    slug: "codeupp",
+    slug: "jinejsvet",
     index: "03",
-    period: "2024 — 2025",
-    org: "QUESTPIE s.r.o.",
-    title: "CODEUPP",
-    summary: "NEEDS-FACT — tell me what this was and what you owned.",
-    bullets: [],
-    stack: ["Next.js", "Strapi"],
-    image: "/work/codeupp.jpg",
+    period: "2026",
+    org: "Klára pomáhá z.s.",
+    title: "jinejsvet.cz",
+    summary:
+      "A portal for children and young people who have lost someone. The hard part was not the CMS — it was building something with counselling, a candle you can light and a timeline of grief, and getting the tone right.",
+    bullets: [
+      "Editorial workflow the counsellors run themselves, in two languages",
+      "WCAG 2.1 AA throughout, because the readers are children in a bad week",
+    ],
+    stack: ["Next.js", "PayloadCMS", "Postgres"],
+    image: "/work/jinejsvet.jpg",
   },
 ] as const;
 
 export const workFooter = {
-  note: "Thirteen projects since 2021, for clients in Slovakia, Czechia and Italy.",
-  cta: { label: "All 13 projects", href: "/work" },
+  /** `count` is filled from the record itself, so the number cannot drift. */
+  note: (count: number) =>
+    `${count} projects since 2021, for clients in Slovakia, Czechia and Italy.`,
+  cta: { label: "The full record", href: "/work" },
 } as const;
 
 export const questpie = {
@@ -175,8 +176,8 @@ export const questpie = {
     { kind: "comment", text: "// generated: server · REST · client · admin" },
   ],
   built: [
-    { name: "Nutrimeals", status: "Built on QUESTPIE" },
-    { name: "QUESTPIE Studio", status: "Live on QUESTPIE" },
+    { name: "Jubli", status: "Built on QUESTPIE" },
+    { name: "chatacerenka.eu", status: "Live on QUESTPIE" },
     { name: "petguide", status: "Deploying" },
   ],
   ctas: [
@@ -203,7 +204,7 @@ export const writing = {
 export const now = {
   updated: "2026-08",
   primary:
-    "Building QUESTPIE v4 and shipping it as the backend under two client products at the same time. The framework only earns its keep if it survives real deadlines.",
+    "Building QUESTPIE, and shipping it as the backend under client products at the same time. The framework only earns its keep if it survives real deadlines.",
   secondary:
     "Nutrimeals is in production and still growing. I take one new contract at a time, so the next slot is the one worth asking about.",
 } as const;
