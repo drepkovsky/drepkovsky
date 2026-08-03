@@ -111,6 +111,7 @@ export const services = [
 export const selectedWork = [
   {
     slug: "questpie",
+    logo: "/logos/questpie.svg",
     index: "01",
     period: "2024 — now",
     org: "Open source · MIT",
@@ -127,6 +128,7 @@ export const selectedWork = [
   },
   {
     slug: "nutrimeals",
+    logo: "/logos/nutrimeals.svg",
     index: "02",
     period: "2024 — now",
     org: "Technical partner",
@@ -143,6 +145,7 @@ export const selectedWork = [
   },
   {
     slug: "jubli",
+    logo: "/logos/jubli.svg",
     index: "03",
     period: "2026 — now",
     org: "Own product · pilot",

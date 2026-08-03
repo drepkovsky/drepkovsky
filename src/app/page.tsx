@@ -223,7 +223,8 @@ function SelectedWork() {
         const image = (
           <ImageSlot
             src={undefined}
-            label={`${project.title} — screenshot`}
+            logo={project.logo}
+            label={project.title}
             ratio="4/3"
           />
         );

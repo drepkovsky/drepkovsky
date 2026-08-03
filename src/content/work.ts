@@ -73,14 +73,14 @@ export const work: WorkItem[] = [
     slug: "questpie-probe",
     weight: 6,
     proves:
-      "That I close the loop on my own tooling: the agent can run the app and read back what it did.",
+      "That I see a gap early, and stop building once something else fills it.",
     kind: "OSS",
     title: "QUESTPIE Probe",
     period: "2026 — now",
     sortYear: 2026.45,
-    context: "Open source · MIT · @questpie/probe",
+    context: "Open source · MIT · no longer developed",
     summary:
-      "A coding agent can write a change but not see whether it worked. Probe is the CLI that closes that: it starts the dev servers, collects the logs in one place, drives a browser, sends HTTP requests, and records flows so they can be replayed as regression checks.",
+      "A coding agent could write a change but not see whether it worked. Probe closed that: it started the dev servers, collected the logs in one place, drove a browser, and recorded flows so they could be replayed as regression checks. We built it before the coding harnesses shipped evaluators of their own. Once they did, the gap it filled closed, so it is no longer actively developed — the ecosystem solved the problem and that is a fine outcome.",
     stack: ["TypeScript", "Bun", "CLI"],
     writeup: null,
   },

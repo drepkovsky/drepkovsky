@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-label="Čerenka">
+  <rect width="72" height="72" rx="16" fill="#3C5A43"/>
+  <polyline points="10,60 24,40 34,52 44,32 58,52 63,60" fill="none" stroke="rgba(255,255,255,0.26)" stroke-width="2" stroke-linejoin="round"/>
+  <text x="8" y="58" font-family="Instrument Serif, Georgia, serif" font-style="italic" font-size="56" fill="#FFFFFF">Č</text>
+</svg>
