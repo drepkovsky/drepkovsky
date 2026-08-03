@@ -11,7 +11,8 @@ export const site = {
   role: "Backend & TypeScript",
   email: "dominik@questpie.com",
   location: "Bratislava, Slovakia",
-  established: "2021",
+  /** When the work started (býVAK), not when the s.r.o. was registered in 2021. */
+  established: "2020",
   company: "QUESTPIE s.r.o.",
   ico: "54027292",
   links: {
@@ -154,7 +155,7 @@ export const selectedWork = [
 export const workFooter = {
   /** `count` is filled from the record itself, so the number cannot drift. */
   note: (count: number) =>
-    `${count} projects since 2021, for clients in Slovakia, Czechia and Italy.`,
+    `${count} projects since 2020, for clients in Slovakia, Czechia and Italy.`,
   cta: { label: "The full record", href: "/work" },
 } as const;
 

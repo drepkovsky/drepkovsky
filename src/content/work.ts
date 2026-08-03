@@ -78,10 +78,8 @@ export const work: WorkItem[] = [
   {
     slug: "byvak",
     kind: "OWN",
-    // NEEDS-FACT: the repo only goes back to 2026; the platform itself
-    // started with the first client. Confirm the years.
     title: "býVAK",
-    period: "2022 — 2026",
+    period: "2020 — 2026",
     sortYear: 2025.7,
     context: "Own product · retired",
     summary:

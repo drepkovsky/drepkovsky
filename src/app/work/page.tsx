@@ -6,7 +6,7 @@ import { WorkList } from "@/components/work-list";
 export const metadata: Metadata = {
   title: "The full record",
   description:
-    "Every project since 2021 — client work, own products and open source, newest first.",
+    "Every project since 2020 — client work, own products and open source, newest first.",
   alternates: { canonical: "/work" },
 };
 
