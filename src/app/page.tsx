@@ -293,7 +293,7 @@ function Questpie() {
     >
       <SectionHeader label="The framework" number="04" className="pb-7" />
       <div className="grid items-start gap-7 md:grid-cols-2 lg:gap-14">
-        <div className="flex flex-col gap-4.5">
+        <div className="flex min-w-0 flex-col gap-4.5">
           <h2 className="text-[clamp(30px,3.6vw,44px)] font-semibold leading-[1.05] tracking-[-0.035em]">
             {questpie.title}
           </h2>
@@ -350,7 +350,7 @@ function Questpie() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3.5">
+        <div className="flex min-w-0 flex-col gap-3.5">
           <CodeBlock code={questpieCode} />
 
           <div className="flex flex-col gap-px overflow-hidden surface rounded-surface border border-line bg-line">
