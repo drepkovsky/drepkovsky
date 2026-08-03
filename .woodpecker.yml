@@ -43,8 +43,6 @@ steps:
     image: alpine:3.22
     depends_on: [build]
     environment:
-      GITOPS_USERNAME:
-        from_secret: gitops_username
       GITOPS_TOKEN:
         from_secret: gitops_token
     commands:
@@ -54,7 +52,9 @@ steps:
         git config --global user.name "Woodpecker CI"
         git config --global user.email "ci@questpie.com"
         git config --global credential.helper store
-        printf 'https://%s:%s@github.com\n' "$GITOPS_USERNAME" "$GITOPS_TOKEN" > ~/.git-credentials
+        # x-access-token works for any GitHub PAT, so this needs one secret
+        # rather than a username and a token that have to agree.
+        printf 'https://x-access-token:%s@github.com\n' "$GITOPS_TOKEN" > ~/.git-credentials
 
         sha="$(git rev-parse HEAD)"
         if [ -z "$sha" ]; then
