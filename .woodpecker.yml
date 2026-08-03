@@ -39,41 +39,51 @@ steps:
       password:
         from_secret: docker_password
 
-  deploy_gitops:
-    image: alpine:3.22
-    depends_on: [build]
-    environment:
-      GITOPS_TOKEN:
-        from_secret: gitops_token
-    commands:
-      - |
-        set -eu
-        apk add --no-cache git
-        git config --global user.name "Woodpecker CI"
-        git config --global user.email "ci@questpie.com"
-        git config --global credential.helper store
-        # x-access-token works for any GitHub PAT, so this needs one secret
-        # rather than a username and a token that have to agree.
-        printf 'https://x-access-token:%s@github.com\n' "$GITOPS_TOKEN" > ~/.git-credentials
-
-        sha="$(git rev-parse HEAD)"
-        if [ -z "$sha" ]; then
-          echo "Missing commit SHA from git checkout."
-          exit 1
-        fi
-
-        git clone --branch main --single-branch https://github.com/questpie/questpie-gitops.git gitops
-        cd gitops
-
-        # Matches any tag, not just a 40-hex one, so the very first run can
-        # replace the seeded `latest` as well as every SHA after it.
-        sed -i -E "s#questpie/drepkovsky:[A-Za-z0-9._-]+#questpie/drepkovsky:$sha#g" apps/base/drepkovsky/deployment.yaml
-
-        if git diff --quiet -- apps/base/drepkovsky; then
-          echo "GitOps already points at $sha."
-          exit 0
-        fi
-
-        git add apps/base/drepkovsky/deployment.yaml
-        git commit -m "Deploy drepkovsky.com $sha"
-        git push origin main
+# ---------------------------------------------------------------------------
+# GitOps bump — disabled until a `gitops_token` secret exists for this repo.
+#
+# Woodpecker refuses to run a pipeline at all when it references a secret that
+# is not defined: the run comes back with status `error` and zero workflows, so
+# even the build never starts. That is what kept the registry empty.
+#
+# To turn it back on: add `gitops_token` (a GitHub PAT with write access to
+# questpie/questpie-gitops) as a repo secret, then uncomment below.
+# ---------------------------------------------------------------------------
+#   deploy_gitops:
+#     image: alpine:3.22
+#     depends_on: [build]
+#     environment:
+#       GITOPS_TOKEN:
+#         from_secret: gitops_token
+#     commands:
+#       - |
+#         set -eu
+#         apk add --no-cache git
+#         git config --global user.name "Woodpecker CI"
+#         git config --global user.email "ci@questpie.com"
+#         git config --global credential.helper store
+#         # x-access-token works for any GitHub PAT, so this needs one secret
+#         # rather than a username and a token that have to agree.
+#         printf 'https://x-access-token:%s@github.com\n' "$GITOPS_TOKEN" > ~/.git-credentials
+#
+#         sha="$(git rev-parse HEAD)"
+#         if [ -z "$sha" ]; then
+#           echo "Missing commit SHA from git checkout."
+#           exit 1
+#         fi
+#
+#         git clone --branch main --single-branch https://github.com/questpie/questpie-gitops.git gitops
+#         cd gitops
+#
+#         # Matches any tag, not just a 40-hex one, so the very first run can
+#         # replace the seeded `latest` as well as every SHA after it.
+#         sed -i -E "s#questpie/drepkovsky:[A-Za-z0-9._-]+#questpie/drepkovsky:$sha#g" apps/base/drepkovsky/deployment.yaml
+#
+#         if git diff --quiet -- apps/base/drepkovsky; then
+#           echo "GitOps already points at $sha."
+#           exit 0
+#         fi
+#
+#         git add apps/base/drepkovsky/deployment.yaml
+#         git commit -m "Deploy drepkovsky.com $sha"
+#         git push origin main
