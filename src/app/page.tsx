@@ -18,6 +18,8 @@ import {
 import { work } from "@/content/work";
 import { Button, SectionHeader, Tag } from "@/components/ui";
 import { ImageSlot } from "@/components/image-slot";
+import { CodeBlock } from "@/components/code-block";
+import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/reveal";
 
 export default function HomePage() {
@@ -272,17 +274,7 @@ function Questpie() {
         </div>
 
         <div className="flex flex-col gap-3.5">
-          <div className="overflow-x-auto rounded-surface border border-line bg-bg p-5 font-mono text-xs leading-[1.85]">
-            {questpieCode.map((line, i) => (
-              <div
-                key={i}
-                style={{ paddingLeft: line.indent * 18 }}
-                className={`whitespace-nowrap ${line.comment ? "text-muted" : ""}`}
-              >
-                {line.text || " "}
-              </div>
-            ))}
-          </div>
+          <CodeBlock code={questpieCode} />
 
           <div className="flex flex-col gap-px overflow-hidden rounded-surface border border-line bg-line">
             {questpie.built.map((item) => (
@@ -415,13 +407,23 @@ function Contact() {
       <p className="max-w-[50ch] text-[15px] leading-[1.65] text-muted text-pretty">
         {contact.body}
       </p>
-      <a
-        href={`mailto:${contact.email}`}
-        className="group inline-flex items-center gap-4 self-start border-b border-[color-mix(in_oklab,var(--color-accent)_40%,transparent)] pb-2 text-[clamp(18px,2.4vw,30px)] font-semibold tracking-[-0.02em] text-accent transition-all duration-250 hover:gap-6"
-      >
-        {contact.email}
-        <span className="text-[0.7em]">↗</span>
-      </a>
+
+      <div className="grid gap-8 pt-2 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
+        <ContactForm email={contact.email} />
+
+        <div className="flex flex-col gap-3.5 md:pt-1">
+          <div className="font-mono text-[10px] tracking-[0.16em] text-muted uppercase">
+            Or just write to me
+          </div>
+          <a
+            href={`mailto:${contact.email}`}
+            className="inline-flex items-center gap-3.5 self-start border-b border-[color-mix(in_oklab,var(--color-accent)_40%,transparent)] pb-2 text-[clamp(17px,2vw,26px)] font-semibold tracking-[-0.02em] text-accent transition-all duration-250 hover:gap-6"
+          >
+            {contact.email}
+            <span className="text-[0.7em]">↗</span>
+          </a>
+        </div>
+      </div>
     </Reveal>
   );
 }

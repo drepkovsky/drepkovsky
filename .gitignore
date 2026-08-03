@@ -7,10 +7,20 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build output
+.next/
+out/
 dist
 dist-ssr
+next-env.d.ts
+
+# Env — *.local already covers .env.local, the rest are belt and braces
 *.local
+.env
+.env*.local
 
 # Editor directories and files
 .vscode/*

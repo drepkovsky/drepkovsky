@@ -93,12 +93,12 @@ export const services = [
     body: "You have a product and no server. I design the schema, build the API, and hand over a running system whose types your frontend can import.",
   },
   {
-    title: "Postgres under load",
-    body: "Queries that were fine at ten thousand rows and are not fine at ten million. I profile them, fix the indexes, and rewrite the ones that need CTEs or window functions.",
+    title: "App and its backend",
+    body: "One person building both sides, so the API is shaped by what the app needs instead of negotiated between two teams. React Native for the app, and the server it talks to.",
   },
   {
-    title: "Rescue and handover",
-    body: "A codebase the last developer left behind. I read it, write down how it actually works, and get it to a state where someone new can start on Monday.",
+    title: "Postgres under load",
+    body: "Queries that were fine at ten thousand rows and are not fine at ten million. I profile them, fix the indexes, and rewrite the ones that need CTEs or window functions.",
   },
   {
     title: "Deploy and keep it up",
@@ -179,28 +179,20 @@ export const questpie = {
 } as const;
 
 /** Real framework API, taken from questpie-cms's own README. */
-export const questpieCode: {
-  indent: number;
-  text: string;
-  comment?: boolean;
-}[] = [
-  { indent: 0, text: "// collections/rooms.ts", comment: true },
-  { indent: 0, text: 'import { collection } from "#questpie/factories";' },
-  { indent: 0, text: "" },
-  { indent: 0, text: 'export const rooms = collection("rooms")' },
-  { indent: 1, text: ".fields(({ f }) => ({" },
-  { indent: 2, text: 'name: f.text(255).required().label("Name"),' },
-  { indent: 2, text: 'beds: f.number().required().label("Beds"),' },
-  { indent: 2, text: 'cabin: f.relation("cabins").required(),' },
-  { indent: 1, text: "}))" },
-  { indent: 1, text: ".title(({ f }) => f.name);" },
-  { indent: 0, text: "" },
-  {
-    indent: 0,
-    text: "// generated: columns · REST · typed client · admin",
-    comment: true,
-  },
-];
+export const questpieCode = `
+// collections/rooms.ts
+import { collection } from "#questpie/factories";
+
+export const rooms = collection("rooms")
+  .fields(({ f }) => ({
+    name: f.text(255).required().label("Name"),
+    beds: f.number().required().label("Beds"),
+    cabin: f.relation("cabins").required(),
+  }))
+  .title(({ f }) => f.name);
+
+// generated: columns · REST · typed client · admin
+`;
 
 export const writing = {
   intro:
@@ -233,7 +225,7 @@ export const about = {
 
 export const contact = {
   headline: "What are you trying to build?",
-  body: "Send the problem, not a spec. A paragraph about what breaks today is enough to tell whether I am the right person, and you get an answer within two working days.",
+  body: "Send the idea, not a spec. A paragraph about what you want to exist is enough to tell whether I am the right person, and you get an answer within two working days.",
   email: site.email,
 } as const;
 

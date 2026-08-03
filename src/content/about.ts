@@ -72,5 +72,5 @@ export const facts = [
 ] as const;
 
 export const aboutClosing = {
-  headline: "Tell me what is breaking.",
+  headline: "Tell me what you want to build.",
 } as const;
