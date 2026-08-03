@@ -21,6 +21,8 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/drepkovsky/",
     questpie: "https://questpie.com",
     questpieDocs: "https://questpie.com/docs",
+    agentBoard: "https://github.com/questpie/agent-board",
+    probe: "https://github.com/questpie/probe",
   },
 } as const;
 

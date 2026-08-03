@@ -70,6 +70,36 @@ export const work: WorkItem[] = [
     writeup: null,
   },
   {
+    slug: "questpie-probe",
+    weight: 6,
+    proves:
+      "That I close the loop on my own tooling: the agent can run the app and read back what it did.",
+    kind: "OSS",
+    title: "QUESTPIE Probe",
+    period: "2026 — now",
+    sortYear: 2026.45,
+    context: "Open source · MIT · @questpie/probe",
+    summary:
+      "A coding agent can write a change but not see whether it worked. Probe is the CLI that closes that: it starts the dev servers, collects the logs in one place, drives a browser, sends HTTP requests, and records flows so they can be replayed as regression checks.",
+    stack: ["TypeScript", "Bun", "CLI"],
+    writeup: null,
+  },
+  {
+    slug: "agent-board",
+    weight: 7,
+    proves:
+      "That I build the tooling my own work runs on, and ship it for other people to use.",
+    kind: "OSS",
+    title: "agent-board",
+    period: "2026 — now",
+    sortYear: 2026.5,
+    context: "Open source · MIT · @questpie/agent-board",
+    summary:
+      "A local control plane for coding agents. Long-running agent work falls apart when the plan lives only in a chat log, so this keeps goals, tasks, specs and evidence as Markdown on disk, with a CLI contract that Claude Code, Codex and Cursor all drive the same way.",
+    stack: ["TypeScript", "Bun", "Markdown"],
+    writeup: null,
+  },
+  {
     slug: "jinejsvet",
     proves:
       "That I build for readers who are not developers, to a stated accessibility standard.",
