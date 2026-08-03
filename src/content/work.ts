@@ -17,8 +17,14 @@ export type WorkItem = {
   kind: WorkKind;
   title: string;
   period: string;
-  /** Sort key. Descending, so the newest entry leads. */
+  /** Sort key for the chronological view. Descending, newest first. */
   sortYear: number;
+  /**
+   * How much this project proves to someone deciding whether to hire, 1-10.
+   * Chronology buries the strongest evidence, so relevance is the default
+   * order and the year view is the toggle.
+   */
+  weight: number;
   context: string;
   summary: string;
   stack: string[];
@@ -29,6 +35,7 @@ export type WorkItem = {
 export const work: WorkItem[] = [
   {
     slug: "jubli",
+    weight: 9,
     kind: "OWN",
     title: "Jubli",
     period: "2026 — now",
@@ -41,6 +48,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "autopilot",
+    weight: 8,
     kind: "OWN",
     title: "QUESTPIE Autopilot",
     period: "2025 — now",
@@ -53,6 +61,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "jinejsvet",
+    weight: 8,
     kind: "CLIENT",
     title: "jinejsvet.cz",
     period: "2026",
@@ -65,6 +74,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "chata-cerenka",
+    weight: 6,
     kind: "CLIENT",
     title: "chatacerenka.eu",
     period: "2022 — now",
@@ -77,6 +87,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "byvak",
+    weight: 6,
     kind: "OWN",
     title: "býVAK",
     period: "2020 — 2026",
@@ -89,18 +100,20 @@ export const work: WorkItem[] = [
   },
   {
     slug: "nutrimeals",
+    weight: 9,
     kind: "CLIENT",
     title: "Nutrimeals",
     period: "2024 — now",
     sortYear: 2026.2,
     context: "Technical partner · Slovakia",
     summary:
-      "A food-tech startup put smart fridges in offices and had no app to find them. I built the React Native app that maps the fridges and shows their stock, and the backend that keeps it in sync with the devices, including the offline path for canteens with no signal.",
+      "Nutrimeals is an EIT Food backed startup putting smart canteens and connected fridges into Slovak offices. I joined as technical partner and built the app people order from and the backend behind it. It runs multi-tenant, so Nutrimeals is one tenant of a gastro platform rather than a one-off app. The app maps the fridges, shows their stock, and keeps working when the canteen has no signal.",
     stack: ["React Native", "Expo", "Next.js", "Postgres", "Bun"],
     writeup: null,
   },
   {
     slug: "prague-convention-bureau",
+    weight: 7,
     kind: "CLIENT",
     title: "Prague Convention Bureau",
     period: "2025 — 2026",
@@ -113,6 +126,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "questpie",
+    weight: 10,
     kind: "OSS",
     title: "QUESTPIE",
     period: "2024 — now",
@@ -125,6 +139,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "pomocmotoristom",
+    weight: 4,
     kind: "CLIENT",
     title: "pomocmotoristom.sk",
     period: "2025 — 2026",
@@ -137,6 +152,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "housedsl",
+    weight: 4,
     kind: "OWN",
     title: "housedsl",
     period: "2025",
@@ -149,6 +165,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "drizzle-migrations",
+    weight: 7,
     kind: "OSS",
     title: "drizzle-migrations",
     period: "2024 — now",
@@ -161,6 +178,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "codeupp",
+    weight: 5,
     kind: "CLIENT",
     title: "CODEUPP",
     period: "2024 — 2025",
@@ -173,6 +191,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "bulkit",
+    weight: 4,
     kind: "OWN",
     title: "bulkit.dev",
     period: "2024 — 2025",
@@ -185,6 +204,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "amcef",
+    weight: 7,
     kind: "CLIENT",
     title: "AMCEF",
     period: "2024 — 2025",
@@ -197,6 +217,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "tinydi",
+    weight: 3,
     kind: "OSS",
     title: "tinydi",
     period: "2024",
@@ -209,6 +230,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "rosmami",
+    weight: 5,
     kind: "CLIENT",
     title: "Rosmami",
     period: "2023 — 2024",
@@ -221,6 +243,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "elias-it",
+    weight: 8,
     kind: "CLIENT",
     title: "Eliaš IT Solutions",
     period: "2023 — 2024",
@@ -233,6 +256,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "asista",
+    weight: 6,
     kind: "CLIENT",
     title: "ASISTA",
     period: "2025 — now",
@@ -245,6 +269,7 @@ export const work: WorkItem[] = [
   },
   {
     slug: "uxtweak",
+    weight: 7,
     kind: "CLIENT",
     title: "UXtweak",
     period: "2021 — 2023",
@@ -259,9 +284,9 @@ export const work: WorkItem[] = [
 
 export const workPage = {
   title: "The full record",
-  claim: "Everything I have shipped, newest first.",
+  claim: "Everything I have shipped.",
   intro:
-    "Client work and employment sit in the same list, because they were the same kind of work. Education is not here — that belongs in the bio.",
+    "Ordered by what each one proves rather than by date; switch to the timeline if you want the chronology. Client work and employment sit in the same list because they were the same kind of work. Education is not here — that belongs in the bio.",
 } as const;
 
 export const workFilters: { key: "ALL" | WorkKind; label: string }[] = [
@@ -271,7 +296,14 @@ export const workFilters: { key: "ALL" | WorkKind; label: string }[] = [
   { key: "OSS", label: "OSS" },
 ];
 
-export const sortedWork = [...work].sort((a, b) => b.sortYear - a.sortYear);
+export const byYear = [...work].sort((a, b) => b.sortYear - a.sortYear);
+
+export const byRelevance = [...work].sort(
+  (a, b) => b.weight - a.weight || b.sortYear - a.sortYear,
+);
+
+/** Default order everywhere that does not offer a choice. */
+export const sortedWork = byRelevance;
 
 export function countByKind(kind: "ALL" | WorkKind) {
   return kind === "ALL"

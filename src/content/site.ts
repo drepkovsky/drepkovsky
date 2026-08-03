@@ -130,11 +130,11 @@ export const selectedWork = [
     org: "Technical partner",
     title: "Nutrimeals",
     summary:
-      "A Slovak food-tech startup had smart fridges in offices and no app to find them. I came in as technical partner and built the mobile side and the backend it talks to.",
+      "Nutrimeals is an EIT Food backed startup putting smart canteens and connected fridges into Slovak offices. I joined as technical partner and built the app people order from and the backend behind it. It runs multi-tenant, so Nutrimeals is one tenant of a gastro platform rather than a one-off app.",
     bullets: [
-      "React Native app that maps fridges and shows what is in them right now",
-      "Canteen menus and stock kept in sync with the devices",
-      "Push notifications and offline support so it works in a basement canteen",
+      "React Native app that maps the fridges and shows what is in them right now",
+      "Multi-tenant from the start, so a new canteen operator is configuration",
+      "Push notifications and offline support, because canteens sit in basements",
     ],
     stack: ["React Native", "Expo", "Postgres", "Bun"],
     image: "/work/nutrimeals.jpg",

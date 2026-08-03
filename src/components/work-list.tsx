@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import {
+  byRelevance,
+  byYear,
   countByKind,
-  sortedWork,
   workFilters,
   type WorkKind,
 } from "@/content/work";
@@ -13,13 +14,39 @@ import { Tag } from "@/components/ui";
 
 export function WorkList() {
   const [filter, setFilter] = useState<"ALL" | WorkKind>("ALL");
-  const items = sortedWork.filter(
+  const [order, setOrder] = useState<"relevance" | "year">("relevance");
+
+  const items = (order === "relevance" ? byRelevance : byYear).filter(
     (item) => filter === "ALL" || item.kind === filter,
   );
 
   return (
     <>
       <div className="flex flex-wrap items-center gap-2.5 py-7">
+        <span className="eyebrow mr-2">Order</span>
+        {(
+          [
+            ["relevance", "What it proves"],
+            ["year", "By year"],
+          ] as const
+        ).map(([key, label]) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => setOrder(key)}
+            aria-pressed={order === key}
+            className={`rounded-ctl border px-3 py-2 font-mono text-[11px] leading-none tracking-[0.1em] uppercase transition-colors duration-200 ${
+              order === key
+                ? "border-fg text-fg"
+                : "border-line text-muted hover:border-fg hover:text-fg"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2.5 border-t border-line py-7">
         <span className="eyebrow mr-2">Filter</span>
         {workFilters.map((option) => {
           const active = filter === option.key;
