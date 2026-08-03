@@ -1,6 +1,35 @@
 import { NextResponse } from "next/server";
 import { site } from "@/content/site";
 
+const CAP_BASE =
+  process.env.NEXT_PUBLIC_CAP_BASE_URL ?? "https://cap.eu-infra.questpie.com";
+
+/**
+ * Cap proof-of-work check. Only enforced when both halves are configured, so
+ * a missing key degrades to honeypot plus rate limit rather than locking
+ * everyone out of the form.
+ */
+async function capPassed(token: unknown) {
+  const secret = process.env.CAP_SECRET;
+  const siteKey = process.env.NEXT_PUBLIC_CAP_SITE_KEY;
+  if (!secret || !siteKey) return true;
+  if (typeof token !== "string" || !token) return false;
+
+  try {
+    const response = await fetch(`${CAP_BASE}/${siteKey}/siteverify`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret, response: token }),
+    });
+    if (!response.ok) return false;
+    const body = (await response.json()) as { success?: boolean };
+    return body.success === true;
+  } catch (error) {
+    console.error("contact: cap unreachable", error);
+    return false;
+  }
+}
+
 const PLUNK_BASE =
   process.env.PLUNK_API_BASE_URL ?? "https://api.plunk.eu-infra.questpie.com";
 
@@ -63,6 +92,10 @@ export async function POST(request: Request) {
 
   if (!name || !looksLikeEmail(email) || message.length < 10) {
     return NextResponse.json({ error: "invalid" }, { status: 422 });
+  }
+
+  if (!(await capPassed(payload.capToken))) {
+    return NextResponse.json({ error: "captcha_failed" }, { status: 403 });
   }
 
   // Counted only once a request is real, so someone who mistypes their address

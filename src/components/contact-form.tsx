@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { CapWidget } from "@/components/cap-widget";
 
 type State = "idle" | "sending" | "sent" | "error";
 
@@ -10,12 +11,19 @@ const field =
 export function ContactForm({ email }: { email: string }) {
   const [state, setState] = useState<State>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [capToken, setCapToken] = useState("");
+
+  // Stable identity: CapWidget re-subscribes its listeners when this changes.
+  const onToken = useCallback((token: string) => setCapToken(token), []);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (state === "sending") return;
 
-    const data = Object.fromEntries(new FormData(event.currentTarget));
+    const data = {
+      ...Object.fromEntries(new FormData(event.currentTarget)),
+      capToken,
+    };
     setState("sending");
     setError(null);
 
@@ -38,6 +46,8 @@ export function ContactForm({ email }: { email: string }) {
           ? "That is a few in a row. Give it a minute."
           : code === "invalid"
             ? "Check the address, and give me a sentence or two to go on."
+            : code === "captcha_failed"
+              ? "The spam check did not go through. Reload and try once more."
             : `Something broke on my side. Mail me at ${email} instead.`,
       );
     } catch {
@@ -117,6 +127,8 @@ export function ContactForm({ email }: { email: string }) {
         aria-hidden
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
+
+      <CapWidget onToken={onToken} />
 
       <div className="flex flex-wrap items-center gap-4 pt-1">
         <button
