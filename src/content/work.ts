@@ -103,7 +103,7 @@ export const work: WorkItem[] = [
     slug: "jinejsvet",
     proves:
       "That I build for readers who are not developers, to a stated accessibility standard.",
-    weight: 8,
+    weight: 5,
     kind: "CLIENT",
     title: "jinejsvet.cz",
     period: "2026",
