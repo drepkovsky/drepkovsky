@@ -5,9 +5,9 @@
  * Facts come from the repos under ~/questpie, the quote notes, and the CV.
  * NEEDS-FACT marks an entry whose story is still guesswork.
  *
- * Two corrections against the design mockup:
+ * Two corrections against the design mockup and old portfolio drafts:
  *  - CODEUPP is gone. No repo, note or public page mentions it.
- *  - AMCEF and UXtweak follow the CV's dates, not the mockup's.
+ *  - Employment dates are verified independently of the deleted legacy CV.
  */
 
 export type WorkKind = "CLIENT" | "OWN" | "OSS";
@@ -51,7 +51,15 @@ export const work: WorkItem[] = [
     context: "Own product · pilot",
     summary:
       "Every event gets a social space guests join by scanning a QR code. An event is a tree of spaces that changes as it moves from pre-event to live to the recap afterwards, so a wedding and a weekly pub quiz run on the same engine with different presets.",
-    stack: ["QUESTPIE", "Bun", "React Native", "Postgres"],
+    stack: [
+      "QUESTPIE",
+      "TanStack Start",
+      "React Native",
+      "Expo",
+      "Hono",
+      "Postgres",
+      "Redis",
+    ],
     writeup: null,
   },
   {
@@ -66,7 +74,7 @@ export const work: WorkItem[] = [
     context: "Own product · private beta",
     summary:
       "A company as a container and its staff as agents. One Bun process watches the filesystem, runs a task state machine, spawns agents across eight roles, and commits what they produce to git. The point is that the work leaves an audit trail instead of a chat log. Built on QUESTPIE.",
-    stack: ["QUESTPIE", "Bun", "TypeScript"],
+    stack: ["QUESTPIE", "Bun", "AI SDK", "MCP", "TanStack Start", "Postgres"],
     writeup: null,
   },
   {
@@ -140,7 +148,7 @@ export const work: WorkItem[] = [
     sortYear: 2025.7,
     context: "Own product · retired",
     summary:
-      "A booking platform for accommodation, and the first big thing we built. It taught us the lesson the studio now runs on: one boxed platform for every client means every client gets a compromise. We stopped selling it and went back to building each product on its own.",
+      "A booking platform for accommodation, and the first big thing we built. It taught us the lesson the company now follows: one boxed platform for every client means every client gets a compromise. We stopped selling it and went back to building each product on its own.",
     stack: ["TypeScript", "Next.js", "Postgres"],
     writeup: null,
   },
@@ -156,7 +164,14 @@ export const work: WorkItem[] = [
     context: "Technical partner · Slovakia",
     summary:
       "Nutrimeals is an EIT Food backed startup putting smart canteens and connected fridges into Slovak offices. I joined as technical partner and built the app people order from and the backend behind it. It runs multi-tenant, so Nutrimeals is one tenant of a gastro platform rather than a one-off app. The app maps the fridges, shows their stock, and keeps working when the canteen has no signal.",
-    stack: ["React Native", "Expo", "Next.js", "Postgres", "Bun"],
+    stack: [
+      "QUESTPIE",
+      "React Native",
+      "Expo",
+      "TanStack Start",
+      "Postgres",
+      "Bun",
+    ],
     writeup: null,
   },
   {
@@ -186,7 +201,14 @@ export const work: WorkItem[] = [
     context: "Open source · MIT",
     summary:
       "Declare a schema once and it generates the database columns, the REST API, the typed client and an admin panel. It sits on Drizzle, Zod and Better Auth rather than inventing its own runtime. It hosts nothing and needs no key, which is the part most alternatives get wrong.",
-    stack: ["Drizzle", "Zod", "Better Auth", "TypeScript"],
+    stack: [
+      "TypeScript",
+      "Drizzle",
+      "Hono · Elysia",
+      "Zod",
+      "Better Auth",
+      "pg-boss",
+    ],
     writeup: null,
   },
   {
@@ -280,13 +302,28 @@ export const work: WorkItem[] = [
     writeup: null,
   },
   {
+    slug: "crust",
+    proves:
+      "That I know Payload deeply enough to build a framework over it, and when to retire that abstraction.",
+    weight: 7,
+    kind: "OWN",
+    title: "Crust",
+    period: "2025 — 2026",
+    sortYear: 2025.6,
+    context: "Own framework · retired · archived reference",
+    summary:
+      "The Payload-based framework we built before QUESTPIE: installable domain modules, scaffolding, migrations and deployment tooling used across client applications. It taught us where extending a CMS helps and where the abstraction starts fighting its host. Retired and being prepared as an archived reference, not a dependency to adopt.",
+    stack: ["PayloadCMS", "Next.js", "TypeScript", "Postgres"],
+    writeup: null,
+  },
+  {
     slug: "amcef",
     proves:
       "That I can work inside an enterprise low-code platform and its data layer.",
     weight: 5,
     kind: "CLIENT",
     title: "AMCEF",
-    period: "2024 — 2025",
+    period: "Dec 2024 — Jun 2025",
     sortYear: 2024.5,
     context: "Employed · senior full-stack",
     summary:

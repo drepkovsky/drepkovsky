@@ -25,7 +25,7 @@ const employment = [
   {
     role: "Senior full-stack developer",
     org: "AMCEF a.s.",
-    period: "2024 — 2025",
+    period: "Dec 2024 — Jun 2025",
     points: [
       "Built the Schenker logistics module and third-party integrations for Modulario, a low-code platform.",
       "Designed MongoDB schemas and tuned queries for enterprise-scale data.",
@@ -51,20 +51,27 @@ const skills = [
   },
   {
     group: "Backend",
-    items: "Hono · Elysia · NestJS · Drizzle · Zod · Better Auth · pg-boss · BullMQ",
+    items:
+      "QUESTPIE · Hono · Elysia · NestJS · REST / OpenAPI · Better Auth · pg-boss · BullMQ",
   },
   {
     group: "Frontend & mobile",
-    items: "React · Next.js · TanStack · React Native · Expo · Tailwind",
+    items:
+      "React · Next.js · TanStack Start / Router / Query · React Native · Expo · Tailwind",
   },
   {
     group: "Data",
-    items: "Postgres · Redis · pgvector · query tuning, CTEs, window functions",
+    items:
+      "Postgres · Drizzle · Redis · MongoDB · pgvector · query tuning, CTEs, window functions",
+  },
+  {
+    group: "AI systems",
+    items: "AI SDK · MCP · coding-agent runtimes · tool execution",
   },
   {
     group: "Infrastructure",
     items:
-      "Docker · Kubernetes · CI/CD · Hetzner · Traefik · zero-downtime deploys · S3 / R2",
+      "Docker · K3s / Kubernetes · Terraform · Flux GitOps · Woodpecker CI · Hetzner · Traefik · S3 / R2",
   },
 ];
 

@@ -2,7 +2,7 @@
  * Every word on the site lives here. Pages import from this file and never
  * hold copy inline, so rewriting the voice is one file and no JSX.
  *
- * Drafted from cv-dominik-repkovsky.md, questpie.com and the public repos.
+ * Facts are kept in sync with the current product repos and questpie.com.
  * Lines marked NEEDS-FACT are the ones no source could confirm.
  */
 
@@ -49,12 +49,16 @@ export const hero = {
 export const stack = [
   "TypeScript",
   "Bun · Node",
-  "Next.js",
-  "React Native",
-  "Postgres",
-  "Drizzle",
+  "React · Next.js",
+  "TanStack Start",
+  "React Native · Expo",
+  "Hono · Elysia",
+  "Postgres · Drizzle",
+  "Redis · pg-boss",
+  "AI SDK · MCP",
   "Docker · Kubernetes",
-  "CI/CD",
+  "Terraform · Flux",
+  "Woodpecker CI",
   "Linux · VPS",
 ] as const;
 
@@ -123,7 +127,14 @@ export const selectedWork = [
       "Built on Drizzle, Zod and Better Auth rather than its own runtime",
       "You run it yourself. There is no key to ask for and no account to make",
     ],
-    stack: ["TypeScript", "Drizzle", "Zod", "Better Auth"],
+    stack: [
+      "TypeScript",
+      "Drizzle",
+      "Hono · Elysia",
+      "Zod",
+      "Better Auth",
+      "pg-boss",
+    ],
     image: "/work/questpie.jpg",
   },
   {
@@ -140,7 +151,7 @@ export const selectedWork = [
       "Multi-tenant from the start, so a new canteen operator is configuration",
       "Push notifications and offline support, because canteens sit in basements",
     ],
-    stack: ["React Native", "Expo", "Postgres", "Bun"],
+    stack: ["QUESTPIE", "React Native", "Expo", "Postgres", "Bun"],
     image: "/work/nutrimeals.jpg",
   },
   {
@@ -156,7 +167,15 @@ export const selectedWork = [
       "Web, mobile and API in one monorepo, all of it on QUESTPIE",
       "Space presets instead of code branches, so a new event format is configuration",
     ],
-    stack: ["QUESTPIE", "Bun", "React Native", "Postgres"],
+    stack: [
+      "QUESTPIE",
+      "TanStack Start",
+      "React Native",
+      "Expo",
+      "Hono",
+      "Postgres",
+      "Redis",
+    ],
     image: "/work/jubli.jpg",
   },
 ] as const;
@@ -170,7 +189,7 @@ export const workFooter = {
 
 export const questpie = {
   title: "QUESTPIE",
-  body: "QUESTPIE is my company and the ecosystem it builds: a framework for the people building a product, and Autopilot for the people running the company around it. The framework is the half your project touches. Declare a collection once and it generates the Postgres columns, the REST API, the typed client and the admin screens.",
+  body: "QUESTPIE s.r.o. is the company I founded while studying. It builds two systems: QUESTPIE Framework for the people building a product, and Autopilot for the people running the company around it. The framework is the half your project touches. Declare a collection once and it generates the Postgres columns, the REST API, the typed client and the admin screens.",
   stats: [
     { value: "MIT", label: "Open source" },
     { value: "2024", label: "Since" },
@@ -200,7 +219,7 @@ export const questpie = {
   ],
 } as const;
 
-/** Real framework API, taken from questpie-cms's own README. */
+/** Real API from the current QUESTPIE Framework. */
 export const questpieCode = `
 // collections/rooms.ts
 import { collection } from "#questpie/factories";
@@ -226,7 +245,7 @@ export const now = {
 
 export const about = {
   short:
-    "I started taking paid work while studying at FIIT STU in Bratislava, and never stopped. Four years of that went into enterprise platforms at UXtweak and AMCEF, which is where I learned what breaks at scale. QUESTPIE is the company I run now, and the framework I wrote because I was tired of rebuilding the same eighty percent.",
+    "I started taking paid work while studying at FIIT STU in Bratislava and founded QUESTPIE before I graduated. Work on enterprise products at UXtweak and AMCEF taught me what breaks at scale; the company and its framework grew out of rebuilding that same plumbing across client projects.",
   tags: ["FIIT STU · Ing. (MSc)", "Bratislava", "QUESTPIE s.r.o."],
 } as const;
 
