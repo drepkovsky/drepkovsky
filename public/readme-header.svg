@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Dominik Repkovský — Backend and TypeScript</title>
+  <desc id="desc">Most of a backend is plumbing. I generate that part.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#141414"/>
+      <stop offset="1" stop-color="#1d1d1a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="78%" cy="28%" r="56%">
+      <stop offset="0" stop-color="#efd200" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#efd200" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1198" height="358" rx="23" fill="none" stroke="#353535" stroke-width="2"/>
+  <rect width="1200" height="360" rx="24" fill="url(#glow)"/>
+
+  <g transform="translate(72 66)">
+    <rect width="64" height="64" rx="14" fill="#202020" stroke="#3a3a3a"/>
+    <text x="31" y="47" fill="#f6f6f6" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700" text-anchor="middle">d</text>
+    <circle cx="49" cy="45" r="5" fill="#efd200"/>
+    <text x="84" y="26" fill="#f6f6f6" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">DOMINIK REPKOVSKÝ</text>
+    <text x="84" y="53" fill="#969696" font-family="Arial, Helvetica, sans-serif" font-size="16" letter-spacing="2">BACKEND · TYPESCRIPT · INFRASTRUCTURE</text>
+  </g>
+
+  <g transform="translate(72 185)" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700">
+    <text y="0" fill="#f6f6f6">Most of a backend is plumbing.</text>
+    <text y="58" fill="#efd200">I generate that part.</text>
+  </g>
+
+  <g transform="translate(926 76)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 30h116v70H0z" stroke="#444" stroke-width="2"/>
+    <path d="M22 55l16 10-16 10M51 77h23" stroke="#efd200" stroke-width="3"/>
+    <path d="M25 118h66M38 100v18M78 100v18" stroke="#444" stroke-width="2"/>
+    <circle cx="116" cy="30" r="5" fill="#efd200" stroke="none"/>
+  </g>
+
+  <text x="1128" y="303" fill="#737373" font-family="monospace" font-size="15" text-anchor="end">drepkovsky.com</text>
+</svg>
