@@ -148,23 +148,17 @@ Enterprise usability testing platform development in agile team of 5-9 developer
 **Key Features Delivered:**
 
 **User Panel**
-- Integrated Cint Supplier API for automated respondent recruitment
-- Real-time availability checking and booking system
-- Payment processing and budget management dashboard
+- Owned development of the workflow for ordering precisely targeted participants directly in the platform
 
 **Own Database (CRM)**
-- Custom respondent management system with advanced filtering
-- Bulk import/export with data validation and deduplication
-- Segmentation tools and tagging system
+- Contributed to participant imports, field mapping, filtering, and segmentation
+- Helped clients recruit for studies from their own participant panels
 
 **Moderated Testing Platform**
-- End-to-end moderated testing workflow implementation
-- **Built custom NestJS microservice for video conferencing**
-- Zoom.us API integration for meeting lifecycle management
-- Real-time session recording with cloud storage
-- Automated scheduling with calendar sync (Google Calendar, Outlook)
+- Designed and built the service architecture behind moderated testing
+- Implemented live-session orchestration and recordings
 
-**Tech Stack:** TypeScript, React, NestJS, PostgreSQL, Redis, Docker, Zoom API
+**Tech Stack:** TypeScript, React, NestJS, PostgreSQL, Redis, Docker
 
 ---
 

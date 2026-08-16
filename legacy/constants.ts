@@ -54,9 +54,9 @@ export const RESUME_DATA_SK: ResumeData = {
 			description:
 				"Práca na platforme pre usability testing v tíme 5-9 vývojárov.",
 			achievements: [
-				"Vývoj funkcie nákupu respondentov integrovanej s Cint Supplier API.",
-				"Vytvorenie CRM-like systému pre správu a import respondentov.",
-				"Implementácia video meeting služby pomocou NestJS a Zoom.us API.",
+				"Vývoj workflowu na objednávanie presne zacielených respondentov priamo v platforme.",
+				"Spolupráca na Own Database pre import, filtrovanie a segmentáciu vlastných participantov.",
+				"Návrh a implementácia architektúry služby pre moderované testovanie, živé sessions a nahrávky.",
 			],
 			techStack: "TypeScript, React, NestJS, PostgreSQL, Redis, Docker",
 		},
@@ -285,9 +285,9 @@ export const RESUME_DATA_CZ: ResumeData = {
 			description:
 				"Práce na platformě pro usability testing v týmu 5-9 vývojářů.",
 			achievements: [
-				"Vývoj funkce nákupu respondentů integrované s Cint Supplier API.",
-				"Vytvoření CRM-like systému pro správu a import respondentů.",
-				"Implementace video meeting služby pomocí NestJS a Zoom.us API.",
+				"Vývoj workflow pro objednávání přesně zacílených respondentů přímo v platformě.",
+				"Spolupráce na Own Database pro import, filtrování a segmentaci vlastních participantů.",
+				"Návrh a implementace architektury služby pro moderované testování, živé sessions a nahrávky.",
 			],
 			techStack: "TypeScript, React, NestJS, PostgreSQL, Redis, Docker",
 		},
@@ -516,9 +516,9 @@ export const RESUME_DATA_EN: ResumeData = {
 			description:
 				"Working on usability testing platform in a team of 5-9 developers.",
 			achievements: [
-				"Built respondent purchasing feature integrated with Cint Supplier API.",
-				"Created CRM-like system for managing and importing respondents.",
-				"Implemented video meeting service using NestJS and Zoom.us API.",
+				"Owned the workflow for ordering precisely targeted participants directly in the platform.",
+				"Contributed to Own Database for importing, filtering and segmenting clients' own participants.",
+				"Designed and built the service architecture behind moderated testing, live sessions and recordings.",
 			],
 			techStack: "TypeScript, React, NestJS, PostgreSQL, Redis, Docker",
 		},

@@ -37,9 +37,9 @@ const employment = [
     org: "UXtweak j.s.a.",
     period: "2021 — 2023",
     points: [
-      "Respondent recruitment against the Cint supplier API, with availability and budget handling.",
-      "CRM for clients' own respondent panels: bulk import, deduplication, segmentation.",
-      "NestJS microservice driving moderated test sessions through the Zoom API, with recording and calendar sync.",
+      "Owned the recruitment workflow for ordering precisely targeted participants directly in the platform.",
+      "Contributed to Own Database: imports, field mapping, filtering and segmentation for clients' own participant panels.",
+      "Designed and built the service architecture behind moderated testing, including live-session orchestration and recordings.",
     ],
   },
 ];

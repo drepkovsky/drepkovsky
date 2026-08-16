@@ -27,7 +27,7 @@ export type WorkItem = {
   weight: number;
   /**
    * What a client can conclude from this project. Not rendered right now —
-   * read as self-congratulation nineteen times over — but it is what the
+   * read as self-congratulation on every entry — but it is what the
    * relevance weight is reasoning about, so it stays as the note behind it.
    */
   proves: string;
@@ -265,6 +265,21 @@ export const work: WorkItem[] = [
     writeup: null,
   },
   {
+    slug: "mealproai",
+    proves:
+      "That I can ship an AI product to thousands of users and shut it down when the numbers do not work.",
+    weight: 7,
+    kind: "OWN",
+    title: "MealProAI",
+    period: "2024",
+    sortYear: 2024.7,
+    context: "Own product · retired · 2,000+ registered users",
+    summary:
+      "My first production AI product: a web and mobile meal planner that turned dietary preferences, goals, budgets and ingredients on hand into personalized plans, recipes and shopping lists. It reached more than 2,000 registered users, but weak retention made the economics unsustainable, so I shut it down.",
+    stack: ["Next.js", "Expo", "Hono", "Postgres", "Anthropic"],
+    writeup: null,
+  },
+  {
     slug: "amcef",
     proves:
       "That I can work inside an enterprise low-code platform and its data layer.",
@@ -342,15 +357,15 @@ export const work: WorkItem[] = [
   {
     slug: "uxtweak",
     proves:
-      "That I work inside a team of nine on an enterprise product.",
-    weight: 5,
+      "That I can own product capabilities and design a new service inside an established platform.",
+    weight: 7,
     kind: "CLIENT",
     title: "UXtweak",
     period: "2021 — 2023",
     sortYear: 2021.5,
     context: "Employed · team of 5–9",
     summary:
-      "A usability testing platform. I built respondent recruitment against the Cint supplier API, the CRM for a client's own respondents, and a NestJS service that drove moderated sessions through the Zoom API.",
+      "A usability testing platform. I owned development of the recruitment workflow that let researchers order precisely targeted participants directly in the product. I also designed and built the service architecture behind moderated testing, from live-session orchestration to recordings, and contributed to Own Database, its participant-management tool for importing, segmenting and recruiting from a company's own research panel.",
     stack: ["TypeScript", "React", "NestJS", "Postgres", "Redis", "Docker"],
     writeup: null,
   },
