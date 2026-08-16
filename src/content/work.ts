@@ -34,6 +34,7 @@ export type WorkItem = {
   context: string;
   summary: string;
   stack: string[];
+  image?: string;
   writeup: string | null;
   needsFact?: boolean;
 };
@@ -297,8 +298,9 @@ export const work: WorkItem[] = [
     sortYear: 2024.7,
     context: "Own product · retired · 2,000+ registered users",
     summary:
-      "My first production AI product: a web and mobile meal planner that turned dietary preferences, goals, budgets and ingredients on hand into personalized plans, recipes and shopping lists. It reached more than 2,000 registered users, but weak retention made the economics unsustainable, so I shut it down.",
-    stack: ["Next.js", "Expo", "Hono", "Postgres", "Anthropic"],
+      "My first production AI product: a universal meal-planning app built with Expo and Next.js. It turned dietary preferences, goals, budgets and ingredients on hand into personalized plans, recipes and shopping lists. It reached more than 2,000 registered users, but weak retention made the economics unsustainable, so I shut it down.",
+    stack: ["Expo", "Next.js", "Hono", "Postgres", "Anthropic"],
+    image: "/work/mealproai-today.png",
     writeup: null,
   },
   {

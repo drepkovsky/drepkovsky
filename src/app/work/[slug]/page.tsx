@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { work, sortedWork } from "@/content/work";
@@ -96,6 +97,20 @@ export default async function ProjectPage({ params }: Params) {
           ))}
         </div>
       </header>
+
+      {project.image && (
+        <figure className="surface my-8 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-surface border border-line bg-[#090909] p-5 sm:my-10 sm:p-8">
+          <Image
+            src={project.image}
+            alt={`${project.title} product screenshot`}
+            width={848}
+            height={1728}
+            sizes="(max-width: 860px) 90vw, 796px"
+            className="h-full w-auto object-contain"
+            priority
+          />
+        </figure>
+      )}
 
       <section className="grid gap-x-10 gap-y-3 py-8 sm:grid-cols-[minmax(0,140px)_1fr]">
         <h2 className="eyebrow pt-1">At a glance</h2>

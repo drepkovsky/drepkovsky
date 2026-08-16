@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { workPage } from "@/content/work";
-import { stack } from "@/content/site";
+import { focus } from "@/content/site";
 import { WorkList } from "@/components/work-list";
 
 export const metadata: Metadata = {
@@ -24,8 +24,8 @@ export default function WorkPage() {
       </header>
 
       <section className="flex flex-wrap items-center gap-x-7 gap-y-2.5 border-y border-line py-5 font-mono text-[11px] leading-none tracking-[0.12em] text-muted">
-        <span className="text-fg">STACK</span>
-        {stack.map((item) => (
+        <span className="text-fg">FOCUS</span>
+        {focus.map((item) => (
           <span key={item}>{item}</span>
         ))}
       </section>

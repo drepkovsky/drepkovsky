@@ -46,20 +46,10 @@ export const hero = {
   secondaryCta: { label: "See QUESTPIE", href: "#questpie" },
 } as const;
 
-export const stack = [
-  "TypeScript",
-  "Bun · Node",
-  "React · Next.js",
-  "TanStack Start",
-  "React Native · Expo",
-  "Hono · Elysia",
-  "Postgres · Drizzle",
-  "Redis · pg-boss",
-  "AI SDK · MCP",
-  "Docker · Kubernetes",
-  "Terraform · Flux",
-  "Woodpecker CI",
-  "Linux · VPS",
+export const focus = [
+  "TypeScript backends",
+  "QUESTPIE Framework",
+  "Web · mobile · infrastructure",
 ] as const;
 
 /**

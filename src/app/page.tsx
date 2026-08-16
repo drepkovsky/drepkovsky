@@ -11,7 +11,7 @@ import {
   selectedWork,
   services,
   site,
-  stack,
+  focus,
   workFooter,
 } from "@/content/site";
 import { work } from "@/content/work";
@@ -26,7 +26,7 @@ export default function HomePage() {
     <main id="top" className="relative z-10 mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-12">
       <StructuredData />
       <Hero />
-      <StackBand />
+      <FocusBand />
       <Principles />
       <Services />
       <SelectedWork />
@@ -61,7 +61,7 @@ function StructuredData() {
           "@type": "CollegeOrUniversity",
           name: "Slovak University of Technology in Bratislava, FIIT",
         },
-        knowsAbout: [...stack],
+        knowsAbout: [...focus],
         sameAs: [site.links.github, site.links.linkedin, site.links.questpie],
         worksFor: { "@id": "https://drepkovsky.com/#org" },
       },
@@ -137,14 +137,14 @@ function Hero() {
   );
 }
 
-function StackBand() {
+function FocusBand() {
   return (
     <Reveal
       as="section"
       className="flex flex-wrap items-center gap-x-7 gap-y-2.5 border-y border-line py-5 font-mono text-[11px] leading-none tracking-[0.12em] text-muted"
     >
-      <span className="text-fg">STACK</span>
-      {stack.map((item) => (
+      <span className="text-fg">FOCUS</span>
+      {focus.map((item) => (
         <span key={item}>{item}</span>
       ))}
     </Reveal>
