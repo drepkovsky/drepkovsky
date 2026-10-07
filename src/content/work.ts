@@ -74,7 +74,7 @@ export const work: WorkItem[] = [
     sortYear: 2026.6,
     context: "Own product · open beta",
     summary:
-      "A workspace where a company's people and its AI agents work side by side: tasks, channels, a shared library and automations in one multi-tenant product. Every agent is its own actor with its own permissions, checked again on each tool call, and anything beyond its authority becomes an approval request for a human. Agents run on work machines, push their changes to a branch, and leave a reviewable record instead of a chat log. People reach the same commands from their own AI client through an MCP server with OAuth. Built on QUESTPIE.",
+      "An AI native workspace that replaces the usual stack of task tracker, team chat, wiki, automations and internal tools. People and AI agents work in it side by side and share one context, so an agent knows what the company knows. Every agent holds its own permissions like an employee, the server checks each tool call again, and anything beyond its authority goes to a human for approval. Companies build their own mini apps inside it, and people reach the same commands from Claude through an MCP server with OAuth. The current version went from an empty repo to production in eight weeks, mostly written by coding agents working under strict engineering rules, automated checks and independent review. Built on QUESTPIE.",
     stack: ["QUESTPIE", "Bun", "AI SDK", "MCP", "TanStack Start", "Postgres"],
     writeup: null,
   },

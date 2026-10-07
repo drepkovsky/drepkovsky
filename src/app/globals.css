@@ -279,7 +279,7 @@
   }
 
   .cv-band > div {
-    max-width: 118mm !important;
+    max-width: 128mm !important;
     gap: 3.2mm !important;
   }
 
@@ -327,7 +327,7 @@
   .cv-grid {
     grid-template-columns: minmax(0, 1fr) 52mm !important;
     column-gap: 9mm !important;
-    padding: 0 14mm 10mm !important;
+    padding: 0 14mm 6mm !important;
   }
 
   .cv section {

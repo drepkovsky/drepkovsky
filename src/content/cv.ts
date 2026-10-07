@@ -5,7 +5,7 @@
  */
 
 export const cvIntro =
-  "I take products from an empty repo to production in TypeScript and I can carry the whole thing, from the database schema to the servers it runs on. Lately most of that has been AI agents that work inside a company under real permissions.";
+  "I take products from an empty repo to production in TypeScript and I can carry the whole thing, from the database schema to the servers it runs on. Lately that means a workspace where AI agents work inside a company under real permissions.";
 
 /** Each figure is backed by an entry in work.ts; change them together. */
 export const cvFigures = [
@@ -18,8 +18,8 @@ export const cvFigures = [
     label: "registered users on MealProAI, my first AI product",
   },
   {
-    value: "2020",
-    label: "shipping paid software since, to clients in three countries",
+    value: "8 weeks",
+    label: "from an empty repo to production for the current Autopilot",
   },
 ] as const;
 
@@ -29,10 +29,11 @@ export const cvEmployment = [
     org: "QUESTPIE s.r.o.",
     period: "2021–now",
     points: [
-      "Building QUESTPIE Autopilot, a multi-tenant workspace where AI agents work under their own permissions. It has an MCP server with OAuth, checks authorization on every tool call, and asks a human to approve anything an agent is not allowed to do.",
-      "Wrote QUESTPIE, the open source framework our client work runs on.",
+      "Building QUESTPIE Autopilot, an AI native workspace that replaces the usual stack of task tracker, team chat, wiki, automations and internal tools. People and AI agents work in it side by side and share one context.",
+      "Agents hold their own permissions like any employee. The server checks every tool call again and sends anything an agent may not do to a human for approval. The same commands are open to Claude through an MCP server with OAuth, and companies build their own mini apps inside it.",
+      "Took the current version from an empty repo to production in eight weeks with over 2,000 commits and 400 test files. Most of the code is written by coding agents I direct under strict engineering rules, automated checks and independent review.",
+      "Wrote QUESTPIE, the open source framework that generates the database, API, MCP and admin from one TypeScript schema. Our products and client work in Slovakia, Czechia and Italy run on it.",
       "Built an e-commerce template for Eliaš IT Solutions that they could resell. More than 200 of their clients run on it, and their team kept building on it after I left.",
-      "Contract work on backends, mobile apps and platforms for clients in Slovakia, Czechia and Italy.",
     ],
   },
   {
@@ -51,7 +52,6 @@ export const cvEmployment = [
     points: [
       "Owned the recruitment workflow that lets researchers order precisely targeted participants inside the platform.",
       "Designed and built the service architecture behind moderated testing, including live-session orchestration and recordings.",
-      "Worked on Own Database, where clients import, map, filter and segment their own participant panels.",
     ],
   },
 ] as const;
@@ -61,10 +61,8 @@ export const cvProjects = [
   "autopilot",
   "questpie",
   "jubli",
-  "nutrimeals",
   "mealproai",
   "drizzle-migrations",
-  "agent-board",
 ] as const;
 
 export const cvSkills = [
