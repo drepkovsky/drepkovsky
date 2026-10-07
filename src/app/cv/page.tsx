@@ -1,181 +1,163 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
-import { sortedWork } from "@/content/work";
+import { work } from "@/content/work";
 import { facts } from "@/content/about";
+import {
+  cvEmployment,
+  cvFigures,
+  cvIntro,
+  cvProjects,
+  cvSkills,
+} from "@/content/cv";
 import { PrintButton } from "@/components/print-button";
 
 export const metadata: Metadata = {
   title: "CV",
   description:
-    "One-page CV — experience, projects, stack and education. Printable.",
+    "One-page CV with experience, projects, stack and education. Printable.",
   alternates: { canonical: "/cv" },
 };
 
-const employment = [
-  {
-    role: "Founder & lead developer",
-    org: "QUESTPIE s.r.o.",
-    period: "2021 — now",
-    points: [
-      "Contract backends, mobile apps and platform work for clients in Slovakia, Czechia and Italy.",
-      "Author of QUESTPIE, the open source framework the client work runs on.",
-      "Build QUESTPIE Autopilot, a multi-tenant workspace where AI agents work under their own permissions: an MCP server with OAuth, authorization on every tool call, and human approval for anything beyond an agent's authority.",
-      "Own the whole path: schema, API, deploy, and the servers it lands on.",
-    ],
-  },
-  {
-    role: "Senior full-stack developer",
-    org: "AMCEF a.s.",
-    period: "Dec 2024 — Jun 2025",
-    points: [
-      "Built the Schenker logistics module and third-party integrations for Modulario, a low-code platform.",
-      "Designed MongoDB schemas and tuned queries for enterprise-scale data.",
-      "Background processing with BullMQ and Redis.",
-    ],
-  },
-  {
-    role: "Full-stack developer",
-    org: "UXtweak j.s.a.",
-    period: "2021 — 2023",
-    points: [
-      "Owned the recruitment workflow for ordering precisely targeted participants directly in the platform.",
-      "Contributed to Own Database: imports, field mapping, filtering and segmentation for clients' own participant panels.",
-      "Designed and built the service architecture behind moderated testing, including live-session orchestration and recordings.",
-    ],
-  },
-];
-
-const skills = [
-  {
-    group: "Languages & runtimes",
-    items: "TypeScript · JavaScript · Node · Bun",
-  },
-  {
-    group: "Backend",
-    items:
-      "QUESTPIE · Hono · Elysia · NestJS · REST / OpenAPI · Better Auth · pg-boss · BullMQ",
-  },
-  {
-    group: "Frontend & mobile",
-    items:
-      "React · Next.js · TanStack Start / Router / Query · React Native · Expo · Tailwind",
-  },
-  {
-    group: "Data",
-    items:
-      "Postgres · Drizzle · Redis · MongoDB · pgvector · query tuning, CTEs, window functions",
-  },
-  {
-    group: "AI systems",
-    items: "AI SDK · MCP · coding-agent runtimes · tool execution",
-  },
-  {
-    group: "Infrastructure",
-    items:
-      "Docker · K3s / Kubernetes · Terraform · Flux GitOps · Woodpecker CI · Hetzner · Traefik · S3 / R2",
-  },
+const contacts = [
+  { label: site.email, href: `mailto:${site.email}` },
+  { label: "drepkovsky.com", href: "https://drepkovsky.com" },
+  { label: "github.com/drepkovsky", href: site.links.github },
+  { label: "linkedin.com/in/drepkovsky", href: site.links.linkedin },
 ];
 
 export default function CvPage() {
-  const projects = sortedWork.filter((item) => !item.needsFact).slice(0, 10);
+  const projects = cvProjects.flatMap(
+    (slug) => work.find((item) => item.slug === slug) ?? [],
+  );
 
   return (
-    <main className="relative z-10 mx-auto w-full max-w-[900px] px-5 py-12 print:max-w-none print:py-0 sm:px-8">
-      <header className="flex flex-wrap items-end justify-between gap-5 border-b border-line pb-6">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-[clamp(28px,4vw,42px)] font-semibold leading-none">
-            {site.name}
-          </h1>
-          <p className="font-mono text-xs tracking-[0.1em] text-muted uppercase">
+    <main className="cv relative z-10 mx-auto w-full max-w-[980px] px-5 py-12 sm:px-8">
+      <div className="cv-band surface flex flex-col gap-7 rounded-surface border border-line bg-soft p-6 sm:p-9 md:flex-row md:items-end md:justify-between">
+        <div className="flex max-w-[560px] flex-col gap-4">
+          <p className="cv-role font-mono text-[11px] tracking-[0.18em] text-accent uppercase">
             {site.cvRole} · {site.location}
           </p>
+          <h1 className="cv-name text-[clamp(34px,5.4vw,56px)] font-semibold leading-[0.95]">
+            {site.name}
+          </h1>
+          <p className="cv-intro text-[15px] leading-[1.55] text-muted">
+            {cvIntro}
+          </p>
         </div>
-        <div className="flex flex-col gap-1 font-mono text-[11px] leading-relaxed text-muted">
-          <a href={`mailto:${site.email}`} className="hover:text-accent">
-            {site.email}
-          </a>
-          <a href={site.links.github} className="hover:text-accent">
-            github.com/drepkovsky
-          </a>
-          <a href={site.links.questpie} className="hover:text-accent">
-            questpie.com
-          </a>
-        </div>
-      </header>
-
-      <PrintButton />
-
-      <Section title="Experience">
-        {employment.map((job) => (
-          <div key={job.org} className="flex flex-col gap-1.5 pb-5 last:pb-0">
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h3 className="text-[15px] font-semibold">
-                {job.role} — {job.org}
-              </h3>
-              <span className="font-mono text-[10px] tracking-[0.1em] text-muted uppercase">
-                {job.period}
-              </span>
-            </div>
-            <ul className="flex list-none flex-col gap-1 p-0 text-[13px] leading-[1.55] text-muted">
-              {job.points.map((point) => (
-                <li key={point} className="grid grid-cols-[12px_1fr] gap-2">
-                  <span className="text-accent">·</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </Section>
-
-      <Section title="Selected projects">
-        <ul className="flex list-none flex-col gap-2 p-0 text-[13px] leading-[1.55]">
-          {projects.map((project) => (
-            <li
-              key={project.slug}
-              className="grid grid-cols-[1fr] gap-x-4 gap-y-0.5 sm:grid-cols-[minmax(0,170px)_1fr]"
-            >
-              <span className="font-semibold">
-                {project.title}
-                <span className="ml-2 font-mono text-[10px] font-normal tracking-[0.08em] text-muted uppercase">
-                  {project.kind}
-                </span>
-              </span>
-              <span className="text-muted">
-                {project.stack.slice(0, 4).join(" · ")} — {project.period}
-              </span>
+        <ul className="cv-contacts flex list-none flex-col gap-1.5 p-0 font-mono text-[11px] leading-relaxed text-muted md:items-end">
+          {contacts.map((contact) => (
+            <li key={contact.href}>
+              <a href={contact.href} className="hover:text-accent">
+                {contact.label}
+              </a>
             </li>
           ))}
         </ul>
-      </Section>
+      </div>
 
-      <Section title="Stack">
-        <dl className="grid grid-cols-[minmax(0,150px)_1fr] gap-x-5 gap-y-2 text-[13px] leading-[1.5]">
-          {skills.map((row) => (
-            <div key={row.group} className="contents">
-              <dt className="font-mono text-[10px] tracking-[0.08em] text-muted uppercase">
-                {row.group}
-              </dt>
-              <dd className="m-0">{row.items}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
+      <PrintButton />
 
-      <Section title="Education & facts">
-        <dl className="grid grid-cols-[minmax(0,110px)_1fr] gap-x-5 gap-y-2 text-[13px] leading-[1.5] text-muted">
-          {facts.map((fact) => (
-            <div key={fact.key} className="contents">
-              <dt className="font-mono text-[10px] tracking-[0.08em] uppercase">
-                {fact.key}
-              </dt>
-              <dd className="m-0">{fact.value.replace(/\*\*/g, "")}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
+      <dl className="cv-figures mt-8 grid grid-cols-1 gap-x-8 gap-y-5 border-b border-line pb-8 sm:grid-cols-3">
+        {cvFigures.map((figure) => (
+          <div key={figure.value} className="flex flex-col gap-2">
+            <dt className="cv-figure text-[34px] font-semibold leading-none tracking-[-0.04em]">
+              <span className="cv-figure-mark">{figure.value}</span>
+            </dt>
+            <dd className="m-0 text-[13px] leading-[1.45] text-muted">
+              {figure.label}
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <div className="cv-grid grid grid-cols-1 gap-x-12 md:grid-cols-[minmax(0,1fr)_minmax(0,270px)]">
+        <div className="min-w-0">
+          <Section title="Experience">
+            {cvEmployment.map((job) => (
+              <div key={job.org} className="cv-job flex flex-col gap-2 pb-6 last:pb-0">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 className="text-[16px] font-semibold">
+                    {job.role}
+                    <span className="font-normal text-muted"> · {job.org}</span>
+                  </h3>
+                  <span className="cv-period font-mono text-[10px] tracking-[0.1em] text-muted uppercase">
+                    {job.period}
+                  </span>
+                </div>
+                <ul className="flex list-none flex-col gap-1.5 p-0 text-[13.5px] leading-[1.55] text-muted">
+                  {job.points.map((point) => (
+                    <li key={point} className="grid grid-cols-[14px_1fr]">
+                      <span className="cv-bullet" aria-hidden="true" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </Section>
+
+          <Section title="Selected projects">
+            <ul className="cv-projects flex list-none flex-col gap-3 p-0">
+              {projects.map((project) => (
+                <li key={project.slug} className="flex flex-col gap-0.5">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                    <span className="text-[14px] font-semibold">
+                      {project.title}
+                      <span className="font-normal text-muted">
+                        {" "}
+                        · {project.context}
+                      </span>
+                    </span>
+                    <span className="cv-period font-mono text-[10px] tracking-[0.1em] text-muted uppercase">
+                      {enDash(project.period)}
+                    </span>
+                  </div>
+                  <span className="font-mono text-[11px] leading-[1.5] text-muted">
+                    {project.stack.slice(0, 5).join(" · ")}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Section>
+        </div>
+
+        <aside className="cv-rail min-w-0">
+          <Section title="Stack">
+            <dl className="flex flex-col gap-3.5">
+              {cvSkills.map((row) => (
+                <div key={row.group} className="flex flex-col gap-1">
+                  <dt className="font-mono text-[10px] tracking-[0.1em] text-muted uppercase">
+                    {row.group}
+                  </dt>
+                  <dd className="m-0 text-[13px] leading-[1.5]">{row.items}</dd>
+                </div>
+              ))}
+            </dl>
+          </Section>
+
+          <Section title="Education & facts">
+            <dl className="flex flex-col gap-3.5">
+              {facts.map((fact) => (
+                <div key={fact.key} className="flex flex-col gap-1">
+                  <dt className="font-mono text-[10px] tracking-[0.1em] text-muted uppercase">
+                    {enDash(fact.key)}
+                  </dt>
+                  <dd className="m-0 text-[13px] leading-[1.5]">
+                    {fact.value.replace(/\*\*/g, "").replace(/ — /g, ", ")}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Section>
+        </aside>
+      </div>
     </main>
   );
+}
+
+/** Shared content writes ranges with a spaced em dash; a CV sets them tight. */
+function enDash(range: string) {
+  return range.replace(/\s*—\s*/g, "–");
 }
 
 function Section({
@@ -186,8 +168,11 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="break-inside-avoid pt-7">
-      <h2 className="eyebrow mb-3.5 border-b border-line pb-2">{title}</h2>
+    <section className="pt-8">
+      <h2 className="cv-heading eyebrow mb-4 flex items-center gap-2.5 border-b border-line pb-2.5">
+        <span className="cv-heading-mark" aria-hidden="true" />
+        {title}
+      </h2>
       {children}
     </section>
   );

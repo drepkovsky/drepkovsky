@@ -163,98 +163,247 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Print. /cv has to come out as a document someone can hand across a desk,
-   so the screen chrome goes and everything reverts to black on white.
+   CV marks. The accent appears as small solid squares and one highlighter
+   stroke under each figure, so the page carries the site's colour without
+   leaning on it for legibility.
+--------------------------------------------------------------------------- */
+.cv-heading-mark,
+.cv-bullet {
+  display: block;
+  flex: none;
+  background: var(--color-accent);
+}
+
+.cv-heading-mark {
+  width: 7px;
+  height: 7px;
+}
+
+.cv-bullet {
+  width: 4px;
+  height: 4px;
+  margin-top: 0.62em;
+}
+
+.cv-figure-mark {
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--color-accent) 55%, transparent) 0.3em,
+    transparent 0.3em
+  );
+  padding: 0 0.08em;
+}
+
+/* ---------------------------------------------------------------------------
+   Print. /cv is the only page meant to leave as a file, and it has to land on
+   one A4 sheet. The page margin is zero so the dark band can bleed to the
+   edge and the browser has no room to stamp its own header and footer; the
+   sheet's padding does the job of a margin instead.
 --------------------------------------------------------------------------- */
 @media print {
   @page {
-    margin: 14mm 14mm 12mm;
+    size: A4;
+    margin: 0;
   }
 
   .no-print,
-  header,
-  footer {
+  body > header,
+  body > footer {
     display: none !important;
   }
 
   html,
   body {
     background: #fff !important;
-    color: #000 !important;
+    color: #111 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  /* Every design role is re-pointed at ink, so components print correctly
-     without any of them needing a print-specific class. */
-  :root {
+  /* Paper palette. The accent stays the site's yellow: it only ever fills a
+     mark, never sets text on white. */
+  :root,
+  [data-theme="light"] {
     --color-bg: #fff;
-    --color-fg: #000;
-    --color-muted: #333;
-    --color-line: #bbb;
-    --color-accent: #000;
+    --color-fg: #111;
+    --color-muted: #4d4d4d;
+    --color-line: #dcdcdc;
+    --color-accent: oklch(0.86 0.19 100);
     --color-soft: #fff;
-    --color-ink: #000;
+    --color-ink: #111;
     --surface-edge: transparent;
   }
 
-  main {
-    max-width: none !important;
-    padding: 0 !important;
-    font-size: 10.5pt;
-  }
-
-  h1 {
-    font-size: 20pt !important;
-  }
-
-  h2 {
-    font-size: 10pt !important;
-  }
-
-  h3 {
-    font-size: 11pt !important;
-  }
-
-  section,
-  li,
-  dl {
-    break-inside: avoid;
-  }
-
-  /* Screen spacing puts the CV a few lines onto a second sheet. These claw
-     back roughly 90px so it lands on one page, which is the whole point of
-     having a print view at all. */
-  main section {
-    padding-top: 14px !important;
-  }
-
-  main section > div,
-  main header {
-    padding-bottom: 0 !important;
-  }
-
-  main section h2 {
-    margin-bottom: 8px !important;
-    padding-bottom: 4px !important;
-  }
-
-  main ul,
-  main dl {
-    gap: 4px !important;
-  }
-
   a {
-    color: #000 !important;
+    color: inherit !important;
     text-decoration: none;
   }
 
-  /* Backdrop filters and shadows cost ink and render unpredictably, and the
-     theme transition would otherwise still be mid-fade when the page is
-     rasterised. */
+  /* Shadows and filters render unpredictably, and the theme transition would
+     otherwise still be mid-fade when the page is rasterised. */
   * {
     backdrop-filter: none !important;
     box-shadow: none !important;
     text-shadow: none !important;
     transition: none !important;
     animation: none !important;
+  }
+
+  .cv {
+    max-width: none !important;
+    width: 210mm;
+    /* Kerned runs are written to the PDF as separately positioned fragments,
+       which text extraction reads back as "sh ops" and "bu ilt". A CV gets
+       parsed by machines before anyone looks at it, so whole words win. */
+    font-kerning: none;
+    text-rendering: auto;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 8.4pt;
+  }
+
+  /* The band keeps the site's dark face, so its own roles are re-pointed and
+     everything inside reads them as usual. */
+  .cv-band {
+    --color-fg: #f5f5f5;
+    --color-muted: #a8a8a8;
+    flex-direction: row !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 10mm !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #141414 !important;
+    color: var(--color-fg);
+    padding: 11mm 14mm 8mm !important;
+  }
+
+  .cv-band > div {
+    max-width: 118mm !important;
+    gap: 3.2mm !important;
+  }
+
+  .cv-role {
+    font-size: 6.6pt !important;
+  }
+
+  .cv-name {
+    font-size: 31pt !important;
+    line-height: 0.95 !important;
+  }
+
+  .cv-intro {
+    font-size: 8.6pt !important;
+    line-height: 1.5 !important;
+  }
+
+  .cv-contacts {
+    align-items: flex-end !important;
+    gap: 1mm !important;
+    font-size: 7pt !important;
+    white-space: nowrap;
+  }
+
+  .cv-figures {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8mm !important;
+    margin: 0 14mm !important;
+    padding: 5.5mm 0 4.5mm !important;
+  }
+
+  .cv-figures > div {
+    gap: 1.6mm !important;
+  }
+
+  .cv-figure {
+    font-size: 21pt !important;
+  }
+
+  .cv-figures dd {
+    font-size: 8pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .cv-grid {
+    grid-template-columns: minmax(0, 1fr) 52mm !important;
+    column-gap: 9mm !important;
+    padding: 0 14mm 10mm !important;
+  }
+
+  .cv section {
+    padding-top: 5mm !important;
+  }
+
+  .cv-heading {
+    margin-bottom: 3mm !important;
+    padding-bottom: 1.8mm !important;
+    font-size: 6.6pt !important;
+  }
+
+  .cv-heading-mark {
+    width: 5pt;
+    height: 5pt;
+  }
+
+  .cv-bullet {
+    width: 3pt;
+    height: 3pt;
+  }
+
+  .cv-job {
+    gap: 1.4mm !important;
+    padding-bottom: 3.4mm !important;
+    break-inside: avoid;
+  }
+
+  .cv-job:last-child {
+    padding-bottom: 0 !important;
+  }
+
+  .cv h3 {
+    font-size: 9.6pt !important;
+  }
+
+  .cv-period {
+    font-size: 6.4pt !important;
+  }
+
+  .cv-job ul {
+    gap: 0.9mm !important;
+    font-size: 8.2pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .cv-job li {
+    grid-template-columns: 9pt 1fr !important;
+  }
+
+  .cv-projects {
+    gap: 1.8mm !important;
+  }
+
+  .cv-projects li > div > span:first-child {
+    font-size: 8.6pt !important;
+  }
+
+  .cv-projects li > span {
+    font-size: 6.8pt !important;
+  }
+
+  .cv-rail dl {
+    gap: 2.6mm !important;
+  }
+
+  .cv-rail dl > div {
+    gap: 0.7mm !important;
+  }
+
+  .cv-rail dt {
+    font-size: 6.2pt !important;
+  }
+
+  .cv-rail dd {
+    font-size: 7.8pt !important;
+    line-height: 1.42 !important;
   }
 }
