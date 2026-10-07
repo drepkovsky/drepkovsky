@@ -15,25 +15,26 @@ steps:
       - bun run typecheck
 
   build:
-    image: woodpeckerci/plugin-docker-buildx:6
+    # Kaniko builds without privileges; this repository is not trusted and
+    # Woodpecker no longer runs plugin-docker-buildx privileged by default.
+    # The builder node is amd64, which is the only platform the cluster runs.
+    image: woodpeckerci/plugin-kaniko:2
     depends_on: [typecheck]
     settings:
-      daemon_off: true
       dockerfile: Dockerfile
-      context: .
-      platforms: linux/amd64
+      # The plugin skips the push when repo is empty, even with destinations.
       repo: questpie/drepkovsky
+      destinations:
+        - "questpie/drepkovsky:latest"
+        - "questpie/drepkovsky:${CI_COMMIT_SHA}"
       # NEXT_PUBLIC_* is inlined by Next at build time, so it belongs here and
       # not in the deployment env. All four are public by design — they ship
       # in the HTML of every page.
-      build_args:
-        NEXT_PUBLIC_CAP_SITE_KEY: "1f19b4ea49"
-        NEXT_PUBLIC_CAP_BASE_URL: "https://cap.eu-infra.questpie.com"
-        NEXT_PUBLIC_UMAMI_SRC: "https://umami.eu-infra.questpie.com/script.js"
-        NEXT_PUBLIC_UMAMI_ID: "e6f5bd74-5208-4fdf-b3d6-a809718dc454"
-      tags:
-        - latest
-        - ${CI_COMMIT_SHA}
+      build-args:
+        - "NEXT_PUBLIC_CAP_SITE_KEY=1f19b4ea49"
+        - "NEXT_PUBLIC_CAP_BASE_URL=https://cap.eu-infra.questpie.com"
+        - "NEXT_PUBLIC_UMAMI_SRC=https://umami.eu-infra.questpie.com/script.js"
+        - "NEXT_PUBLIC_UMAMI_ID=e6f5bd74-5208-4fdf-b3d6-a809718dc454"
       username:
         from_secret: docker_username
       password:
