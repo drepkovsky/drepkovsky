@@ -7,7 +7,10 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 # ---- build ------------------------------------------------------------------
-FROM oven/bun:1.3-alpine AS build
+# Node, not Bun: Bun 1.3.14 segfaults at the end of `next build` on the CI
+# builder, after the pages are already written. Bun still installs the
+# dependencies in the stage above; the runtime stage is Node as well.
+FROM node:22-alpine AS build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -26,7 +29,7 @@ ENV NEXT_LIMIT_WORKERS=$NEXT_LIMIT_WORKERS \
     NEXT_PUBLIC_UMAMI_ID=$NEXT_PUBLIC_UMAMI_ID \
     NEXT_TELEMETRY_DISABLED=1
 
-RUN bun run build
+RUN node node_modules/next/dist/bin/next build
 
 # ---- runtime ----------------------------------------------------------------
 FROM node:22-alpine AS runner
