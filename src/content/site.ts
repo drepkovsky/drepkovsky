@@ -9,6 +9,8 @@
 export const site = {
   name: "Dominik Repkovský",
   role: "Backend & TypeScript",
+  /** The CV is read for product roles too, so it names the whole range. */
+  cvRole: "Full-stack TypeScript engineer",
   email: "dominik@questpie.com",
   location: "Bratislava, Slovakia",
   /** When the work started (býVAK), not when the s.r.o. was registered in 2021. */

@@ -19,6 +19,7 @@ const employment = [
     points: [
       "Contract backends, mobile apps and platform work for clients in Slovakia, Czechia and Italy.",
       "Author of QUESTPIE, the open source framework the client work runs on.",
+      "Build QUESTPIE Autopilot, a multi-tenant workspace where AI agents work under their own permissions: an MCP server with OAuth, authorization on every tool call, and human approval for anything beyond an agent's authority.",
       "Own the whole path: schema, API, deploy, and the servers it lands on.",
     ],
   },
@@ -86,7 +87,7 @@ export default function CvPage() {
             {site.name}
           </h1>
           <p className="font-mono text-xs tracking-[0.1em] text-muted uppercase">
-            {site.role} · {site.location}
+            {site.cvRole} · {site.location}
           </p>
         </div>
         <div className="flex flex-col gap-1 font-mono text-[11px] leading-relaxed text-muted">

@@ -72,9 +72,9 @@ export const work: WorkItem[] = [
     title: "QUESTPIE Autopilot",
     period: "2025 — now",
     sortYear: 2026.6,
-    context: "Own product · private beta",
+    context: "Own product · open beta",
     summary:
-      "A company as a container and its staff as agents. One Bun process watches the filesystem, runs a task state machine, spawns agents across eight roles, and commits what they produce to git. The point is that the work leaves an audit trail instead of a chat log. Built on QUESTPIE.",
+      "A workspace where a company's people and its AI agents work side by side: tasks, channels, a shared library and automations in one multi-tenant product. Every agent is its own actor with its own permissions, checked again on each tool call, and anything beyond its authority becomes an approval request for a human. Agents run on work machines, push their changes to a branch, and leave a reviewable record instead of a chat log. People reach the same commands from their own AI client through an MCP server with OAuth. Built on QUESTPIE.",
     stack: ["QUESTPIE", "Bun", "AI SDK", "MCP", "TanStack Start", "Postgres"],
     writeup: null,
   },
