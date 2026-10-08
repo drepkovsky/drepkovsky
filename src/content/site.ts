@@ -197,7 +197,7 @@ export const questpie = {
     {
       name: "Autopilot",
       line: "For the people running the company. Software you can staff.",
-      href: `${site.links.questpie}/autopilot`,
+      href: site.links.questpie,
     },
   ],
   built: [

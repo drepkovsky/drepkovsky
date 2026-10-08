@@ -42,7 +42,7 @@ export const navigation: NavItem[] = [
       },
       {
         label: "Autopilot",
-        href: `${site.links.questpie}/autopilot`,
+        href: site.links.questpie,
         note: "Software you can staff",
         external: true,
       },
@@ -81,7 +81,7 @@ export const footerColumns = [
       },
       {
         label: "Autopilot",
-        href: `${site.links.questpie}/autopilot`,
+        href: site.links.questpie,
         external: true,
       },
     ],
