@@ -366,15 +366,15 @@ export const work: WorkItem[] = [
   {
     slug: "elias-it",
     proves:
-      "That what I hand over outlives me: 200+ clients still run on that template.",
+      "That I can rescue a broken project, lead a small team and hand over something that outlives me: 200+ clients still run on that template.",
     weight: 6,
     kind: "CLIENT",
     title: "Eliaš IT Solutions",
     period: "2023 — 2024",
     sortYear: 2023.5,
-    context: "Freelance · eliadmin.sk",
+    context: "Contract · frontend lead · eliadmin.sk",
     summary:
-      "A reusable e-commerce template the agency could resell, rather than one shop. I built the template, the frontend and mobile side, and the payment and order flows. Over 200 of their clients run on it, and the team kept building on it long after I left. That is the only handover test that counts.",
+      "A reusable e-commerce template the agency could resell, rather than one shop. I took over a frontend two earlier developers had left broken, rebuilt it from scratch in Next.js and had a first version in front of their first client in about six weeks. After that I led two frontend developers on new e-commerce modules, scaling and performance, delegated the work and owned delivery to production. Over 200 of their clients run on it, and the team kept building on its core long after I left. That is the only handover test that counts.",
     stack: ["Next.js", "TypeScript"],
     writeup: null,
   },

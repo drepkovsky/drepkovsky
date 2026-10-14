@@ -33,7 +33,7 @@ export const cvEmployment = [
       "Agents hold their own permissions like any employee. The server checks every tool call again and sends anything an agent may not do to a human for approval. The same commands are open to Claude through an MCP server with OAuth, and companies build their own mini apps inside it.",
       "Took the current version from an empty repo to production in eight weeks with over 2,000 commits and 400 test files. Most of the code is written by coding agents I direct under strict engineering rules, automated checks and independent review.",
       "Wrote QUESTPIE, the open source framework that generates the database, API, MCP and admin from one TypeScript schema. Our products and client work in Slovakia, Czechia and Italy run on it.",
-      "Built an e-commerce template for Eliaš IT Solutions that they could resell. More than 200 of their clients run on it, and their team kept building on it after I left.",
+      "Led the frontend of the e-commerce template Eliaš IT Solutions resells. Rebuilt a broken project in Next.js with a first version within six weeks, then led two developers and owned delivery to production. 200+ of their clients run on it.",
     ],
   },
   {
@@ -78,7 +78,7 @@ export const cvSkills = [
   {
     group: "Frontend & mobile",
     items:
-      "React · Next.js · TanStack Start / Router / Query · React Native · Expo · Tailwind",
+      "React · Vue · Next.js · TanStack Start / Router / Query · React Native · Expo · Tailwind",
   },
   {
     group: "Data",
