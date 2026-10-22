@@ -7,23 +7,10 @@ REST API, typed client, and admin out of it.
 
 | Project | What it is |
 | :--- | :--- |
-| **[QUESTPIE](https://questpie.com/framework)** | A self-hosted TypeScript framework that generates the plumbing around a product from one schema. |
+| **[QUESTPIE](https://questpie.com)** | An AI-native workspace that builds itself. |
 | **[Nutrimeals](https://drepkovsky.com/work/nutrimeals)** | A React Native ordering app and multi-tenant backend for smart canteens and connected fridges. |
 | **[Jubli](https://drepkovsky.com/work/jubli)** | An event platform where guests join a live social space by scanning a QR code. |
 | **[agent-board](https://github.com/questpie/agent-board)** | A local, Markdown-backed control plane for long-running coding-agent work. |
-
-### How I work
-
-- One schema should drive the API, types, admin, and client.
-- You get a repository you can run, not a service you rent.
-- I deploy to servers you can SSH into yourself.
-- If a job needs a bigger team than mine, I say so.
-
-`TypeScript` · `Bun` · `Node.js` · `Next.js` · `React Native` · `Postgres` ·
-`Drizzle` · `Docker` · `Kubernetes` · `Linux`
-
-> Available for contract work. If you have a product that needs a backend,
-> **[tell me what you are building](mailto:dominik@questpie.com)**.
 
 <details>
 <summary><strong>About this repository</strong></summary>
