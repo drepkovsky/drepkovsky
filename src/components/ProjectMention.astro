@@ -1,0 +1,44 @@
+---
+import { projects, type ProjectKey, type Project } from "../content/projects";
+import type { Locale } from "../content/i18n";
+
+interface Props {
+  project: ProjectKey;
+  locale: Locale;
+  id: string;
+  label?: string;
+  row?: boolean;
+  secondary?: string;
+}
+const { project, locale, id, label, row = false, secondary } = Astro.props;
+const info: Project = projects[project];
+const popoverId = `project-${id}`;
+---
+<span class:list={["project-mention", { "project-mention-row": row }]} data-project-mention>
+  <button
+    class:list={["project-trigger", { project: row }]}
+    type="button"
+    popovertarget={popoverId}
+    aria-haspopup="dialog"
+    aria-controls={popoverId}
+    aria-expanded="false"
+    data-project-trigger
+  >
+    <span class:list={{ "project-name": row }}>{label ?? info.name}</span>
+    {secondary && <span class="project-label">{secondary}</span>}
+    {row && <span class="popover-arrow" aria-hidden="true"></span>}
+  </button>
+  <span class="project-popover" id={popoverId} popover="auto" role="dialog" aria-labelledby={`${popoverId}-name`}>
+    <span class="project-popover-heading">
+      <strong id={`${popoverId}-name`}>{info.name}</strong>
+      <button type="button" class="popover-close" popovertarget={popoverId} popovertargetaction="hide">
+        {locale === "sk" ? "Zavrieť" : "Close"}
+      </button>
+    </span>
+    <span class="project-description">{info[locale]}</span>
+    {info.href && <a class="project-visit" href={info.href}>{locale === "sk" ? "Otvoriť projekt" : "Visit project"}</a>}
+  </span>
+</span>
+<script>
+  import "../scripts/project-popovers";
+</script>

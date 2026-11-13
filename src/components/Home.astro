@@ -1,0 +1,108 @@
+---
+import { Image } from "astro:assets";
+import Page from "../layouts/Page.astro";
+import ProjectMention from "./ProjectMention.astro";
+import type { ProjectKey } from "../content/projects";
+import { copy, type Locale } from "../content/i18n";
+import portrait from "../assets/portrait.jpg";
+import { experience, experienceSk, site } from "../content/site";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = copy[locale];
+const positions = locale === "sk" ? experienceSk : experience;
+const cvPath = locale === "sk" ? "/sk/cv" : "/cv";
+---
+<Page locale={locale} description={t.description}>
+  <main id="main" class="page">
+    <header class="intro">
+      <div class="identity">
+        <Image src={portrait} alt="Dominik Repkovský" width={128} height={128} format="webp" class="portrait" loading="eager" />
+        <div>
+          <h1>{site.name}</h1>
+          <p class="location">{t.location}</p>
+        </div>
+      </div>
+      <p class="headline">{t.headline}</p>
+      <p class="role">
+        {t.roleBefore} <a href={site.links.checkly}>Checkly</a>.<br />
+        {t.founderBefore} <a href={site.links.questpie}>QUESTPIE</a> {t.buildingBefore}{" "}
+        <a href={site.links.questpie}>questpie.com</a> {t.and} <a href={site.links.antil}>antil.dev</a>.
+      </p>
+    </header>
+
+    <section aria-labelledby="building">
+      <h2 id="building">{t.building}</h2>
+      <ul class="project-list">
+        <li><ProjectMention project="autopilot" locale={locale} id="featured-autopilot" label="questpie.com" secondary="Autopilot" row /></li>
+        <li><ProjectMention project="antil" locale={locale} id="featured-antil" label="antil.dev" row /></li>
+      </ul>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">{t.experience}</h2>
+      <ol class="experience-list">
+        {positions.map((entry) => (
+          <li class="experience">
+            <div class="experience-content">
+              <h3>{entry.href ? <a href={entry.href}>{entry.company}</a> : entry.company}</h3>
+              <p class="experience-role">{entry.role}</p>
+              {entry.company === "QUESTPIE" && (
+                <details class="other-products">
+                  <summary>{t.otherProducts}</summary>
+                  <p class="product-mentions">
+                    {(["jubli", "framework", "migrations"] as ProjectKey[]).map((project, index) => (
+                      <>{index > 0 && <span aria-hidden="true"> · </span>}<ProjectMention project={project} locale={locale} id={`other-${project}`} /></>
+                    ))}
+                  </p>
+                  <p class="past-products">{t.pastProducts} — {(["mealproai", "byvak", "bulkit", "crust"] as ProjectKey[]).map((project, index) => (
+                    <>{index > 0 && <span aria-hidden="true"> · </span>}<ProjectMention project={project} locale={locale} id={`past-${project}`} /></>
+                  ))}</p>
+                </details>
+              )}
+              {entry.projects.length > 0 && (
+                <p class="related-projects">
+                  {entry.company === "QUESTPIE" && <span>{t.alsoBuilding}{" "}</span>}
+                  {entry.projects.map((project, index) => (
+                    <>{index > 0 && <span class="separator"> / </span>}{entry.company === "QUESTPIE"
+                      ? <ProjectMention project={project.name === "Yielda" ? "yielda" : "nutrimeals"} locale={locale} id={`related-${project.name}`} />
+                      : <a href={project.href}>{project.name}</a>}</>
+                  ))}
+                </p>
+              )}
+            </div>
+            <span class="period">{entry.period}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <footer class="contact">
+      <div class="contact-links">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.links.github}>GitHub</a>
+        <a href={site.links.linkedin}>LinkedIn</a>
+        <a href={cvPath}>{t.cv}</a>
+      </div>
+      <details class="write" hidden>
+        <summary>{t.write} <span class="plus" aria-hidden="true"></span></summary>
+        <form id="contact-form" data-recipient={site.email} data-name-error={t.nameError} data-message-error={t.messageError} data-subject-prefix={t.subjectPrefix}>
+          <div class="field-pair">
+            <label>{t.name}<input name="name" autocomplete="name" maxlength="120" required /></label>
+            <label>{t.email}<input name="email" type="email" autocomplete="email" maxlength="254" required /></label>
+          </div>
+          <label>{t.message}<textarea name="message" rows="4" maxlength="5000" required></textarea></label>
+          <button type="submit">{t.openDraft}</button>
+          <p class="form-hint">{t.draftHint}</p>
+          <p id="email-fallback" class="form-status" role="status" hidden>
+            {t.fallbackBefore}{" "}<a href={`mailto:${site.email}`}>{t.fallbackLink}</a>{" "}
+            {t.fallbackAfter}
+          </p>
+        </form>
+      </details>
+      <noscript><p class="form-hint">{t.noScript}</p></noscript>
+    </footer>
+  </main>
+  <script>
+    import "../scripts/contact";
+  </script>
+</Page>

@@ -1,0 +1,234 @@
+.cv-page {
+  max-width: 980px;
+  padding-inline: 24px;
+}
+
+.cv-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 36px;
+  font-size: 14px;
+}
+
+.cv-subtitle {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.cv-intro {
+  max-width: 74ch;
+  margin-top: 20px;
+}
+
+.cv-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cv-figures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0 0;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cv-figures dt {
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.cv-figures dd {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cv-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 40px;
+}
+
+.cv-grid section {
+  margin-top: 30px;
+}
+
+.cv-job {
+  margin-top: 20px;
+}
+
+.cv-job-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+
+.cv-points {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+  padding-left: 17px;
+  list-style: disc;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cv-projects {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.cv-projects p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cv-facts {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.cv-facts dt {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cv-facts dd {
+  margin: 3px 0 0;
+  font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .cv-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cv-figures {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  :root {
+    color-scheme: light;
+    --background: #ffffff;
+    --foreground: #111111;
+    --muted: #444444;
+    --border: #d0d0d0;
+    --accent: #23583f;
+  }
+
+  .cv-toolbar, .skip-link {
+    display: none;
+  }
+
+  .cv-page {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+    line-height: 1.38;
+  }
+
+  .language-switch + .cv-page {
+    padding: 0;
+  }
+
+  .cv-page h1 {
+    font-size: 24pt;
+  }
+
+  .cv-page h2 {
+    padding-bottom: 4px;
+    font-size: 9pt;
+  }
+
+  .cv-page h3, .cv-page .experience-role {
+    font-size: 8.5pt;
+  }
+
+  .cv-subtitle {
+    margin-top: 5px;
+  }
+
+  .cv-intro, .cv-contacts {
+    margin-top: 10px;
+  }
+
+  .cv-intro {
+    max-width: none;
+  }
+
+  .cv-contacts, .cv-page .period {
+    font-size: 7pt;
+  }
+
+  .cv-figures {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+    padding-bottom: 12px;
+  }
+
+  .cv-figures dt {
+    font-size: 18pt;
+  }
+
+  .cv-figures dd, .cv-projects p, .cv-facts dt {
+    font-size: 7.5pt;
+  }
+
+  .cv-grid {
+    grid-template-columns: minmax(0, 1fr) 54mm;
+    gap: 8mm;
+  }
+
+  .cv-grid section {
+    margin-top: 12px;
+  }
+
+  .cv-job {
+    margin-top: 8px;
+    break-inside: avoid;
+  }
+
+  .cv-points {
+    gap: 2px;
+    margin-top: 5px;
+    font-size: 7.5pt;
+  }
+
+  .cv-projects, .cv-facts {
+    gap: 5px;
+    margin-top: 9px;
+  }
+
+  .cv-facts dd {
+    font-size: 8pt;
+  }
+
+  .cv-page a {
+    text-decoration: none;
+  }
+}

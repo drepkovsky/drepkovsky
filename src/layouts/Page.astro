@@ -1,0 +1,70 @@
+---
+import { copy, type Locale } from "../content/i18n";
+import { site } from "../content/site";
+import "../styles/site.css";
+
+interface Props {
+  locale?: Locale;
+  title?: string;
+  description?: string;
+}
+const { locale = "en", title = `${site.name} — Product Engineer` } = Astro.props;
+const t = copy[locale];
+const description = Astro.props.description ?? t.description;
+const isCv = /\/cv\/?$/.test(Astro.url.pathname);
+const englishPath = isCv ? "/cv" : "/";
+const slovakPath = isCv ? "/sk/cv" : "/sk/";
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: Astro.site?.href,
+  jobTitle: "Product Engineer",
+  worksFor: { "@type": "Organization", name: "Checkly", url: site.links.checkly },
+  sameAs: [site.links.github, site.links.linkedin],
+};
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={new URL(englishPath, Astro.site)} />
+    <link rel="alternate" hreflang="sk" href={new URL(slovakPath, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(englishPath, Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#151716" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL("/web-app-manifest-512x512.png", Astro.site)} />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.skip}</a>
+    <nav class="language-switch" aria-label={t.language}>
+      <a href={slovakPath} lang="sk" hreflang="sk" aria-label="Slovenčina" aria-current={locale === "sk" ? "page" : undefined}>SK</a>
+      <a href={englishPath} lang="en" hreflang="en" aria-label="English" aria-current={locale === "en" ? "page" : undefined}>EN</a>
+    </nav>
+    <slot />
+    {import.meta.env.PROD && (
+      <script
+        is:inline
+        defer
+        src="https://umami.eu-infra.questpie.com/script.js"
+        data-website-id="e6f5bd74-5208-4fdf-b3d6-a809718dc454"
+        data-domains="drepkovsky.com"
+      />
+    )}
+  </body>
+</html>

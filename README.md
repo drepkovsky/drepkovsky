@@ -1,43 +1,24 @@
-I build production backends in TypeScript and run the servers they sit on. I
-also wrote **[QUESTPIE](https://questpie.com)**, the open-source framework
-underneath most of what I ship: define a schema once and get the database,
-REST API, typed client, and admin out of it.
+# Dominik Repkovský
 
-### Selected work
-
-| Project | What it is |
-| :--- | :--- |
-| **[QUESTPIE](https://questpie.com)** | An AI-native workspace that builds itself. |
-| **[Nutrimeals](https://drepkovsky.com/work/nutrimeals)** | A React Native ordering app and multi-tenant backend for smart canteens and connected fridges. |
-| **[Jubli](https://drepkovsky.com/work/jubli)** | An event platform where guests join a live social space by scanning a QR code. |
-| **[agent-board](https://github.com/questpie/agent-board)** | A local, Markdown-backed control plane for long-running coding-agent work. |
-
-<details>
-<summary><strong>About this repository</strong></summary>
-
-This is the source for [drepkovsky.com](https://drepkovsky.com). It uses
-Next.js 16 on the App Router and Tailwind CSS v4. The site is static except for
-the contact route and is deployed to a self-hosted K3s cluster.
+Source for [drepkovsky.com](https://drepkovsky.com), a short personal website built with Astro.
 
 ```bash
 bun install
 bun run dev
 ```
 
-Copy `.env.example` to `.env.local` to enable the contact form. Without the
-keys, the form falls back to a honeypot and rate limit and points visitors to
-email instead.
-
-```text
-src/content/     every word on the site
-src/app/         routes and API handlers
-src/components/  shared interface components
+```bash
+bun run typecheck
+bun run build
+bun run preview
 ```
 
-Components never hold copy. If you are changing a sentence, it lives in
-`src/content`.
+The build writes plain HTML, CSS and assets to `dist/`. Upload that directory to a static host. The Dockerfile serves the same files with unprivileged nginx on port 3000.
 
-Pushes to `main` are typechecked by Woodpecker, built into a commit-tagged
-image, and deployed through the GitOps repository by Flux.
+Edit translated text in `src/content/i18n.ts`, roles and links in `src/content/site.ts`, and project explanations in `src/content/projects.ts`. The homepage is `src/components/Home.astro`, with styles in `src/styles/site.css`. `src/content/work.ts` retains the previous project inventory to redirect old project URLs to the short experience section.
 
-</details>
+The contact form opens a prefilled draft in the visitor's mail app. The visitor sends it manually. The plain email link also works without JavaScript.
+
+The `/cv` page contains the full CV and a Print / Save PDF action. Its source data is in `src/content/cv.ts`. English pages are `/` and `/cv`; Slovak pages are `/sk/` and `/sk/cv`. The language switch links between the matching pages. The homepage follows the system's light or dark appearance.
+
+Existing Umami analytics are included in production for drepkovsky.com. Previous `/about`, `/work` and project URLs generate static redirects back to the homepage.

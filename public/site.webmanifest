@@ -1,6 +1,6 @@
 {
-  "name": "Dominik Repkovský — Backend & TypeScript",
-  "short_name": "Repkovský",
+  "name": "Dominik Repkovsk\u00fd \u2014 Product Engineer",
+  "short_name": "Repkovsk\u00fd",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,8 +15,8 @@
       "purpose": "any"
     }
   ],
-  "theme_color": "#141414",
-  "background_color": "#141414",
+  "theme_color": "#fbfbfa",
+  "background_color": "#fbfbfa",
   "display": "standalone",
   "start_url": "/"
 }

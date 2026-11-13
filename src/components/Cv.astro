@@ -1,0 +1,106 @@
+---
+import Page from "../layouts/Page.astro";
+import { site } from "../content/site";
+import { cvContent, cvProjects } from "../content/cv";
+import { copy, type Locale } from "../content/i18n";
+import { work } from "../content/work";
+import "../styles/cv.css";
+
+const projects = cvProjects.flatMap((slug) => work.find((project) => project.slug === slug) ?? []);
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = copy[locale];
+const cv = cvContent[locale];
+const homePath = locale === "sk" ? "/sk/" : "/";
+---
+<Page locale={locale} title={`${t.cv} — ${site.name}`} description={t.cvDescription}>
+  <main id="main" class="page cv-page">
+    <nav class="cv-toolbar" aria-label={t.cvActions}>
+      <a href={homePath}>{t.back}</a>
+      <button id="print-cv" type="button" hidden>{t.print}</button>
+    </nav>
+    <header class="cv-header">
+      <h1>{site.name}</h1>
+      <p class="cv-subtitle">{t.cvSubtitle}</p>
+      <p class="cv-intro">{cv.intro}</p>
+      <ul class="cv-contacts">
+        <li>{t.location}</li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a href="https://drepkovsky.com">drepkovsky.com</a></li>
+        <li><a href={site.links.github}>github.com/drepkovsky</a></li>
+        <li><a href={site.links.linkedin}>linkedin.com/in/drepkovsky</a></li>
+      </ul>
+    </header>
+
+    <dl class="cv-figures">
+      {cv.figures.map((figure) => (
+        <div><dt>{figure.value}</dt><dd>{figure.label}</dd></div>
+      ))}
+    </dl>
+
+    <div class="cv-grid">
+      <div>
+        <section aria-labelledby="cv-experience">
+          <h2 id="cv-experience">{t.experience}</h2>
+          {cv.employment.map((job) => (
+            <article class="cv-job">
+              <div class="cv-job-heading">
+                <h3>{job.org}</h3>
+                <span class="period">{job.period}</span>
+              </div>
+              <p class="experience-role">{job.role}</p>
+              {job.points.length > 0 && (
+                <ul class="cv-points">{job.points.map((point) => <li>{point}</li>)}</ul>
+              )}
+            </article>
+          ))}
+        </section>
+        <section aria-labelledby="cv-projects">
+          <h2 id="cv-projects">{t.cvProjects}</h2>
+          <ul class="cv-projects">
+            <li>
+              <h3><a href={site.links.antil}>antil</a></h3>
+              <p>{t.antilDescription}</p>
+            </li>
+            {projects.map((project) => (
+              <li>
+                <div class="cv-job-heading"><h3>{project.title}</h3><span class="period">{locale === "sk" ? project.period.replace("now", "súčasnosť") : project.period}</span></div>
+                <p>{project.stack.slice(0, 5).join(" · ")}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+      <aside>
+        <section aria-labelledby="cv-skills">
+          <h2 id="cv-skills">{t.cvSkills}</h2>
+          <dl class="cv-facts">
+            {cv.skills.map((skill) => <div><dt>{skill.group}</dt><dd>{skill.items}</dd></div>)}
+          </dl>
+        </section>
+        <section aria-labelledby="cv-education">
+          <h2 id="cv-education">{t.cvEducation}</h2>
+          <dl class="cv-facts">
+            {cv.education.map((entry) => (
+              <div><dt>{entry.period} · FIIT STU Bratislava</dt><dd>{entry.degree}</dd></div>
+            ))}
+          </dl>
+        </section>
+        <section aria-labelledby="cv-facts">
+          <h2 id="cv-facts">{t.cvDetails}</h2>
+          <dl class="cv-facts">
+            <div><dt>{t.cvLanguages}</dt><dd>{t.cvLanguageDetails}</dd></div>
+            <div><dt>{t.cvCompany}</dt><dd>QUESTPIE s.r.o. · IČO 54027292</dd></div>
+          </dl>
+        </section>
+      </aside>
+    </div>
+  </main>
+  <script>
+    const printButton = document.querySelector<HTMLButtonElement>("#print-cv");
+    if (printButton) {
+      printButton.hidden = false;
+      printButton.addEventListener("click", () => window.print());
+    }
+  </script>
+</Page>

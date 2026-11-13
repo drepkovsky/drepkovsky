@@ -9,7 +9,7 @@ steps:
   # Fails before anything reaches the registry, so a broken build never
   # produces a tag the cluster could be pointed at.
   typecheck:
-    image: oven/bun:1.3-alpine
+    image: oven/bun:1.4-alpine
     commands:
       - bun install --frozen-lockfile
       - bun run typecheck
@@ -27,14 +27,6 @@ steps:
       destinations:
         - "questpie/drepkovsky:latest"
         - "questpie/drepkovsky:${CI_COMMIT_SHA}"
-      # NEXT_PUBLIC_* is inlined by Next at build time, so it belongs here and
-      # not in the deployment env. All four are public by design — they ship
-      # in the HTML of every page.
-      build-args:
-        - "NEXT_PUBLIC_CAP_SITE_KEY=1f19b4ea49"
-        - "NEXT_PUBLIC_CAP_BASE_URL=https://cap.eu-infra.questpie.com"
-        - "NEXT_PUBLIC_UMAMI_SRC=https://umami.eu-infra.questpie.com/script.js"
-        - "NEXT_PUBLIC_UMAMI_ID=e6f5bd74-5208-4fdf-b3d6-a809718dc454"
       username:
         from_secret: docker_username
       password:
